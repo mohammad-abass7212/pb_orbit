@@ -20,13 +20,16 @@ const newLocal_2 = <MenuButton
   as={IconButton}
   aria-label="Options"
   icon={<HamburgerIcon />}
-  variant="outline" />;
+  // variant="outline"
+  bg="transparent"
+  _hover={{ bg:"transparent" }} 
+  />;
 const Navbar: FunctionComponent =()=>{
   const newLocal_1 = newLocal_2;
   const newLocal= newLocal_1;
 
 return (
-    <Box position="fixed" w="100%" zIndex="4" >
+    <Box position="fixed" w="100%" zIndex="40" >
       <Flex
         w={[ "100%", "90%","100%", "90%", "90%"]}
         alignItems={"center"}
@@ -36,6 +39,7 @@ return (
         justifyContent="space-evenly"
         position="relative"
       >
+        
         <Box w={["30%","40%","40%","40%","40%"]} mr={["100px","0px","0px","0px","0px"]} >
           <Image
             src="/utils/Common/logo.png"
@@ -48,12 +52,12 @@ return (
         alignItems={"center"}
         p="10px"
           w="60%"
-          justifyContent={"space-evenly"}
+          justifyContent={"space-between"}
           display={["none","none","none","flex","flex"]}
-          bg="#050017
-          
-          "
+          bg="#050017"
+          borderRadius={"6px"}
         >
+            <Flex pl="36px"  gap="60px">
           <Link href="/">
             <h1>Home</h1>
           </Link>
@@ -66,33 +70,45 @@ return (
           <Link href="/Contactus">
             <h1>Contact Us</h1>
           </Link>
-
-          <Link href="/Pricing">
+          </Flex>
+          <Link href="/login">
           <Button
           
           colorScheme="whatsapp"
           w="100%"
-          fontSize={"14px"}
-          // h="40px"
+          fontSize={"13px"}
+          h="30px"
           borderRadius={"20px"}
           >
           {" "}
-          Login/sign up{" "}
+          Login/Signup{" "}
           </Button>
           </Link>
         </Flex>
 
         {/* menubar */}
 
-        <Box display={["block", "none","none", "none","none" ]}>
+        <Box display={["block", "block","block", "none","none" ]}>
           <Menu>
             {newLocal}
             <MenuList>
-              <MenuItem>New Tab</MenuItem>
-              <MenuItem>New Tab</MenuItem>
-              <MenuItem>New Tab</MenuItem>
-              <MenuItem>New Tab</MenuItem>
-              <MenuItem>New Tab</MenuItem>
+              <MenuItem color={"red"}>Home</MenuItem>
+              <MenuItem color={"red"}>Features</MenuItem>
+              <MenuItem color={"red"}>Pricing</MenuItem>
+              <MenuItem color={"red"}>Contact Us</MenuItem>
+              <MenuItem color={"red"}><Link href="/login">
+          <Button
+          
+          colorScheme="whatsapp"
+          w="100%"
+          fontSize={"13px"}
+          h="30px"
+          borderRadius={"20px"}
+          >
+          {" "}
+          Login/Signup{" "}
+          </Button>
+          </Link></MenuItem>
             </MenuList>
           </Menu>
         </Box>

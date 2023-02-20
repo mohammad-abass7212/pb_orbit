@@ -6,23 +6,23 @@ const Why_choose: FunctionComponent = () => {
     return (
     
         <Box 
-        pl={["40px" ,"40px" ,"300px","50px","300px"]}
-         pr={[ "10px", "250px","10px", "50px", "50px"]}
-          mt="80px"  display={{ lg: "flex", md: "flex", sm: "block" }}>
+        pl={["40px" ,"250px" ,"300px","200px","300px"]}
+         pr={[ "50px", "50px","50px", "50px", "50px"]}
+          mt="80px"  display={[ "block", "flex", "flex", "flex", "flex" ]} flexDirection={["column","column","row","row","row"]} alignItems="center" >
         <Box>
-       
+
           <Image src="/utils/Common/why-img.png" alt="pb" />
         </Box>
-
-        <Box>
+<Box>
           {" "}
           <Heading mt="40px" mb="40px">
             Why Choose PBorbit
           </Heading>
-          <Text pt="10px" w={[ "90%","10%","10%","10%","63%"]} color="#B4B4B6" mb="20px">
+          <Text pt="10px" w={[ "90%","60%","60%","60%","63%"]} color="#B4B4B6" mb="20px">
             Lorem Ipsum is simply dummy text of the printing and type
             setting industryLorem Ipsum is simply
           </Text>
+         
           <Grid
             templateColumns="repeat(2, 1fr)"
             templateRows="repeat(2, 1fr)"
@@ -54,7 +54,6 @@ const Why_choose: FunctionComponent = () => {
             </GridItem>
           </Grid>
         </Box>
-
       </Box>
       
     );
