@@ -37,7 +37,7 @@ export const useTypeWriterAnimation = ({
   delay = 0,
   ...rest
 }: TypeWriterAnimationProps): ReactElement => {
-  const textArray = text.split("");
+  const textArray = text.split(/(?<=\s)|(?=\s)/); // split string by spaces and keep the spaces
 
   return (
     <motion.span
