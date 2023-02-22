@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Layout from "@/components/layout/Layout";
 import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
+import { ThemeProvider } from "styled-components";
 
 export default function App({
   Component,
@@ -14,13 +15,15 @@ export default function App({
     <HydrationProvider>
       <Server></Server>{" "}
       <ChakraProvider theme={theme}>
-        <Client>
-          {" "}
-          <Layout>
+        <ThemeProvider theme={theme}>
+          <Client>
             {" "}
-            <Component {...pageProps} />{" "}
-          </Layout>{" "}
-        </Client>
+            <Layout>
+              {" "}
+              <Component {...pageProps} />{" "}
+            </Layout>{" "}
+          </Client>
+        </ThemeProvider>
       </ChakraProvider>
     </HydrationProvider>
   );
