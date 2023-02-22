@@ -1,12 +1,14 @@
 import { Box, Button,  Heading, Image, SlideFade, Text } from '@chakra-ui/react';
 import React from 'react';
 import { FunctionComponent } from 'react'
+
 const HomePage: FunctionComponent|any = () => {
+
 return (
         <Box   position="relative" pt={["100px","220px","220px","200px","320px"]} w="50%" ml={["80px","80px","80px","80px","105px"]} mb={["0px","0px","0px","190px","175px"]}>
           {/* shp1 */}
-          <Image
-            
+          <Image  className="div_nature" 
+            id='animatedImage'
             position="absolute"
             left={["-95px","-108px","-98px","-63px","-74px"]}
             top={["317px","317px","317px","317px","317px"]}
@@ -24,13 +26,14 @@ return (
             src="/utils/Common/top_left.png"
             alt="pborbit"
           />
-        <Text color={["green","green","green","green","#22c35e"]} fontSize={["15px","15px","17px","17px","17px"]}>
+          <Box  className="div_nature" id='text_animate_helper'></Box>
+        <Text  className="div_nature" id='animatedText' color={["green","green","green","green","#22c35e"]} fontSize={["15px","15px","17px","17px","17px"]}>
           We are pborbit
         </Text>
-        <Heading style={{fontFamily:"Poppins, sans-serif"}} fontSize={["15px","20px","30px","30px","40px"]} pr={["30px","50px","50px","320px","320px"]}>
+        <Heading className="scale-up" style={{fontFamily:"Poppins, sans-serif"}} fontSize={["15px","20px","30px","30px","40px"]} pr={["30px","50px","50px","320px","320px"]} >
           Court reservation platform for private community, parks, and HOAs
         </Heading>
-        <Text fontSize={["10px","15px","17px","18px","18px"]} color="hsl(80deg 8% 72%)" pr={["0px","338px"]}  wordBreak={"break-word"} >
+        <Text className="slide-in-left" fontSize={["10px","15px","17px","18px","18px"]} color="hsl(80deg 8% 72%)" pr={["0px","338px"]}  wordBreak={"break-word"} >
           Our Activate suite of business apps gives your Lorem ipsum dolor
           sit amet, consectetur.
         </Text>
