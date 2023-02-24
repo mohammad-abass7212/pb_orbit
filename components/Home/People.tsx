@@ -18,11 +18,11 @@ const People: FunctionComponent = () => {
             />
       <Center >
 
-        <Heading w={["100%","50%","50%","54%","54%"]} textAlign="center" size={"xl"} >What people say about PBorbot </Heading>
+        <Heading  w={["100%","50%","50%","54%","54%"]} textAlign="center" size={"xl"} >What people say about PBorbot </Heading>
       </Center>
       <Center mt="20px">
         {" "}
-        <Text w={["100%","27%","27%","37%","27%"]} textAlign="center" color="#B4B4B6" m="20px">
+        <Text  w={["100%","27%","27%","37%","27%"]} textAlign="center" color="#B4B4B6" m="20px">
           Lorem Ipsum is simply dummy text of the printing and type
           setting industryLorem Ipsum is simply
         </Text>{" "}
@@ -30,7 +30,7 @@ const People: FunctionComponent = () => {
       <Box  display={[ "block", "block", "block", "flex" ,"flex"]} w="75%" m="auto" gap="25px">
       <Box w={["100%","100%","100%","35%","35%"]} >
 
-        <Box w="100%" pt="40px" pb="40px" mb="100px"  _hover={{ bg: 'white',color:"black",transform:"scale(1.1)"  }}  bgColor="#0E343D">
+        <Box w="100%" pt="40px" pb="40px" mb="100px"  _hover={{ bg: '#10023b',color:"black",transform:"scale(1.1)"  }}  bgColor="#0E343D">
           <Center mt="20px">
 
             <Image
@@ -62,7 +62,7 @@ const People: FunctionComponent = () => {
           </Box>
         </Box>
         <Box w={["100%","100%","100%","35%","35%"]} >
-        <Box w="100%"  pt="40px" pb="40px" mb="100px"    _hover={{ bg: 'white',color:"black",transform:"scale(1.1)" }} bgColor="#0E343D">
+        <Box w="100%"  pt="40px" pb="40px" mb="100px"    _hover={{ bg: '#10023b',color:"black",transform:"scale(1.1)" }} bgColor="#0E343D">
           <Center mt="20px">
 
             <Image
@@ -93,7 +93,7 @@ const People: FunctionComponent = () => {
           </Box>
         </Box>
 <Box w={["100%","100%","100%","35%","35%"]} >
-        <Box w="100%" pt="40px" pb="40px" mb="100px"  _hover={{ bg: 'white',color:"black" ,transform:"scale(1.1)" }}  bgColor="#0E343D">
+        <Box w="100%" pt="40px" pb="40px" mb="100px"  _hover={{ bg: '#10023b',color:"black" ,transform:"scale(1.1)" }}  bgColor="#0E343D">
           <Center mt="20px">
 
             <Image
