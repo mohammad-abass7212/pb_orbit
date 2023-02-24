@@ -15,7 +15,7 @@ const Why_choose: FunctionComponent = () => {
         </Box>
 <Box>
           {" "}
-          <Heading mt="40px" mb="40px">
+          <Heading  mt="40px" mb="40px">
             Why Choose PBorbit
           </Heading>
           <Text pt="10px" w={[ "90%","60%","60%","60%","63%"]} color="#B4B4B6" mb="20px">

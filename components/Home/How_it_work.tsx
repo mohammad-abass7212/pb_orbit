@@ -130,25 +130,20 @@ const How_it_work: FunctionComponent = () => {
         </Center>{" "}
       </Animation>
 
-      
-
       <MainSection>
-        <Box
-          display="flex"
-          // pl={["50px", " 30px", "0px", "0px", "300px"]}
-          // pr={["40px", "250px"]}
-        >
-          <LeftItem className="left-item" >
-            {" "}
-            <Box w={["30%", "30%", "30%", "30%", "30%"]} mr={["0px", "50px"]}>
+        <Box display="flex">
+          <LeftItem className="left-item">
+            <Box w={["100%", "100%", "100%", "100%", "100%"]} mr={["0px", "50px"]}>
               <Image
                 src="/utils/Common/how-player.png"
                 alt="pb"
-                w={["100%", "100%", "100%", "100%", "100%"]}
+                width={["100%", "100%", "100%", "100%", "100%", "auto"]}
+                height={["auto", "auto", "auto", "auto", "auto", "400px"]}
                 ml={"0px"}
               />
             </Box>
           </LeftItem>
+
           <RightItem className="right-item">
             <Box
               w={["70%", "100%", "100%", "50%", "100%"]}
