@@ -103,10 +103,36 @@ import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { FunctionComponent, useEffect, useRef } from "react";
 import { Flex } from "@chakra-ui/react";
-
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 
 const About: FunctionComponent = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.5, // set the threshold to 50% visibility
+    triggerOnce: true, // trigger animation only once
+  });
+
+  const animation = {
+    opacity: inView ? 1 : 0,
+    x: inView ? 0 : -100,
+    transition: { duration: 1 }
+  };
+  const variants = {
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 0.2,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      x: -50,
+    },
+  };
   return (
     <Flex
       justifyContent="space-between"
@@ -114,8 +140,12 @@ const About: FunctionComponent = () => {
       p={["40px", "20px", "50px", "100px", "120px"]}
       flexDirection={["column", "column", "column", "row", "row"]}
     >
-      <Box mb={["40px", "40px", "40px", "0", "0"]} flexShrink={0}>
-        <Image src="/utils/Common/about-img.png" alt="pborbit" />
+       
+      <Box mb={["40px", "40px", "40px", "0", "0"]} flexShrink={0} ref={ref}>
+        {/* <Image src="/utils/Common/about-img.png" alt="pborbit" /> */}
+        <motion.div animate={animation}>
+      <motion.img src="/utils/Common/about-img.png" alt="pborbit" />
+    </motion.div>
       </Box>
       <Box
   display="flex"
@@ -131,6 +161,10 @@ const About: FunctionComponent = () => {
     maxWidth={["100%", "100%", "100%"]}
     textAlign={["left", "left", "left", "left", "left"]}
   >
+    <motion.div   variants={variants} ref={ref}
+    initial="hidden"
+    animate={inView ? "visible" : "hidden"} >
+
     <Heading>About PBorbit</Heading>
     <Text
   mt="10px"
@@ -147,6 +181,7 @@ const About: FunctionComponent = () => {
     </Text>
     <Flex flexDirection="column" gap="10px" mt="20px"  justifyContent="flex-start">
       <Box display="flex" alignItems="center" gap="10px">
+        
         <Image
           boxSize={["20px", "20px", "20px", "20px", "20px"]}
           src="/utils/Common/checklist.png"
@@ -196,7 +231,8 @@ const About: FunctionComponent = () => {
       </Box>
       <Button
         mt={["10px", "10px", "10px", "10px", "40px"]}
-        w={["50%", "53%", "35%", "42%","42%"]} 
+        mb={["30px", "10px", "10px", "40px", "40px"]}
+        w={["70%", "30%", "35%", "70%","70%"]} 
         bg="#01df74"
         // maxWidth={["100%", "55%", "60%", "80%","60%"]}
         fontSize={["13px", "16px", "16px", "16px", "20px"]}
@@ -207,6 +243,7 @@ const About: FunctionComponent = () => {
         Get Started →
         </Button>
         </Flex>
+        </motion.div>
        </Box>
     </Box>
     </Flex>

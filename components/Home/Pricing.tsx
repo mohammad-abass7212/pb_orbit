@@ -10,9 +10,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FunctionComponent } from "react";
-
+import {motion} from "framer-motion"
+import { useInView } from "react-intersection-observer";
 
 const Pricing: FunctionComponent | any = () => {
+  const [ref, inView] = useInView();
+
   const newLocal:object |any= {
       w:"77%",
       position:"absolute",
@@ -49,6 +52,13 @@ const Pricing: FunctionComponent | any = () => {
     display={["block","block", "block","flex","flex" ]}>
        
     <Box   w={["100%", "100%","100%", "90%","90%"]}>
+    <motion.div
+  ref={ref} // attach the ref returned by useInView
+  initial={{ opacity: 0, y: 50 }}
+  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} // use the inView boolean to trigger the animation
+  exit={{ opacity: 0, y: -50 }}
+  transition={{ duration: 1 }}
+>
        <Box  _hover={{ bg: 'white',color:"black" ,transform:"scale(1.1)" }} mb="40px" bg="#10023B" pb="50px" 
        w={["100%", "100%","100%", "90%","90%"]} mt="40px" borderRadius={"10px"} position={"relative"}>
         <Image
@@ -159,8 +169,16 @@ const Pricing: FunctionComponent | any = () => {
 
         </Flex>
       </Box>
+      </motion.div>
       </Box>
       <Box  w={["100%", "100%","100%", "90%","90%"]}>
+      <motion.div
+  ref={ref} // attach the ref returned by useInView
+  initial={{ opacity: 0, y: 50 }}
+  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} // use the inView boolean to trigger the animation
+  exit={{ opacity: 0, y: -50 }}
+  transition={{ duration: 1 }}
+>
       <Box  _hover={{ bg: 'white',color:"black" ,transform:"scale(1.1)" }} bg="#10023B" pb="50px"
        w={["100%", "100%","100%", "90%","90%"]} borderRadius={"10px"} position={"relative"}>
         <Image
@@ -270,6 +288,7 @@ const Pricing: FunctionComponent | any = () => {
 
         </Flex>
         </Box>
+        </motion.div>
       </Box>
       
     </Flex>
