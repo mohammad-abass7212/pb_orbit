@@ -13,7 +13,7 @@ import {
   Text,
   Flex
 } from "@chakra-ui/react";
-import Home from "./Home";
+import Home from "./home";
 // declare module "react-Reveal";
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -44,11 +44,6 @@ export default function Homee() {
             alt="pborbit"
           />
 
-         
-
-          
-
-         
           <Image
             style={{
               position: "absolute",

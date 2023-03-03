@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 // import Layout from "./layout"
 import { ChakraProvider } from "@chakra-ui/react";
-import Layout from "@/components/layout/Layout";
+import Layout from "@/components/Layout/Layout";
 import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";

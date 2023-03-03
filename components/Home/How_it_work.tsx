@@ -5,12 +5,22 @@ import {
   MainSection,
   Container,
   AnimatedContainer,
-} from "@/customHook/animationhook";
-import { Box, Button, Center, Heading, Image, Text } from "@chakra-ui/react";
+} from "@/customHooks/animationhook";
+import {
+  Box,
+  Button,
+  Center,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import gsap from "gsap";
+import Head from "next/dist/shared/lib/head";
 import React, { useEffect, useState } from "react";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+import CustomButton from "../Common/CustomButton";
 
 const Section = styled(Box)`
   height: 90vh;
@@ -82,7 +92,9 @@ const How_it_work: FunctionComponent = () => {
       />
       <Animation className="animation">
         {" "}
-        <Center> </Center>
+        <Center>
+          <Heading>How it Works</Heading>{" "}
+        </Center>
         <Center mt={["0px", "20px"]}>
           {" "}
           <Text
@@ -112,8 +124,9 @@ const How_it_work: FunctionComponent = () => {
               style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
             >
               {" "}
-              Player{" "}
+              Players
             </Button>
+
             <Button
               ml="10px"
               bg="white"
@@ -133,7 +146,10 @@ const How_it_work: FunctionComponent = () => {
       <MainSection>
         <Box display="flex">
           <LeftItem className="left-item">
-            <Box w={["100%", "100%", "100%", "100%", "100%"]} mr={["0px", "50px"]}>
+            <Box
+              w={["100%", "100%", "100%", "100%", "100%"]}
+              mr={["0px", "50px"]}
+            >
               <Image
                 src="/utils/Common/how-player.png"
                 alt="pb"
@@ -277,17 +293,23 @@ const How_it_work: FunctionComponent = () => {
       <AnimatedContainer className="animated-container">
         {" "}
         <Center>
-          <Button
-            mt={["0px", "-10px", "10px", "-10px", "40px"]}
-            bg="#01df74"
-            w={["300px", "300px", "300px", "300px", "300px"]}
-            fontSize={["15px", "16px", "16px", "16px", "16px", "20px"]}
-            h={["35px", "30px", "30px", "40px", "40px"]}
-            borderRadius={["25px", "25px", "25px", "25px", "27px"]}
-            p="27px"
-          >
-            Get Sarted →
-          </Button>
+          <Link href="#" style={{ textDecoration: 'none' }}>
+            <CustomButton
+              p="27px"
+              imageSrc=""
+              text="Get Started →"
+              btnDisabled={false}
+              buttonBgColor="#00E276"
+              customHeight={["50px", "40px", "40px", "40px", "50px"]}
+              widthArray={["170px","165px","170px","200px","250px"]}
+              btnBorderRadius={["25px", "25px", "25px", "25px", "27px"]}
+              mt={["0px", "-10px", "10px", "-10px", "40px"]}
+              mb={[]}
+              fontSize={["15px", "16px", "16px", "16px", "16px", "20px"]}
+              iconVisStatus={false}
+              btnHoverColor={"#ff6900"}
+            />
+          </Link>
         </Center>
       </AnimatedContainer>
     </Section>
