@@ -41,7 +41,7 @@ const HomePage: FunctionComponent | any = () => {
         className="scale-up"
         style={{ fontFamily: "Poppins, sans-serif" }}
         fontSize={["15px", "20px", "30px", "30px", "40px"]}
-        pr={["30px", "50px", "50px", "320px", "320px"]}
+        pr={["40px", "200px", "80px", "226px", "342px"]}
       >
         Court reservation platform for private community, parks, and HOAs
       </Heading>
@@ -49,7 +49,7 @@ const HomePage: FunctionComponent | any = () => {
         className="slide-in-left"
         fontSize={["10px", "15px", "17px", "18px", "18px"]}
         color="hsl(80deg 8% 72%)"
-        pr={["0px", "338px"]}
+        pr={["0px", "0px","0px", "0px","338px"]}
         wordBreak={"break-word"}
       >
         Our Activate suite of business apps gives your Lorem ipsum dolor sit
@@ -62,12 +62,12 @@ const HomePage: FunctionComponent | any = () => {
           text="Get Started →"
           btnDisabled={false}
           buttonBgColor="#00E276"
-          customHeight={["40px", "35px", "35px", "50px", "50px"]}
-          widthArray={["100%", "53%", "35%", "35%", "30%"]}
+          customHeight={["25px", "35px", "35px", "50px", "50px"]}
+          widthArray={["60%", "53%", "35%", "35%", "30%"]}
           btnBorderRadius={["20px", "25px", "25px", "25px", "27px"]}
           mt={["10px", "10px", "10px", "10px", "40px"]}
           mb={[]}
-          fontSize={["15px", "16px", "16px", "16px", "16px", "20px"]}
+          fontSize={["12px", "16px", "16px", "16px", "16px", "20px"]}
           iconVisStatus={false}
           btnHoverColor={"#ff6900"}
         />
