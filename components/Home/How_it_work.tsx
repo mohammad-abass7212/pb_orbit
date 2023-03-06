@@ -300,7 +300,7 @@ const How_it_work: FunctionComponent = () => {
               text="Get Started →"
               btnDisabled={false}
               buttonBgColor="#00E276"
-              customHeight={["50px", "40px", "40px", "40px", "50px"]}
+              customHeight={["40px", "40px", "40px", "40px", "50px"]}
               widthArray={["170px","165px","170px","200px","250px"]}
               btnBorderRadius={["25px", "25px", "25px", "25px", "27px"]}
               mt={["0px", "-10px", "10px", "-10px", "40px"]}

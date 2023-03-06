@@ -34,14 +34,14 @@ const Pricing: FunctionComponent | any = () => {
         <Heading>Our Best Pricing</Heading>
       </Center>
       <Center mt="20px">
-        <Text w={["90%", "35%"]} textAlign="center" color="#B4B4B6">
+        <Text w={["60%", "65%","60%", "35%","35%"]} textAlign="center" color="#B4B4B6">
           Lorem Ipsum is simply dummy text of the printing and type setting
           industryLorem Ipsum is simply
         </Text>
-        <CustomText
+        {/* <CustomText
           variant={variants.SMALL_HEADING}
           text="Start with signing up or sign in"
-        />
+        /> */}
       </Center>
       <Center>
         <Flex
@@ -52,7 +52,7 @@ const Pricing: FunctionComponent | any = () => {
           alignItems="center"
           display={["block", "block", "block", "flex", "flex"]}
         >
-          <Box w={["100%", "100%", "100%", "90%", "90%"]}>
+          <Box w={["100%", "60%", "60%", "80%", "90%"]}m="auto" >
             <motion.div
               ref={ref} // attach the ref returned by useInView
               initial={{ opacity: 0, y: 50 }}
@@ -189,7 +189,7 @@ const Pricing: FunctionComponent | any = () => {
               </Box>
             </motion.div>
           </Box>
-          <Box w={["100%", "100%", "100%", "90%", "90%"]}>
+          <Box w={["100%", "60%", "60%", "80%", "90%"]} m="auto" >
             <motion.div
               ref={ref} // attach the ref returned by useInView
               initial={{ opacity: 0, y: 50 }}
