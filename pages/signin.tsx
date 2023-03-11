@@ -1,3 +1,4 @@
+import OTPBox from "@/components/OtpBox";
 import {
   Box,
   Button,
@@ -8,23 +9,35 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
+import { LoginFormValidate } from "../pages/adminAuth/validator/LoginFormValidator";
 import Link from "next/link";
-import * as React from "react";
-import { useState } from "react";
-
+import { useRef } from "react";
+import { USE_LOGIN } from "./adminAuth/adminStateManager/adminUseReducer";
+import React from "react";
 interface ISigninProps {}
-
 const Signin: React.FunctionComponent<ISigninProps> | any = () => {
-  const [email,setEmail]= useState("")
-  const [password,setPassword]= useState("")
-  const handleSubmit=()=>{
-    
-    const payload={
-      email,
-      password
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const { formData, isLoading, error, handleLoginInput, handleLoginSubmit } =
+    USE_LOGIN();
+
+  const [passwordShown, setPasswordShown] = React.useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown);
+  };
+
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const errors = LoginFormValidate(formData);
+    if (Object.keys(errors).length === 0) {
+      handleLoginSubmit(event);
+    } else {
+      alert("Please fill all required fields!");
     }
-    console.log(payload)
-  }
+    handleLoginSubmit(event);
+  };
   return (
     <Flex
       bg="#050017"
@@ -57,8 +70,17 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
       >
         {" "}
         <Image src="/utils/common/attherate.svg" alt="pborbit_logo" />
-        <Input variant='unstyled' p="10px" color="white" border={"none"} autoComplete="email" required  placeholder="Enter Address" 
-        onChange={(e)=>setEmail(e.target.value)} value={email} />
+        <Input
+          variant="unstyled"
+          p="10px"
+          color="white"
+          border={"none"}
+          autoComplete="email"
+          required
+          placeholder="Enter Address or email"
+          onChange={handleLoginInput}
+          value={emailRef.current?.value}
+        />
       </Box>
 
       <Box
@@ -69,15 +91,27 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
         pl="10px"
       >
         {" "}
-        <Image src="/utils/common/password.svg" alt="pborbit_logo" />
-        <Input 
-        variant='unstyled' p="10px" color="white" border={"none"}  type="password" autoComplete="new-password" required placeholder="password"
-         onChange={(e)=>setPassword(e.target.value)} value={password} />
+        <Image
+          src="/utils/common/password.svg"
+          alt="pborbit_logo"
+          onClick={togglePasswordVisibility}
+        />
+        <Input
+          variant="unstyled"
+          p="10px"
+          color="white"
+          border={"none"}
+          type="password"
+          autoComplete="new-password"
+          required
+          placeholder="password"
+          onChange={handleLoginInput}
+          value={passwordRef.current?.value}
+        />
       </Box>
       <Box
         w={["60%", "50%", "45%", "22%"]}
         fontSize={["8px", "10px", "10px", "10px"]}
-       
         display="flex"
         alignItems={"center"}
         justifyContent={"space-between"}
@@ -85,9 +119,11 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
         <Checkbox color="white" size="sm">
           Remember me
         </Checkbox>
-        <Text color="white" fontSize={["8px", "12px", "12px", "12px"]}>
-          Forgot Password ?
-        </Text>
+        <Link href={"/resetPassword"}>
+          <Text color="white" fontSize={["8px", "12px", "12px", "12px"]}>
+            Forgot Password ?
+          </Text>
+        </Link>
       </Box>
 
       <Button
@@ -95,14 +131,13 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
         bg="#00E276"
         color="white"
         w={["60%", "50%", "45%", "22%"]}
-        onClick={()=>handleSubmit()}
+        type={"submit"}
+        onClick={() => handleLogin}
       >
         Login
       </Button>
       <Text mt="119px" color="white">
-      <Link href="/signup">
-        Don’t have an account? SignUp
-      </Link>
+        <Link href="/signupForm">Don’t have an account? SignUp</Link>
       </Text>
     </Flex>
   );

@@ -32,7 +32,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   imageSrc,
   text,
   btnDisabled = false,
-  buttonBgColor,
+  buttonBgColor="#00E276",
   customHeight,
   widthArray,
   btnBorderRadius,

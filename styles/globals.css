@@ -79,6 +79,10 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+/* tailwind css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 html,
 body {
@@ -87,14 +91,14 @@ body {
 }
 
 /* how it works section animation */
-.div_nature{
+.div_nature {
   animation: showup 5s infinite;
 }
 #animatedImage {
   animation: showup 5s infinite;
 }
-#text_animate_helper{
-  width:0px;
+#text_animate_helper {
+  width: 0px;
   animation: reveal 5s infinite;
 }
 #animatedText {
@@ -154,7 +158,6 @@ body {
 }
 /* text animation  */
 
-
 @keyframes dynamic {
   0% {
     opacity: 0;
@@ -170,22 +173,22 @@ body {
   }
 }
 .typewriter {
-  --s: 0.1em;   /* the thickness of the line */
+  --s: 0.1em; /* the thickness of the line */
   --c: #ffc705; /* the color */
-  
-  color:white;
+
+  color: white;
   padding-bottom: var(--s);
-  background: 
-    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
-    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
-  -webkit-background-clip: text,padding-box;
-          background-clip: text,padding-box;
+  background: linear-gradient(90deg, var(--c) 50%, #000 0)
+      calc(100% - var(--_p, 0%)) / 200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) var(--s) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
   transition: 0.5s;
 }
 
-.typewriter:hover {--_p: 100%}
-
-
+.typewriter:hover {
+  --_p: 100%;
+}
 
 .slide-in-left {
   transform: translateX(-100%);
@@ -193,13 +196,16 @@ body {
 }
 
 @keyframes slidein {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0); }
-  100% { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-
-
-
 
 .fade-in {
   opacity: 0;
@@ -208,11 +214,13 @@ body {
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
-
 
 .scale-up {
   transform: scale(0.5);
@@ -220,9 +228,15 @@ body {
 }
 
 @keyframes scaleup {
-  from { transform: scale(0.5); }
-  to   { transform: scale(1); }
-  100% { transform: scale(1); }
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .slide-up {
@@ -268,25 +282,24 @@ body {
   animation: slideIn 0.5s cubic-bezier(0.5, 0, 0.5, 1) forwards;
 }
 
-
 .gold-gradient {
   /* font-family: 'Bebas Neue', cursive; */
   /* font-size: 3em; */
   position: relative;
   /* top: 45%; */
   left: 47%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-image: linear-gradient(white, black);
   background-size: 60% 10px;
   background-repeat: no-repeat;
   background-position: 100% 0%;
-  transition: background-size .7s, background-position .5s ease-in-out;
+  transition: background-size 0.7s, background-position 0.5s ease-in-out;
 }
 
 .gold-gradient:hover {
   background-size: 100% 100%;
   background-position: 0% 100%;
-  transition: background-position .7s, background-size .5s ease-in-out;
+  transition: background-position 0.7s, background-size 0.5s ease-in-out;
 }
 /* scroll animation */
 /* Create a container for the scroll indicator */
@@ -304,7 +317,7 @@ body {
 .scroll-indicator-bar {
   width: 0%;
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   transition: width 0.5s;
 }
 
@@ -338,7 +351,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 /* Update the fill bar width based on the page scroll */
@@ -346,3 +359,261 @@ body.on-scroll .scroll-indicator-bar {
   width: calc(100% * var(--scroll, 0));
 }
 
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-lato: Lato;
+  --font-poppins: Poppins;
+
+  /* font sizes */
+  --font-size-base: 18px;
+  --font-size-lg: 20px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-mediumspringgreen: #00e276;
+  --color-dimgray: #656565;
+  --color-thistle: #bcb4d8;
+
+  /* border radiuses */
+  --br-sm: 6px;
+  --br-md: 10px;
+}
+
+/* signupform css  */
+.signupChild {
+  position: absolute;
+  top: calc(50% - 398.58px);
+  left: calc(50% - 182.42px);
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.alreadyHaveAn {
+  font-weight: 500;
+}
+.alreadyHaveAnContainer {
+  position: absolute;
+  top: calc(50% + 366.98px);
+  left: calc(50% - 146.75px);
+  line-height: 24px;
+  color: var(--color-white);
+  display: inline-block;
+  width: 311.5px;
+  height: 23px;
+  text-decoration: none;
+}
+.signupItem {
+  border: 1px solid var(--color-thistle);
+  background-color: transparent;
+  position: absolute;
+  top: calc(50% + 85px);
+  left: calc(50% - 177px);
+  border-radius: var(--br-md);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  width: 366px;
+  height: 60px;
+}
+.div,
+.mobileNumber {
+  position: absolute;
+  line-height: 24px;
+  display: inline-block;
+}
+.mobileNumber {
+  margin: 0;
+  top: calc(50% + 107.84px);
+  left: calc(50% - 104.45px);
+  font-weight: 500;
+  text-align: left;
+  width: 171px;
+  height: 26px;
+}
+.div {
+  top: calc(50% + 24px);
+  left: calc(50% - 163px);
+  font-size: 24px;
+  font-weight: 600;
+  width: 58.86px;
+}
+.rectangleDiv,
+.signupInner {
+  position: absolute;
+  top: calc(50% + 2px);
+  left: calc(50% - 177px);
+  border-radius: var(--br-md);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-thistle);
+  box-sizing: border-box;
+  width: 366px;
+  height: 59px;
+}
+.rectangleDiv {
+  top: calc(50% - 74px);
+  left: calc(50% - 174px);
+}
+.emailAddress,
+.username {
+  margin: 0;
+  position: absolute;
+  top: calc(50% + 26.16px);
+  left: calc(50% - 103.55px);
+  line-height: 24px;
+  font-weight: 500;
+  text-align: left;
+  display: inline-block;
+  width: 170px;
+  height: 26px;
+}
+.emailAddress {
+  top: calc(50% - 49.84px);
+  left: calc(50% - 100.55px);
+}
+.startWithSigning,
+.welcome {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+.welcome {
+  font-size: inherit;
+  line-height: 60px;
+  font-weight: 600;
+  font-family: inherit;
+  width: 422px;
+}
+.startWithSigning {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: var(--font-lato);
+  width: 422.65px;
+  height: 53px;
+  flex-shrink: 0;
+}
+.welcomeParent {
+  position: absolute;
+  top: 299px;
+  left: calc(50% - 201.45px);
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 48px;
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
+.groupIcon,
+.signupChild1 {
+  position: absolute;
+  top: calc(50% + 108.09px);
+  left: calc(50% - 139.75px);
+  width: 19.5px;
+  height: 19.5px;
+}
+.signupChild1 {
+  top: calc(50% + 169px);
+  left: calc(50% - 177px);
+  border-radius: var(--br-md);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-thistle);
+  box-sizing: border-box;
+  width: 366px;
+  height: 60px;
+}
+.passwordInfo {
+  margin: 0;
+  position: absolute;
+  top: calc(50% + 187.84px);
+  left: calc(50% - 104.45px);
+  line-height: 24px;
+  font-weight: 500;
+  text-align: left;
+  display: inline-block;
+  width: 171px;
+  height: 26px;
+}
+.hide22Icon,
+.signupChild2 {
+  position: absolute;
+  top: calc(50% + 190.11px);
+  left: calc(50% - 141.15px);
+  width: 18.8px;
+  height: 21.47px;
+}
+.hide22Icon {
+  top: calc(50% + 190px);
+  left: calc(50% + 140px);
+  width: 25px;
+  height: 24px;
+  overflow: hidden;
+}
+.rectangleInput {
+  border: 0;
+  background-color: #00e276;
+  position: absolute;
+  top: 758px;
+  left: 534px;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.06);
+  width: 366px;
+  height: 51px;
+}
+.signUp {
+  position: absolute;
+  top: calc(50% + 260px);
+  left: calc(50% - 77px);
+  font-size: 20px;
+  line-height: 24px;
+  display: inline-block;
+  color: var(--color-white);
+  width: 166px;
+  height: 24px;
+}
+.sShape21Icon {
+  position: absolute;
+  top: 194px;
+  left: -251px;
+  width: 742.6px;
+  height: 891px;
+  object-fit: cover;
+}
+.signup {
+  position: relative;
+  background-color: #050017;
+  width: 100%;
+  height: 1024px;
+  text-align: center;
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+  font-family: var(--font-lato);
+}
+@media screen and (max-width: 1200px) {
+  .welcome {
+    display: flex;
+  }
+  .startWithSigning,
+  .welcome {
+    width: 422px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .startWithSigning,
+  .welcome {
+    width: 422px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .startWithSigning,
+  .welcome {
+    width: 422px;
+  }
+}
+
+/* otp css */

@@ -23,7 +23,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Footer/Footer.tsx"
+    "components/Footer/Footer.tsx",
+    "redux/admin_signup/adminReducer.ts",
+    "components/Dailogbox/Notifications.ts",
+    "pages/googleAuth/[...nextauth].js"
   ],
   "exclude": ["node_modules"]
 }

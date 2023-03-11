@@ -32,7 +32,6 @@ const About: FunctionComponent = () => {
       x: -50,
     },
   };
-  console.log("imported types");
   return (
     <Flex
       justifyContent="space-between"

@@ -1,8 +1,13 @@
 import "@/styles/globals.css";
+// import { FirebaseAuthProvider, FirestoreProvider } from 'next-firebase-auth';
+import "firebase/auth";
+import "firebase/firestore";
+
+import "firebase/auth";
+import "firebase/firestore";
 import type { AppProps } from "next/app";
-// import Layout from "./layout"
+// import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
-// import Layout from "@/components/Layout/Layout";
 import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
@@ -15,7 +20,7 @@ export default function App({
   return (
     <HydrationProvider>
       <Server></Server>{" "}
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={theme}>        
         <ThemeProvider theme={theme}>
           <Client>
             {" "}
