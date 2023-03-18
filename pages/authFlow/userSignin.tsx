@@ -1,4 +1,3 @@
-import OTPBox from "@/components/OtpBox";
 import {
   Box,
   Button,
@@ -8,16 +7,35 @@ import {
   Image,
   Input,
   Text,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
-import { LoginFormValidate } from "../pages/adminAuth/validator/LoginFormValidator";
 import Link from "next/link";
-import { useRef } from "react";
-import { USE_LOGIN } from "./adminAuth/adminStateManager/adminUseReducer";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
+import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
+import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
+import CustomText, { variants } from "@/components/Common/CustomText";
 interface ISigninProps {}
-const Signin: React.FunctionComponent<ISigninProps> | any = () => {
+const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  const updateWindowSize = () => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWindowSize);
+    updateWindowSize();
+    return () => {
+      window.removeEventListener('resize', updateWindowSize);
+    };
+  }, []);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const username = useRef<HTMLInputElement>(null);
 
   const { formData, isLoading, error, handleLoginInput, handleLoginSubmit } =
     USE_LOGIN();
@@ -40,6 +58,7 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
   };
   return (
     <Flex
+      id="usersigninpage"
       bg="#050017"
       pt={["166px", "200px", "200px", "200px", "100px"]}
       pb={["110px", "400px", "400px", "40px", "140px"]}
@@ -47,7 +66,14 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
       flexDirection={"column"}
       alignItems={"center"}
       gap="10px"
+      style={{ height: windowSize.height, width: windowSize.width }}
     >
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          <AlertTitle>{error}</AlertTitle>
+        </Alert>
+      )}
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
         position="absolute"
@@ -136,11 +162,13 @@ const Signin: React.FunctionComponent<ISigninProps> | any = () => {
       >
         Login
       </Button>
-      <Text mt="119px" color="white">
-        <Link href="/signupForm">Don’t have an account? SignUp</Link>
-      </Text>
+
+      <CustomText
+        variant={variants.SMALL_HEADING}
+        text="Don’t have an account? SignUp"
+        link="/authFlow/ChooseSignup"
+      />
     </Flex>
   );
 };
-
-export default Signin;
+export default UserSignIn;

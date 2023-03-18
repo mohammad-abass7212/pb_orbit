@@ -1,3 +1,4 @@
+import CustomText, { variants } from "@/components/Common/CustomText";
 import {
   Box,
   Button,
@@ -8,9 +9,8 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import * as React from "react";
-import CustomText, { variants } from "@/components/Common/CustomText";
-// import {Spin} from "react-reveal";
+
+import React from "react";
 interface IAppProps {}
 
 const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
@@ -19,6 +19,19 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
   const setPassword = () => {};
   const setConfirmPassword = () => {};
   const handleSubmit = () => {};
+  const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
+
+  const updateWindowSize = () => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", updateWindowSize);
+    updateWindowSize();
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
 
   return (
     <Box
@@ -26,6 +39,7 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
       pt={["236px", "260px", "450px", "60px", "100px"]}
       pb={["170px", "400px", "400px", "40px", "40px"]}
       position="relative"
+      style={{ height: windowSize.height, width: windowSize.width }}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
@@ -79,6 +93,7 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
         </Button>
         <Box mt={30}>
           <CustomText
+            link="/authFlow/userSignin"
             variant={variants.SMALL_HEADING}
             text={"Already have an account?Signin"}
           />

@@ -1,3 +1,5 @@
+import React from "react";
+import CustomText, { variants } from "@/components/Common/CustomText";
 import {
   Box,
   Button,
@@ -8,8 +10,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import * as React from "react";
-import CustomText, { variants } from "@/components/Common/CustomText";
+import ResizableContainer from "@/components/resizablepages";
 interface IAppProps {}
 
 const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
@@ -23,13 +24,26 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
   };
   const [hidden, setHidden] = React.useState(true);
   const [hidden2, setHidden2] = React.useState(true);
+  const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
 
+  const updateWindowSize = () => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", updateWindowSize);
+    updateWindowSize();
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
   return (
     <Box
       bg="#050017"
       pt={["236px", "260px", "450px", "60px", "100px"]}
       pb={["170px", "400px", "400px", "40px", "40px"]}
       position="relative"
+      style={{ height: windowSize.height, width: windowSize.width }}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
@@ -38,6 +52,7 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
         src="/utils/Common/bg.png"
         alt=""
       />
+
       <Flex flexDirection={"column"} alignItems="center" gap={"20px"}>
         <Box
           w={["40%", "40%", "40%", "30%", "20%"]}
@@ -50,7 +65,12 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
             src="/utils/Common/logo.png"
             alt=""
           />
+          <Flex flexDirection={"column"} alignItems={"center"} gap="20px">
+            <Heading color={"white"}>Welcome </Heading>
+            <Text color={"white"}>Start with signing up or sign in</Text>
+          </Flex>
         </Box>
+
         <Box
           display={"flex"}
           border={"1px solid white"}
@@ -118,6 +138,7 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
           <CustomText
             variant={variants.SMALL_HEADING}
             text={"Already have an account?Signin"}
+            link="/authFlow/userSignin"
           />
         </Box>
       </Flex>

@@ -2,7 +2,6 @@ import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
 import * as React from "react";
 import Link from "next/link";
 import CustomText, { variants } from "@/components/Common/CustomText";
-import SignupForm from "./signupForm";
 import SignupComponent from "../components/Signup/SignupComponent";
 
 interface communityProp {}
@@ -33,6 +32,7 @@ const Community: React.FunctionComponent<communityProp> | any = () => {
         <CustomText
           variant={variants.SMALL_HEADING}
           text={"Already have an account?Signin"}
+          link={""}
         />
       </Flex>
     </>

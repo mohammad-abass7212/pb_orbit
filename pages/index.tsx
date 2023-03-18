@@ -34,7 +34,7 @@ export default function Homee() {
         <Box bg="#050017" color={"white"}>
           {/* main image */}
           {/* <ImageLoader></ImageLoader> */}
-          <Image 
+          <Image
             position="absolute"
             w={["65%", "65%", "65%", "65%", "65%"]}
             right={["1px", "1px", "1px", "1px", "10px"]}

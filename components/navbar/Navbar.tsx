@@ -116,7 +116,7 @@ const Navbar = () => {
               </StyledLink>
             </Flex>
             <Box>
-              <Link href="/chooseSignup">
+              <Link href="/authFlow/ChooseSignup">
                 <CustomButton
                   imageSrc={""}
                   text="Login/Signup"
@@ -179,7 +179,7 @@ const Navbar = () => {
                     >
                       Login/Signup
                     </Button> */}
-                    <Link href={"/chooseSignup"}>
+                    <Link href={"/authFlow/ChooseSignup"}>
                       
                     
                     <CustomButton

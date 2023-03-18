@@ -1,3 +1,4 @@
+import react from "react"
 import {
   Box,
   Button,
@@ -5,23 +6,20 @@ import {
   Flex,
   Heading,
   Image,
-  Input,
+  Link,
   Text,
 } from "@chakra-ui/react";
-import * as React from "react";
+
 import ChooseSignupMedium from "@/components/chooseSignupMedium/ChooseSignupMedium";
-import DisplayButton from "@/components/chooseSignupMedium/DisplaySignupButton";
 import CustomText, { variants } from "@/components/Common/CustomText";
-import OtpAsset from "@/components/OtpInput/OtpAsset";
+import OtpInput from "@/components/OtpInput/OtpInput";
+import OtpForm from "@/components/OtpInput/OtpAsset";
+import CustomButton from "@/components/Common/CustomButton";
+import DisplaySignupButton from "@/components/chooseSignupMedium/DisplaySignupButton";
+// import {Spin} from "react-reveal";
 interface IAppProps {}
 
-const OtpForm: React.FunctionComponent<IAppProps> | any = () => {
-  const setEmail = () => {};
-  const setPassword = () => {};
-  const updatePassword = () => {};
-  const setConfirmPassword = () => {};
-  const handleSubmit = () => {};
-
+const chooseSignup: React.FunctionComponent<IAppProps> | any = () => {
   return (
     <Box
       bg="#050017"
@@ -48,16 +46,18 @@ const OtpForm: React.FunctionComponent<IAppProps> | any = () => {
             alt=""
           />
         </Box>
-        <OtpAsset />
+        <DisplaySignupButton />
+        <Image mt={35} src="/utils/Common/play-player.svg" alt="Player_Img" />
         <Box mt={30}>
-          <CustomText
-            variant={variants.SMALL_HEADING}
-            text={"Already have an account?Signin"}
-          />
-        </Box>
+        <CustomText
+          variant={variants.SMALL_HEADING}
+          text={"Already have an account?Signin"}
+          link="/authFlow/userSignin"
+        />
+      </Box>
       </Flex>
+      
     </Box>
   );
-};
-
-export default OtpForm;
+  }
+export default chooseSignup;

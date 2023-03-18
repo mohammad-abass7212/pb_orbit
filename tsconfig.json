@@ -27,6 +27,6 @@
     "redux/admin_signup/adminReducer.ts",
     "components/Dailogbox/Notifications.ts",
     "pages/googleAuth/[...nextauth].js"
-  ],
+, "context/AuthProvider.ts"  ],
   "exclude": ["node_modules"]
 }

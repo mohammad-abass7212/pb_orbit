@@ -1,8 +1,6 @@
 import { useState, useReducer } from "react";
-import { AdminSignUpModel,AdminLoginModel } from "../models/AdminAuthModels";
-import { AdminSignupCaller,AdminLoginCaller} from "./adminAuth";
-
-
+import { AdminSignUpModel, AdminLoginModel } from "../models/AdminAuthModels";
+import { AdminSignupCaller, AdminLoginCaller } from "./adminAuth";
 
 // SIGNUP LOGIC
 interface SIGNUP_STATE {
@@ -10,7 +8,6 @@ interface SIGNUP_STATE {
   isLoading: boolean;
   error: any;
 }
-
 
 const initialState: SIGNUP_STATE = {
   formData: {
@@ -54,7 +51,7 @@ const reducer = (state: SIGNUP_STATE, action: SIGNUP_ACTION): SIGNUP_STATE => {
 export const useSignUp = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleFormSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     dispatch({
       type: "SET_FORM_DATA",
@@ -65,7 +62,7 @@ export const useSignUp = () => {
     });
   };
 
-  const handleInputChange = async (event: any) => {
+  const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     dispatch({ type: "SET_IS_LOADING", payload: true });
     try {
@@ -89,15 +86,12 @@ export const useSignUp = () => {
   };
 };
 
-
-
 // LOGIN LOGIC
 interface LOGIN_STATE {
   formData: AdminLoginModel;
   isLoading: boolean;
   error: any;
 }
-
 
 const LOGIN_INITIAL_STATE: LOGIN_STATE = {
   formData: {
@@ -113,7 +107,10 @@ type LOGIN_ACTION =
   | { type: "SET_IS_LOADING"; payload: boolean }
   | { type: "SET_ERROR"; payload: any };
 
-const LOGIN_REDUSER = (state: LOGIN_STATE, action: LOGIN_ACTION): LOGIN_STATE => {
+const LOGIN_REDUSER = (
+  state: LOGIN_STATE,
+  action: LOGIN_ACTION
+): LOGIN_STATE => {
   switch (action.type) {
     case "SET_FORM_DATA":
       return {

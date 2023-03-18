@@ -4,6 +4,7 @@ import type { FC } from "react";
 interface CustomTextProps {
   variant: string;
   text: string;
+  link: any;
 }
 export const variants = {
   HEADING: "heading",
@@ -11,7 +12,7 @@ export const variants = {
   SMALL_HEADING: "small-heading",
 };
 
-const CustomText: FC<CustomTextProps> = ({ variant, text }) => {
+const CustomText: FC<CustomTextProps> = ({ variant, text ,link}) => {
   let style = {};
   switch (variant) {
     case variants.HEADING:
@@ -39,7 +40,7 @@ const CustomText: FC<CustomTextProps> = ({ variant, text }) => {
     return (
       <Flex>
         <Text style={style}>{text.split("?")[0]}?</Text>
-        <Link href="/signin">
+        <Link href={link}>
           <Text style={linkStyle}>{text.split("?")[1]}</Text>
         </Link>
       </Flex>
