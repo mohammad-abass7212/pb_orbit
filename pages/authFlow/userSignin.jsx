@@ -11,6 +11,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -18,8 +19,9 @@ import React from "react";
 import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
 import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
-interface ISigninProps {}
-const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
+// interface ISigninProps {}
+const UserSignIn = () => {
+  const toast = useToast();
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   const updateWindowSize = () => {
@@ -27,35 +29,78 @@ const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', updateWindowSize);
+    window.addEventListener("resize", updateWindowSize);
     updateWindowSize();
     return () => {
-      window.removeEventListener('resize', updateWindowSize);
+      window.removeEventListener("resize", updateWindowSize);
     };
   }, []);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const username = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef < HTMLInputElement > null;
+  const passwordRef = useRef < HTMLInputElement > null;
 
-  const { formData, isLoading, error, handleLoginInput, handleLoginSubmit } =
-    USE_LOGIN();
-
+  const {
+    formData,
+    isLoading,
+    error,
+    response,
+    handleLoginInput,
+    handleLoginSubmit,
+  } = USE_LOGIN();
   const [passwordShown, setPasswordShown] = React.useState(false);
 
+  const { success, message } = response;
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (event) => {
     event.preventDefault();
     const errors = LoginFormValidate(formData);
     if (Object.keys(errors).length === 0) {
       handleLoginSubmit(event);
     } else {
-      alert("Please fill all required fields!");
+      toast({
+        title: "credentials are wrongs!",
+        description: errors.message,
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
     }
     handleLoginSubmit(event);
   };
+
+  React.useEffect(() => {
+    {
+      success === true && !undefined
+        ? toast({
+            title: "logged In successfully!",
+            description: message,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+          }) &&
+          setTimeout(() => {
+            router.push("/community");
+          }, 2000)
+        : null;
+    }
+    {
+      success === false && !undefined
+        ? toast({
+            title: "",
+            description: message,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+          })
+        : null;
+    }
+  });
+
   return (
     <Flex
       id="usersigninpage"
@@ -68,12 +113,6 @@ const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
       gap="10px"
       style={{ height: windowSize.height, width: windowSize.width }}
     >
-      {error && (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>{error}</AlertTitle>
-        </Alert>
-      )}
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
         position="absolute"
@@ -105,7 +144,7 @@ const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
           required
           placeholder="Enter Address or email"
           onChange={handleLoginInput}
-          value={emailRef.current?.value}
+          value={usernameRef.current?.value}
         />
       </Box>
 
@@ -158,7 +197,7 @@ const UserSignIn: React.FunctionComponent<ISigninProps> | any = () => {
         color="white"
         w={["60%", "50%", "45%", "22%"]}
         type={"submit"}
-        onClick={() => handleLogin}
+        onClick={handleLogin}
       >
         Login
       </Button>

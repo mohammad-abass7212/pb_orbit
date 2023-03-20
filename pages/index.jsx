@@ -1,7 +1,6 @@
 import Head from "next/head";
 // import { Inter } from "@next/font/google";
 
-import styles from "@/styles/Home.module.css";
 import {
   Box,
   Image,
@@ -18,7 +17,7 @@ import Home from "./Home";
 // declare module "react-Reveal";
 // const inter = Inter({ subsets: ["latin"] });
 
-export default function Homee() {
+function Homee() {
   return (
     <Box>
       <Head>
@@ -62,3 +61,12 @@ export default function Homee() {
     </Box>
   );
 }
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      message: "Home Page",
+    },
+  };
+}
+export default Homee;

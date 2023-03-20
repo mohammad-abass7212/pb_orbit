@@ -7,6 +7,7 @@ interface SIGNUP_STATE {
   formData: AdminSignUpModel;
   isLoading: boolean;
   error: any;
+  response: {};
 }
 
 const initialState: SIGNUP_STATE = {
@@ -17,6 +18,7 @@ const initialState: SIGNUP_STATE = {
     country_code: "+91",
     social_login: "false",
   },
+  response: {},
   isLoading: false,
   error: null,
 };
@@ -24,7 +26,8 @@ const initialState: SIGNUP_STATE = {
 type SIGNUP_ACTION =
   | { type: "SET_FORM_DATA"; payload: AdminSignUpModel }
   | { type: "SET_IS_LOADING"; payload: boolean }
-  | { type: "SET_ERROR"; payload: any };
+  | { type: "SET_ERROR"; payload: any }
+  | { type: "SET_SUCESS"; payload: any };
 
 const reducer = (state: SIGNUP_STATE, action: SIGNUP_ACTION): SIGNUP_STATE => {
   switch (action.type) {
@@ -42,6 +45,11 @@ const reducer = (state: SIGNUP_STATE, action: SIGNUP_ACTION): SIGNUP_STATE => {
       return {
         ...state,
         error: action.payload,
+      };
+    case "SET_SUCESS":
+      return {
+        ...state,
+        response: action.payload,
       };
     default:
       return state;
@@ -68,6 +76,7 @@ export const useSignUp = () => {
     try {
       const response = await AdminSignupCaller(state.formData);
       console.log("Response from API:", response);
+      dispatch({ type: "SET_SUCESS", payload: response });
       dispatch({ type: "SET_IS_LOADING", payload: false });
       // handle successful signup
     } catch (error) {
@@ -81,6 +90,7 @@ export const useSignUp = () => {
     formData: state.formData,
     isLoading: state.isLoading,
     error: state.error,
+    response: state.response,
     handleFormSubmit,
     handleInputChange,
   };
@@ -91,6 +101,7 @@ interface LOGIN_STATE {
   formData: AdminLoginModel;
   isLoading: boolean;
   error: any;
+  response: {};
 }
 
 const LOGIN_INITIAL_STATE: LOGIN_STATE = {
@@ -98,6 +109,7 @@ const LOGIN_INITIAL_STATE: LOGIN_STATE = {
     email: "",
     password: "",
   },
+  response: {},
   isLoading: false,
   error: null,
 };
@@ -105,7 +117,8 @@ const LOGIN_INITIAL_STATE: LOGIN_STATE = {
 type LOGIN_ACTION =
   | { type: "SET_FORM_DATA"; payload: AdminLoginModel }
   | { type: "SET_IS_LOADING"; payload: boolean }
-  | { type: "SET_ERROR"; payload: any };
+  | { type: "SET_ERROR"; payload: any }
+  | { type: "SET_SUCESS"; payload: any };
 
 const LOGIN_REDUSER = (
   state: LOGIN_STATE,
@@ -126,6 +139,11 @@ const LOGIN_REDUSER = (
       return {
         ...state,
         error: action.payload,
+      };
+      case "SET_SUCESS":
+      return {
+        ...state,
+        response: action.payload,
       };
     default:
       return state;
@@ -152,6 +170,7 @@ export const USE_LOGIN = () => {
     try {
       const response = await AdminLoginCaller(state.formData);
       console.log("Response from API:", response);
+      dispatch({ type: "SET_SUCESS", payload: response });
       dispatch({ type: "SET_IS_LOADING", payload: false });
       // handle successful signup
     } catch (error) {
@@ -165,6 +184,7 @@ export const USE_LOGIN = () => {
     formData: state.formData,
     isLoading: state.isLoading,
     error: state.error,
+    response: state.response,
     handleLoginInput,
     handleLoginSubmit,
   };

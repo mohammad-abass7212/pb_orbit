@@ -2,7 +2,7 @@ import ChooseSignupMedium from "@/components/chooseSignupMedium/ChooseSignupMedi
 import { useRouter } from "next/router";
 import ForgotPassword from "./forgotPassword";
 import NotFound from "./NotFound";
-import OtpForm from "./otpForm";
+import OtpForm from "./otp";
 import ResetPassword from "./resetPassword";
 import SignupForm from "./signupForm";
 import UserSignIn from "./userSignin";

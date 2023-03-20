@@ -12,6 +12,7 @@ import React from "react";
 
 // Defining a new type for CustomButtonProps, which extends ButtonProps
 type CustomButtonProps = ButtonProps & {
+  onClick: Function;
   imageSrc: string;
   text: string;
   btnDisabled?: boolean;
@@ -27,8 +28,9 @@ type CustomButtonProps = ButtonProps & {
 };
 
 // Defining the CustomButton functional component that accepts CustomButtonProps
-const CustomButton: React.FC<CustomButtonProps> = ({
+const CustomButton = ({
   // Destructuring the props here
+  onClick,
   imageSrc,
   text,
   btnDisabled = false,
@@ -41,9 +43,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   fontSize,
   iconVisStatus = false,
   btnHoverColor,
-}) => {
+  color = "white",
+}: CustomButtonProps) => {
   return (
     <Button
+      onClick={onClick}
       disabled={btnDisabled}
       display="flex"
       alignItems="center"
@@ -57,7 +61,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       mt={mt}
       mb={mb}
       fontSize={fontSize}
-      color={"white"}
+      color={color}
     >
       {/* Rendering a Flex component that displays an dynamic icon and text */}
       <Flex gap={4}>

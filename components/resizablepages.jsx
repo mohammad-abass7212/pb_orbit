@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-type Props = {
-    children: React.ReactNode;
-  };
 
-const ResizableContainer: React.FC = ({ children }) => {
+
+const ResizableContainer=({ children }) => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   const updateWindowSize = () => {

@@ -7,6 +7,6 @@ export interface AdminSignUpModel {
 }
 
 export interface AdminLoginModel {
-  email: string;
+  username: string;
   password: string;
 }

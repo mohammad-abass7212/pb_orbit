@@ -1,4 +1,4 @@
-import react from "react"
+import react from "react";
 import {
   Box,
   Button,
@@ -10,16 +10,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import ChooseSignupMedium from "@/components/chooseSignupMedium/ChooseSignupMedium";
 import CustomText, { variants } from "@/components/Common/CustomText";
-import OtpInput from "@/components/OtpInput/OtpInput";
-import OtpForm from "@/components/OtpInput/OtpAsset";
-import CustomButton from "@/components/Common/CustomButton";
 import DisplaySignupButton from "@/components/chooseSignupMedium/DisplaySignupButton";
 // import {Spin} from "react-reveal";
-interface IAppProps {}
 
-const chooseSignup: React.FunctionComponent<IAppProps> | any = () => {
+const chooseSignup = () => {
   return (
     <Box
       bg="#050017"
@@ -49,15 +44,14 @@ const chooseSignup: React.FunctionComponent<IAppProps> | any = () => {
         <DisplaySignupButton />
         <Image mt={35} src="/utils/Common/play-player.svg" alt="Player_Img" />
         <Box mt={30}>
-        <CustomText
-          variant={variants.SMALL_HEADING}
-          text={"Already have an account?Signin"}
-          link="/authFlow/userSignin"
-        />
-      </Box>
+          <CustomText
+            variant={variants.SMALL_HEADING}
+            text={"Already have an account?Signin"}
+            link="/authFlow/userSignin"
+          />
+        </Box>
       </Flex>
-      
     </Box>
   );
-  }
+};
 export default chooseSignup;

@@ -1,93 +1,9 @@
-/* OTP input styles */
-.input-otp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  padding: 0 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #111827;
-  text-align: center;
-  outline: none;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.otpContainer {
+  background-color: red;
+  border: 5px solid red;
 }
 
-.input-otp:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
-
-/* OTP input error styles */
-.input-otp--error {
-  border-color: #dc2626;
-  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
-}
-
-.input-otp--error:focus {
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2);
-}
-
-/* OTP input success styles */
-.input-otp--success {
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-}
-
-.input-otp--success:focus {
-  border-color: #14b06d;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-}
-
-/* OTP input disabled styles */
-.input-otp:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* OTP input container styles */
-.input-otp-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-/* OTP button styles */
-.btn-otp {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 64px;
-  padding: 0 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #2563eb;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 2px 6px 0 rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.btn-otp:hover,
-.btn-otp:focus {
-  background-color: #1d4ed8;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 4px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.btn-otp:active {
-  background-color: #1e3a8a;
-  box-shadow: none;
-}
-
-.btn-otp:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.otpInput:focus {
+  border-bottom: 2px solid #00e276;
+  
 }

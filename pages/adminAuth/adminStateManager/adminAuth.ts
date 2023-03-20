@@ -3,6 +3,7 @@ import { AdminSignUpModel, AdminLoginModel } from "../models/AdminAuthModels";
 import {
   ADMIN_LOGIN_API_ENDPOINT,
   ADMIN_SIGNUP_API_ENDPOINT,
+  BASE_API_URL,
 } from "../../api/apiVariables";
 import {
   USER_TYPE_HEADER,
@@ -12,10 +13,11 @@ import {
 
 export const AdminSignupCaller = async (formData: AdminSignUpModel) => {
   try {
+    console.log("formdata", formData);
     const response = await axios.post(ADMIN_SIGNUP_API_ENDPOINT, formData, {
       headers: {
         "Content-Type": CONTENT_TYPE_HEADER_SIGNUP,
-        "User-Type": USER_TYPE_HEADER,
+        user_type: USER_TYPE_HEADER,
       },
     });
     console.log("Response from API:", response.data);
@@ -32,10 +34,11 @@ export const AdminLoginCaller = async (formData: AdminLoginModel) => {
     const response = await axios.post(ADMIN_LOGIN_API_ENDPOINT, formData, {
       headers: {
         "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
-        "User-Type": USER_TYPE_HEADER,
+        User_Type: USER_TYPE_HEADER,
       },
     });
     console.log("Response from API:", response.data);
+
     return response.data;
   } catch (error) {
     console.log("Error from API:", error);

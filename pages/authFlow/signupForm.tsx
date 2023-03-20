@@ -5,9 +5,15 @@ import {
   Image,
   Input,
   Button,
+  useToast,
   Text,
   Checkbox,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
+
 import React, { useEffect, useRef, useState } from "react";
 import { validate } from "../adminAuth/validator/SignUpFormValidator";
 import { useSignUp } from "../adminAuth/adminStateManager/adminUseReducer";
@@ -16,10 +22,8 @@ import CustomButton from "@/components/CustomButton";
 import Loader from "@/components/Animations/Loader";
 import Notification from "@/components/Dailogbox/Notifications";
 import CustomText, { variants } from "@/components/Common/CustomText";
-import ResizableContainer from "@/components/resizablepages";
-interface ISignupProps {}
 
-const SignupForm: React.FC<ISignupProps> = () => {
+const SignupForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const Username = useRef<HTMLInputElement>(null);
@@ -27,23 +31,26 @@ const SignupForm: React.FC<ISignupProps> = () => {
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
+  const toast = useToast();
 
   const {
+    error,
     formData,
     isLoading,
-    error,
+    response,
     handleInputChange,
     handleFormSubmit,
-    // response,
   } = useSignUp();
   const [passwordShown, setPasswordShown] = React.useState(false);
   const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  // const { success, message } = response;
-
-  useEffect(() => {
-    setShowNotification(true);
-  }, []);
+  const { success, message, id, mobile_number } = response;
+  console.log(id);
+  if (id !== "undefined") {
+    localStorage.setItem("user_id", id);
+  }
+  if (mobile_number !== "undefined") {
+    localStorage.setItem("mobile_number", mobile_number);
+  }
   //////////////////////////toggle password icon////////////////////////
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
@@ -57,12 +64,45 @@ const SignupForm: React.FC<ISignupProps> = () => {
     console.log("hi there formm triggered");
     event.preventDefault();
     const errors = validate(formData);
-
+    errors.email &&
+      toast({
+        title: "Required field",
+        description: errors.email,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
+    errors.password &&
+      toast({
+        title: "Required field",
+        description: errors.password,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
+    errors.mobile_number &&
+      toast({
+        title: "Required field",
+        description: errors.mobile_number,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
+    console.log("errors", errors);
     if (Object.keys(errors).length === 0) {
       handleFormSubmit(event);
-      router.push("/authFlow/otpForm");
     } else {
-      alert("Please fill all required fields!");
+      toast({
+        title: "Please fill all required fields!",
+        description: errors.mobile_number,
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
     }
     //////////////////////////toggle password icon////////////////////////
 
@@ -70,23 +110,48 @@ const SignupForm: React.FC<ISignupProps> = () => {
     const confirmPassword = confirmPasswordRef.current?.value;
 
     if (password !== confirmPassword) {
+      toast({
+        title: "password does not match!",
+        description: errors.mobile_number,
+        status: "info",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
     }
   };
- const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
-  const updateWindowSize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  };
+  React.useEffect(() => {
+    {
+      success === true && !undefined
+        ? toast({
+            title: "Account created.",
+            description: message,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+          }) &&
+          setTimeout(() => {
+            router.push("/authFlow/otp");
+          }, 2000)
+        : null;
+    }
+    {
+      success === false && !undefined
+        ? toast({
+            title: "",
+            description: message,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+          })
+        : null;
+    }
+  });
 
-  useEffect(() => {
-    window.addEventListener('resize', updateWindowSize);
-    updateWindowSize();
-    return () => {
-      window.removeEventListener('resize', updateWindowSize);
-    };
-  }, []);
   return (
-    <ResizableContainer>
     <Box
       bg="#050017"
       pt={["80px", "120px", "120px", "120px", "100px"]}
@@ -94,11 +159,7 @@ const SignupForm: React.FC<ISignupProps> = () => {
       position="relative"
       mt={[-100]}
     >
-      <Flex
-        m={"auto"}
-        w={["40%", "40%", "40%", "30%", "20%"]}
-        mb={["73px", "73px", "73px", "40px", "57px"]}
-      >
+      <Flex m={"auto"} w={["40%", "40%", "40%", "30%", "20%"]} mb={["20px"]}>
         <Image
           w={["100%", "100%", "100%", "100%", "100%"]}
           mb={["20px", "20px", "20px", "20px", "20px"]}
@@ -118,7 +179,6 @@ const SignupForm: React.FC<ISignupProps> = () => {
         <Text color={"white"}>Start with signing up or sign in</Text>
 
         <Box
-          as="form"
           display={"flex"}
           flexDirection={"column"}
           w={["1000px"]}
@@ -126,14 +186,13 @@ const SignupForm: React.FC<ISignupProps> = () => {
           alignItems={"center"}
           gap="10px"
           type="submit"
-          onsubmit={handleSubmit}
         >
           <Box
             display={"flex"}
             border={"1px solid white"}
-            borderRadius="5px"
-            w={["80%", "60%", "50%", "25%"]}
-            pl="10px"
+            borderRadius="10px"
+            w={["30%", "30%", "30%", "30%"]}
+            pl={["55px", "45px", "35px", "30px"]}
           >
             {" "}
             <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
@@ -141,41 +200,20 @@ const SignupForm: React.FC<ISignupProps> = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              p="10px"
-              color="white"
+              color="#656565"
               border={"none"}
+              size="lg"
               placeholder="Enter Address"
               ref={emailRef}
+              width={"auto"}
             />
           </Box>
           <Box
             display={"flex"}
             border={"1px solid white"}
-            borderRadius="5px"
-            w={["80%", "60%", "50%", "25%"]}
-            pl="10px"
-            pr="10px"
-          >
-            {" "}
-            <Image src="/utils/Common/at.svg" alt="userIcon" />
-            <Input
-              name="User Name"
-              onChange={handleInputChange}
-              type={"Text"}
-              p="10px"
-              color="white"
-              border={"none"}
-              placeholder="Username"
-              ref={Username}
-              required
-            />
-          </Box>
-          <Box
-            display={"flex"}
-            border={"1px solid white"}
-            borderRadius="5px"
-            w={["80%", "60%", "50%", "25%"]}
-            pl="10px"
+            borderRadius="10px"
+            w={["30%", "30%", "30%", "30%"]}
+            pl={["55px", "45px", "35px", "30px"]}
           >
             {" "}
             <Image src="/utils/Common/phoneIcon.svg" alt="pborbit_logo" />
@@ -185,8 +223,9 @@ const SignupForm: React.FC<ISignupProps> = () => {
               value={formData.mobile_number}
               onChange={handleInputChange}
               p="10px"
-              color="white"
+              color="#656565"
               border={"none"}
+              size="lg"
               placeholder="Mobile Number"
               required
               ref={mobileNumberRef}
@@ -195,10 +234,9 @@ const SignupForm: React.FC<ISignupProps> = () => {
           <Box
             display={"flex"}
             border={"1px solid white"}
-            borderRadius="5px"
-            w={["80%", "60%", "50%", "25%"]}
-            pl="10px"
-            pr="10px"
+            borderRadius="10px"
+            w={["30%", "30%", "30%", "30%"]}
+            pl={["55px", "45px", "35px", "30px"]}
           >
             {" "}
             <Image src="/utils/common/password.svg" alt="pborbit_logo" />
@@ -208,8 +246,9 @@ const SignupForm: React.FC<ISignupProps> = () => {
               value={formData.password}
               onChange={handleInputChange}
               p="10px"
-              color="white"
+              color="#656565"
               border={"none"}
+              size="lg"
               placeholder="Password"
               required
               ref={passwordRef}
@@ -224,10 +263,9 @@ const SignupForm: React.FC<ISignupProps> = () => {
           <Box
             display={"flex"}
             border={"1px solid white"}
-            borderRadius="5px"
-            w={["80%", "60%", "50%", "25%"]}
-            pl="10px"
-            pr="10px"
+            borderRadius="10px"
+            w={["30%", "30%", "30%", "30%"]}
+            pl={["55px", "45px", "35px", "30px"]}
           >
             {" "}
             <Image
@@ -240,8 +278,9 @@ const SignupForm: React.FC<ISignupProps> = () => {
               onChange={handleInputChange}
               type={confirmPasswordShown ? "text" : "password"}
               p="10px"
-              color="white"
+              color="#656565"
               border={"none"}
+              size="lg"
               placeholder="Confirm Password"
               ref={confirmPasswordRef}
               required
@@ -257,6 +296,7 @@ const SignupForm: React.FC<ISignupProps> = () => {
           ) : (
             <CustomButton
               mt={["20px", "15px"]}
+              onClick={handleSubmit}
               color="white"
               widthArray={["80%", "50%", "45%", "22%"]}
               disabled={isLoading}
@@ -290,7 +330,6 @@ const SignupForm: React.FC<ISignupProps> = () => {
         </Flex>
       </Flex>
     </Box>
-    </ResizableContainer>
   );
 };
 

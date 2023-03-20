@@ -1,24 +1,31 @@
+/* eslint-disable react/no-unescaped-entities */
 import CustomText, { variants } from "@/components/Common/CustomText";
 import {
   Box,
   Button,
-  Center,
   Flex,
   Heading,
   Image,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 
-import React from "react";
-interface IAppProps {}
+import * as React from "react";
+import { useRef } from "react";
+import { useState } from "react";
+import {
+  CONTENT_TYPE_HEADER_LOGIN,
+  USER_TYPE_HEADER,
+} from "../adminAuth/headers/adminRequestHeaders";
+// interface IAppProps {}
 
-const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
-  const setEmail = () => {};
-  const setUsername = () => {};
-  const setPassword = () => {};
-  const setConfirmPassword = () => {};
-  const handleSubmit = () => {};
+const ForgotPassword = () => {
+  const toast = useToast();
+  const emailRef = useRef(null);
+
+  const [emailChange, setEmailChange] = useState("");
+
   const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
 
   const updateWindowSize = () => {
@@ -33,6 +40,55 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
     };
   }, []);
 
+  const handlesendOtpOnEmail = (e) => {
+    e.preventDefault();
+
+    const sendOtpOnEmail = async (emailChange) => {
+      try {
+        const response = await axios.post(
+          RESEND_OTP_API_ENDPOINT,
+          {
+            email: emailChange,
+          },
+          {
+            headers: {
+              "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
+              user_type: USER_TYPE_HEADER,
+            },
+          }
+        );
+        console.log("Response from API:", response.data);
+        toast({
+          title: "Signin Successfull",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+        toast({
+          title: "OTP has been sent",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+        return response.data;
+      } catch (error) {
+        console.log("Error from API:", error);
+        toast({
+          title: "Request Failed",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+          description: "Try again",
+        });
+      }
+    };
+
+    sendOtpOnEmail(emailChange);
+  };
+  const requestedEmail = "saurabhsingh95573@gmial.com";
   return (
     <Box
       bg="#050017"
@@ -61,6 +117,12 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
             alt=""
           />
         </Box>
+        <Flex flexDirection={"column"} alignItems={"center"}>
+          <Heading mb={5} color={"white"}>
+            Provide your email address{" "}
+          </Heading>
+          <Text color={"white"}>We'll send a 4-digit confirmation code</Text>
+        </Flex>
         <Box
           display={"flex"}
           border={"1px solid white"}
@@ -78,8 +140,8 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
             autoComplete="email"
             required
             placeholder="Enter Address"
-            onChange={(e) => setEmail()}
-            value={""}
+            onChange={setEmailChange}
+            ref={emailRef}
           />
         </Box>
         <Button
@@ -87,7 +149,7 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
           bg="#00E276"
           color="white"
           w={["60%", "50%", "45%", "22%"]}
-          onClick={() => handleSubmit()}
+          onClick={(e) => handlesendOtpOnEmail(e)}
         >
           Send OTP
         </Button>
@@ -95,7 +157,7 @@ const ForgotPassword: React.FunctionComponent<IAppProps> | any = () => {
           <CustomText
             link="/authFlow/userSignin"
             variant={variants.SMALL_HEADING}
-            text={"Already have an account?Signin"}
+            text={"Pborbit © 2023 All rights reserved"}
           />
         </Box>
       </Flex>

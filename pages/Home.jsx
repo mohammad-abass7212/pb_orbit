@@ -10,7 +10,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { FunctionComponent } from "react";
-const Home: FunctionComponent = () => {
+const Home=() => {
   return (
     <Box>
       <Navbar />

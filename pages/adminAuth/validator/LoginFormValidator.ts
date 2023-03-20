@@ -3,10 +3,10 @@ import { AdminLoginModel } from "../models/AdminAuthModels";
 export const LoginFormValidate = (formData: AdminLoginModel) => {
   const errors: any = {};
 
-  if (!formData.email) {
-    errors.email = "Email is required";
-  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    errors.email = "Email is invalid";
+  if (!formData.username) {
+    errors.username = "username is required";
+  } else if (!/\S+@\S+\.\S+/.test(formData.username)) {
+    errors.username = "username is invalid";
   }
 
   if (!formData.password) {

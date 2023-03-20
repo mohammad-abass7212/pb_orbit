@@ -5,7 +5,7 @@ import "firebase/firestore";
 
 import "firebase/auth";
 import "firebase/firestore";
-import type { AppProps } from "next/app";
+import  { AppProps } from "next/app";
 // import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@/theme";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 export default function App({
   Component,
   pageProps,
-}: AppProps): JSX.Element | any {
+}) {
   const [loadingPage, setLoadingPage] = useState(false);
 
   useEffect(() => {

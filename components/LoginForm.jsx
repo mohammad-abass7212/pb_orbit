@@ -26,7 +26,7 @@ const Login = () => {
     setErrMsg("");
   }, [user, pwd]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // perform login logic here
     if (user === "admin" && pwd === "admin") {
@@ -56,7 +56,7 @@ const Login = () => {
                 id="username"
                 ref={userRef}
                 autoComplete="off"
-                onChange={(e:any) => setUser(e.target.value)}
+                onChange={(e) => setUser(e.target.value)}
                 value={user}
                 isRequired
               />
@@ -66,7 +66,7 @@ const Login = () => {
               <Input
                 type="password"
                 id="password"
-                onChange={(e:any) => setPwd(e.target.value)}
+                onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 isRequired
               />

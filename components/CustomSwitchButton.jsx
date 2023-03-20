@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-interface CustomButtonProps {
-  disabled: string;
-}
+
 
 const ButtonSwitch = () => {
   const [activeButton, setActiveButton] = useState("player");
 
-  const handleButtonClick = (buttonName: any) => {
+  const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     // perform action based on button switch, e.g.:
     console.log(`Switched to ${buttonName} button`);

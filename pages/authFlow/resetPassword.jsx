@@ -10,13 +10,11 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import ResizableContainer from "@/components/resizablepages";
-interface IAppProps {}
 
-const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
+const ResetPassword= () => {
   const [password, setPassword] = React.useState("");
   const [newpassword, setNewPassword] = React.useState("");
-  const updatePassword = () => {
+  const handleupdatePassword = () => {
     const payload = {
       password,
       newpassword,
@@ -66,8 +64,8 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
             alt=""
           />
           <Flex flexDirection={"column"} alignItems={"center"} gap="20px">
-            <Heading color={"white"}>Welcome </Heading>
-            <Text color={"white"}>Start with signing up or sign in</Text>
+            <Heading color={"white"}>Reset Password </Heading>
+            <Text color={"white"}>Enter New Password</Text>
           </Flex>
         </Box>
 
@@ -114,7 +112,7 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
             p="10px"
             color="white"
             border={"none"}
-            placeholder="Password"
+            placeholder="Confirm password"
             onChange={(e) => setNewPassword(e.target.value)}
             value={newpassword}
           />
@@ -130,7 +128,7 @@ const ResetPassword: React.FunctionComponent<IAppProps> | any = () => {
           bg="#00E276"
           color="white"
           w={["60%", "50%", "45%", "22%"]}
-          onClick={() => updatePassword()}
+          onClick={handleupdatePassword}
         >
           Update Password
         </Button>
