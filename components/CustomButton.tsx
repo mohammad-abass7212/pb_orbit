@@ -8,10 +8,13 @@ import {
   Img,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef } from 'react';
+import { useClickAnimation } from './useClickAnimation';
+
 
 // Defining a new type for CustomButtonProps, which extends ButtonProps
 type CustomButtonProps = ButtonProps & {
+
   onClick: Function;
   imageSrc: string;
   text: string;
@@ -28,7 +31,7 @@ type CustomButtonProps = ButtonProps & {
 };
 
 // Defining the CustomButton functional component that accepts CustomButtonProps
-const CustomButton = ({
+const         CustomButton = ({
   // Destructuring the props here
   onClick,
   imageSrc,
@@ -45,8 +48,18 @@ const CustomButton = ({
   btnHoverColor,
   color = "white",
 }: CustomButtonProps) => {
+  const buttonRef = useRef(null);
+  useClickAnimation(buttonRef, {
+    size: 100,
+    duration: 1000,
+    color: 'red',
+    effectName: 'ripple',
+  });
+  
+
   return (
     <Button
+    ref={buttonRef}
       onClick={onClick}
       disabled={btnDisabled}
       display="flex"

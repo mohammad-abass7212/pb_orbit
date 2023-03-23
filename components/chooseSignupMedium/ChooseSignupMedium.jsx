@@ -1,18 +1,8 @@
 import { login } from "@/context/AuthProvider";
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
-import type { FC } from "react";
-interface chooseSignupMediumProps {
-  src: string;
-  optionsText: string;
-  onclickfunc: any;
-}
 
-const ChooseSignupMedium: FC<chooseSignupMediumProps> = ({
-  src,
-  optionsText,
-  onclickfunc,
-}) => {
+const ChooseSignupMedium = ({ src, optionsText, onclickfunc }) => {
   const router = useRouter();
   const handleSubmit = () => {
     if (onclickfunc === "googleAuth") {

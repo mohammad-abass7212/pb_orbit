@@ -31,10 +31,11 @@ export const AdminSignupCaller = async (formData: AdminSignUpModel) => {
 
 export const AdminLoginCaller = async (formData: AdminLoginModel) => {
   try {
+    console.log("FORMDATA____________", formData);
     const response = await axios.post(ADMIN_LOGIN_API_ENDPOINT, formData, {
       headers: {
         "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
-        User_Type: USER_TYPE_HEADER,
+        user_type: USER_TYPE_HEADER,
       },
     });
     console.log("Response from API:", response.data);
@@ -42,7 +43,6 @@ export const AdminLoginCaller = async (formData: AdminLoginModel) => {
     return response.data;
   } catch (error) {
     console.log("Error from API:", error);
-    alert(error);
-    throw error;
+    return error;
   }
 };

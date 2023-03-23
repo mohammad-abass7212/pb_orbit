@@ -1,9 +1,7 @@
 import { Box, Image } from "@chakra-ui/react";
-import type { FC } from "react";
 import ChooseSignupMedium from "./ChooseSignupMedium";
-interface DisplaySignupButtonProps {}
 
-const DisplaySignupButton: FC<DisplaySignupButtonProps> = ({}) => {
+const DisplaySignupBtn = ({}) => {
   return (
     <>
       <ChooseSignupMedium
@@ -28,4 +26,4 @@ const DisplaySignupButton: FC<DisplaySignupButtonProps> = ({}) => {
     </>
   );
 };
-export default DisplaySignupButton;
+export default DisplaySignupBtn;

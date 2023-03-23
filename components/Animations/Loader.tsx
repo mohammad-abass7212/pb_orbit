@@ -10,7 +10,7 @@ const Loader = () => {
           src="https://freshcook.in/wp-content/uploads/2020/12/site-loader.gif"
           alt="loading..."
         />
-        <Text style={{ fontSize: "10px" }}>loading...</Text>
+        <Text style={{ fontSize: "100px" }}>loading...</Text>
       </VStack>
     </Stack>
   );

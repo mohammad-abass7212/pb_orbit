@@ -103,7 +103,7 @@ const OtpForm = () => {
           RESEND_OTP_API_ENDPOINT,
           {
             type: "email",
-            user_id: user_id,
+            user_id,
           },
           {
             headers: {
@@ -114,7 +114,7 @@ const OtpForm = () => {
         );
         console.log("Response from API:", response.data);
         toast({
-          title: "Signin Successfull",
+          title: "OTP Sent On your registered Email account",
           status: "success",
           duration: 2000,
           isClosable: true,
@@ -129,22 +129,13 @@ const OtpForm = () => {
           duration: 2000,
           isClosable: true,
           position: "top",
-          description: "Invalid OTP submission",
+          description: "Something went wrong try again!",
         });
       }
     };
-    if (otp.length !== 4) {
-      toast({
-        title: "OTP Required",
-        status: "info",
-        duration: 2000,
-        isClosable: true,
-        position: "top",
-        description: "Fill all the input fields",
-      });
-    } else {
+    
       resendOtp();
-    }
+    
   };
 
   return (

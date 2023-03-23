@@ -4,6 +4,7 @@ import {
   Heading,
   Image,
   Input,
+  InputGroup,
   Button,
   useToast,
   Text,
@@ -12,6 +13,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  InputLeftElement,
 } from "@chakra-ui/react";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -48,9 +50,7 @@ const SignupForm = () => {
   if (id !== "undefined") {
     localStorage.setItem("user_id", id);
   }
-  if (mobile_number !== "undefined") {
-    localStorage.setItem("mobile_number", mobile_number);
-  }
+
   //////////////////////////toggle password icon////////////////////////
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
@@ -120,7 +120,7 @@ const SignupForm = () => {
       });
     }
   };
-
+  let reloadOnce = false;
   React.useEffect(() => {
     {
       success === true && !undefined
@@ -149,10 +149,12 @@ const SignupForm = () => {
           })
         : null;
     }
-  });
+    reloadOnce = false;
+  }, [reloadOnce]);
 
   return (
     <Box
+      height={"1000px"}
       bg="#050017"
       pt={["80px", "120px", "120px", "120px", "100px"]}
       pb={["80px", "200px", "200px", "20px", "120px"]}
@@ -189,24 +191,27 @@ const SignupForm = () => {
         >
           <Box
             display={"flex"}
-            border={"1px solid white"}
-            borderRadius="10px"
             w={["30%", "30%", "30%", "30%"]}
             pl={["55px", "45px", "35px", "30px"]}
           >
             {" "}
-            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
-            <Input
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              color="#656565"
-              border={"none"}
-              size="lg"
-              placeholder="Enter Address"
-              ref={emailRef}
-              width={"auto"}
-            />
+            <InputGroup borderRadius="10px" border={"1px solid white"}>
+              <InputLeftElement className="InputLeft" pointerEvents="none">
+                <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
+              </InputLeftElement>
+
+              <Input
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                color="#656565"
+                border={"none"}
+                size="lg"
+                placeholder="Enter Address"
+                ref={emailRef}
+                width={"auto"}
+              />
+            </InputGroup>
           </Box>
           <Box
             display={"flex"}

@@ -7,10 +7,6 @@ import {
   Image,
   Input,
   Text,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
   useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -19,6 +15,7 @@ import React from "react";
 import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
 import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
+import { useClickAnimation } from "@/components/useClickAnimation";
 // interface ISigninProps {}
 const UserSignIn = () => {
   const toast = useToast();
@@ -35,8 +32,8 @@ const UserSignIn = () => {
       window.removeEventListener("resize", updateWindowSize);
     };
   }, []);
-  const usernameRef = useRef < HTMLInputElement > null;
-  const passwordRef = useRef < HTMLInputElement > null;
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const {
     formData,
@@ -100,7 +97,13 @@ const UserSignIn = () => {
         : null;
     }
   });
-
+  const buttonRef = useRef(null);
+  useClickAnimation(buttonRef, {
+    size: 100,
+    duration: 1000,
+    color: "red",
+    effectName: "ripple",
+  });
   return (
     <Flex
       id="usersigninpage"
@@ -136,15 +139,17 @@ const UserSignIn = () => {
         {" "}
         <Image src="/utils/common/attherate.svg" alt="pborbit_logo" />
         <Input
+          name="username"
           variant="unstyled"
           p="10px"
           color="white"
           border={"none"}
           autoComplete="email"
           required
+          useref={usernameRef}
           placeholder="Enter Address or email"
           onChange={handleLoginInput}
-          value={usernameRef.current?.value}
+          value={formData.username}
         />
       </Box>
 
@@ -162,6 +167,8 @@ const UserSignIn = () => {
           onClick={togglePasswordVisibility}
         />
         <Input
+          name="password"
+          useref={passwordRef}
           variant="unstyled"
           p="10px"
           color="white"
@@ -171,7 +178,7 @@ const UserSignIn = () => {
           required
           placeholder="password"
           onChange={handleLoginInput}
-          value={passwordRef.current?.value}
+          value={formData.password}
         />
       </Box>
       <Box
@@ -192,6 +199,7 @@ const UserSignIn = () => {
       </Box>
 
       <Button
+        ref={buttonRef}
         mt="15px"
         bg="#00E276"
         color="white"

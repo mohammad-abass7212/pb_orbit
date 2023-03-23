@@ -616,5 +616,54 @@ body {
   }
 }
 
-/* otp css */
+/* click animation*/
+.effect-container {
+  position: relative;
+  overflow: hidden;
+  --effect-name: ripple;
+  --effect-duration: 500ms;
+  --effect-top: 0;
+  --effect-left: 0;
+  --effect-height: 100px;
+  --effect-width: 100px;
+  --effect-color: "fff";
+}
 
+.effect-container::before {
+  content: "";
+  position: absolute;
+  opacity: 0.3;
+  top: var(--effect-top);
+  left: var(--effect-left);
+  height: var(--effect-height);
+  width: var(--effect-width);
+  background: var(--effect-color);
+}
+.effect-container.ripple.active::before {
+  border-radius: 50%;
+  animation: ripple var(--effect-duration) linear forwards;
+}
+@keyframes ripple {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+/* #globalLoader {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+} */

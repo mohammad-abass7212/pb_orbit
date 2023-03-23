@@ -12,6 +12,7 @@ import {
 
 import CustomText, { variants } from "@/components/Common/CustomText";
 import DisplaySignupButton from "@/components/chooseSignupMedium/DisplaySignupButton";
+import DisplaySignupBtn from "@/components/chooseSignupMedium/DisplaySignupButton";
 // import {Spin} from "react-reveal";
 
 const chooseSignup = () => {
@@ -41,7 +42,7 @@ const chooseSignup = () => {
             alt=""
           />
         </Box>
-        <DisplaySignupButton />
+        <DisplaySignupBtn />
         <Image mt={35} src="/utils/Common/play-player.svg" alt="Player_Img" />
         <Box mt={30}>
           <CustomText

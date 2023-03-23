@@ -1,59 +1,68 @@
 import "@/styles/globals.css";
-// import { FirebaseAuthProvider, FirestoreProvider } from 'next-firebase-auth';
 import "firebase/auth";
 import "firebase/firestore";
-
-import "firebase/auth";
-import "firebase/firestore";
-import  { AppProps } from "next/app";
-// import { Provider } from "react-redux";
+import React from "react";
+import { AppProps } from "next/app";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
 import Layout from "@/components/layout/Layout";
-import Router from "next/router";
-import { useEffect, useState } from "react";
-export default function App({
-  Component,
-  pageProps,
-}) {
-  const [loadingPage, setLoadingPage] = useState(false);
+import { useRouter } from "next/router";
+import Loader from "@/components/Animations/Loader";
 
-  useEffect(() => {
-    const start = () => {
-      console.log("loading new page");
-      setLoadingPage(false);
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const isNavigating = React.useRef(false);
+
+  React.useEffect(() => {
+    const handleStart = () => {
+      isNavigating.current = true;
+    };
+    const handleComplete = () => {
+      isNavigating.current = false;
     };
 
-    const end = () => {
-      console.log("loaded new page!");
-      setLoadingPage(false);
-    };
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
 
-    Router.events.on("routeChangeStart", start);
-    Router.events.on("routeChangeComplete", end);
-    Router.events.on("routeChangeError", end);
     return () => {
-      Router.events.off("routeChangeStart", start);
-      Router.events.off("routeChangeComplete", end);
-      Router.events.off("routeChangeError", end);
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
     };
-  }, []);
+  }, [router]);
+
   return (
-    <HydrationProvider>
-      <ChakraProvider theme={theme}>
-        <ThemeProvider theme={theme}>
-        <Server></Server>{" "}
-          <Client>
-            {" "}
-            <Layout>
-              {" "}
-              <Component {...pageProps} />{" "}
-            </Layout>{" "}
-          </Client>
-        </ThemeProvider>
-      </ChakraProvider>
-    </HydrationProvider>
+    <motion.div
+      initial="pageInitial"
+      animate="pageAnimate"
+      variants={{
+        pageInitial: { opacity: 0 },
+        pageAnimate: { opacity: 1 },
+      }}
+    >
+      <HydrationProvider>
+        <ChakraProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <Server></Server>
+            <AnimatePresence exitBeforeEnter>
+              {isNavigating.current ? (
+                <div>
+                  <Loader />
+                </div>
+              ) : (
+                <Client>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </Client>
+              )}
+            </AnimatePresence>
+          </ThemeProvider>
+        </ChakraProvider>
+      </HydrationProvider>
+    </motion.div>
   );
 }
