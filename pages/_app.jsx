@@ -48,17 +48,11 @@ export default function App({ Component, pageProps }) {
           <ThemeProvider theme={theme}>
             <Server></Server>
             <AnimatePresence exitBeforeEnter>
-              {isNavigating.current ? (
-                <div>
-                  <Loader />
-                </div>
-              ) : (
                 <Client>
                   <Layout>
                     <Component {...pageProps} />
                   </Layout>
                 </Client>
-              )}
             </AnimatePresence>
           </ThemeProvider>
         </ChakraProvider>
