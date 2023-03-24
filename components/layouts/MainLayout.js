@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import { Props } from "next/script";
-import React from "react";
 import { motion } from "framer-motion";
 
 const variants = {
@@ -8,7 +7,7 @@ const variants = {
   enter: { opacity: 1, x: 0, y: 0 },
   exit: { opacity: 0, x: 0, y: -100 },
 };
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <Box bg="#050017" style={{ fontFamily: "Poppins, sans-serif" }}>
       <motion.main
@@ -29,4 +28,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MainLayout;

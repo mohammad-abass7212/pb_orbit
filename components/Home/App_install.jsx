@@ -1,11 +1,8 @@
-import { Flex, Box, Image, Heading, Text, Input,Icon } from "@chakra-ui/react";
+import { Flex, Box, Image, Heading, Text, Input, Icon } from "@chakra-ui/react";
 // import Image from 'next/image';
-import React from "react";
-import { FunctionComponent } from "react";
+import { FaTelegramPlane } from "react-icons/fa";
 
-
-
-const App_install: FunctionComponent = () => {
+const App_install = () => {
   return (
     <Flex
       position="relative"
@@ -80,8 +77,10 @@ const App_install: FunctionComponent = () => {
             borderBottomEndRadius="50px"
             borderTopEndRadius={"50px"}
             bg="#01df74"
+            display={"flex"}
+            justifyContent={"center"}
           >
-            {" "}
+            <FaTelegramPlane size={35} alignitems={"center"} />{" "}
           </Box>
         </Flex>
       </Box>
