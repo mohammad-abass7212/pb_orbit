@@ -27,11 +27,11 @@ import CustomText, { variants } from "@/components/Common/CustomText";
 import AuthFlowLayout from "@/components/layouts/AuthFlowLayout";
 
 const SignupForm = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const Username = useRef<HTMLInputElement>(null);
-  const mobileNumberRef = useRef<HTMLInputElement>(null);
-  const confirmPasswordRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const Username = useRef(null);
+  const mobileNumberRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
 
   const router = useRouter();
   const toast = useToast();
@@ -61,7 +61,7 @@ const SignupForm = () => {
     setConfirmPasswordShown(!confirmPasswordShown);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event) => {
     console.log("hi there formm triggered");
     event.preventDefault();
     const errors = validate(formData);
@@ -112,7 +112,7 @@ const SignupForm = () => {
 
     if (password !== confirmPassword) {
       toast({
-        title: "password does not match!",
+        title: "Password does not match!",
         description: errors.mobile_number,
         status: "info",
         duration: 2000,
@@ -121,21 +121,17 @@ const SignupForm = () => {
       });
     }
   };
-  let reloadOnce = false;
   React.useEffect(() => {
     {
       success === true && !undefined
         ? toast({
-            title: "Account created.",
-            description: message,
+            title: message,
+            description: "Check your email inbox",
             status: "success",
-            duration: 9000,
+            duration: 4000,
             isClosable: true,
             position: "top",
-          }) &&
-          setTimeout(() => {
-            router.push("/authFlow/otp");
-          }, 2000)
+          }) && router.push("/authFlow/otp")
         : null;
     }
     {
@@ -144,14 +140,13 @@ const SignupForm = () => {
             title: "",
             description: message,
             status: "error",
-            duration: 9000,
+            duration: 4000,
             isClosable: true,
             position: "top",
           })
         : null;
     }
-    reloadOnce = false;
-  }, [reloadOnce]);
+  });
 
   return (
     <AuthFlowLayout>
@@ -202,18 +197,22 @@ const SignupForm = () => {
               {" "}
               <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
               <Input
-                variant={"unstyled"}
+                variant={"flushed"}
+                focusBorderColor="#00e276"
+                errorBorderColor="red.300"
+                _placeholder={{ color: "#656565" }}
                 type={"tel"}
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
                 p="10px"
-                color="#656565"
+                color="white"
                 border={"none"}
                 size="lg"
                 placeholder="Email"
                 required
                 ref={emailRef}
+                autoComplete={"off"}
               />
             </Box>
             <Box
@@ -227,13 +226,15 @@ const SignupForm = () => {
               {" "}
               <Image src="/utils/Common/phoneIcon.svg" alt="pborbit_logo" />
               <Input
-                variant={"unstyled"}
+                _placeholder={{ color: "#656565" }}
+                variant={"flushed"}
+                focusBorderColor="#00e276"
                 type={"tel"}
                 name="mobile_number"
                 value={formData.mobile_number}
                 onChange={handleInputChange}
                 p="10px"
-                color="#656565"
+                color="white"
                 border={"none"}
                 size="lg"
                 placeholder="Mobile Number"
@@ -253,11 +254,13 @@ const SignupForm = () => {
               <Input
                 type={passwordShown ? "text" : "password"}
                 name="password"
-                variant={"unstyled"}
+                _placeholder={{ color: "#656565" }}
+                variant={"flushed"}
+                focusBorderColor="#00e276"
                 value={formData.password}
                 onChange={handleInputChange}
                 p="10px"
-                color="#656565"
+                color="white"
                 border={"none"}
                 size="lg"
                 placeholder="Password"
@@ -285,11 +288,13 @@ const SignupForm = () => {
               />
               <Input
                 name="confirmPassword"
-                variant={"unstyled"}
+                _placeholder={{ color: "#656565" }}
+                variant={"flushed"}
+                focusBorderColor="#00e276"
                 onChange={handleInputChange}
                 type={confirmPasswordShown ? "text" : "password"}
                 p="10px"
-                color="#656565"
+                color="white"
                 border={"none"}
                 size="lg"
                 placeholder="Confirm Password"
@@ -302,27 +307,24 @@ const SignupForm = () => {
                 onClick={toggleConfirmPasswordVisibility}
               />
             </Box>
-            {isLoading ? (
-              Loader
-            ) : (
-              <CustomButton
-                mt={["20px", "15px"]}
-                onClick={handleSubmit}
-                color="white"
-                widthArray={["80%", "50%", "45%", "22%"]}
-                disabled={isLoading}
-                text={isLoading ? "Loading..." : "Sign Up"}
-                imageSrc=""
-                btnDisabled={false}
-                buttonBgColor="#00E276"
-                customHeight={[]}
-                btnBorderRadius={["15px"]}
-                mb={[]}
-                iconVisStatus={false}
-                btnHoverColor=""
-                fontSize={[]}
-              />
-            )}
+
+            <CustomButton
+              mt={["20px", "15px"]}
+              onClick={handleSubmit}
+              color="white"
+              widthArray={["80%", "50%", "45%", "22%"]}
+              text={isLoading ? "Submitting.." : "Sign Up"}
+              spinner={isLoading}
+              imageSrc=""
+              btnDisabled={false}
+              buttonBgColor="#00E276"
+              customHeight={[]}
+              btnBorderRadius={["15px"]}
+              mb={[]}
+              iconVisStatus={false}
+              btnHoverColor=""
+              fontSize={[]}
+            />
           </Box>
           <Checkbox colorScheme="green" defaultChecked>
             <Text color={"white"}>Player Access</Text>

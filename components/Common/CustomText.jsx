@@ -1,18 +1,13 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
-import type { FC } from "react";
+import { Flex, Text } from "@chakra-ui/react";
+import Link from "next/link";
 
-interface CustomTextProps {
-  variant: string;
-  text: string;
-  link: any;
-}
 export const variants = {
   HEADING: "heading",
   SUB_HEADING: "sub-heading",
   SMALL_HEADING: "small-heading",
 };
 
-const CustomText: FC<CustomTextProps> = ({ variant, text ,link}) => {
+const CustomText = ({ variant, text, link }) => {
   let style = {};
   switch (variant) {
     case variants.HEADING:

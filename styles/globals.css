@@ -86,8 +86,8 @@
 
 html,
 body {
-    max-width: 100vw;
-    overflow-x: hidden;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* how it works section animation */
@@ -653,5 +653,3 @@ body {
     opacity: 0;
   }
 }
-
-

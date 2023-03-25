@@ -155,12 +155,11 @@ export const USE_LOGIN = () => {
 
   const handleLoginInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    // console.log(event.target);
 
     dispatch({
       type: "SET_FORM_DATA",
       payload: {
-        ...state.formData,
+        ...state.formData.formData,
         [name]: value,
       },
     });
@@ -170,10 +169,7 @@ export const USE_LOGIN = () => {
     event.preventDefault();
     dispatch({ type: "SET_IS_LOADING", payload: true });
     try {
-      console.log("state formdata..........", state);
-
       const response = await AdminLoginCaller(state);
-      console.log("Response from API:", response);
       dispatch({ type: "SET_SUCESS", payload: response });
       dispatch({ type: "SET_IS_LOADING", payload: false });
       // handle successful signup

@@ -8,6 +8,7 @@ import {
   Heading,
   Image,
   Input,
+  Spinner,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -23,6 +24,7 @@ import {
   VERIFY_OTP_API_ENDPOINT,
 } from "../api/apiVariables";
 import { useRouter } from "next/router";
+import CustomButton from "@/components/CustomButton";
 // interface IAppProps {}
 
 const OtpForm = () => {
@@ -31,7 +33,8 @@ const OtpForm = () => {
   const toast = useToast();
   const otpRef = useRef(null);
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [resendOtpState, setResendOtpState] = useState(false);
   const handleChange = (e) => {
     setOtp(e.target.value);
   };
@@ -40,7 +43,7 @@ const OtpForm = () => {
 
   const onSubmitOTP = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const otpVerification = async (otp, user_id) => {
       const formdata = {
         type: "email",
@@ -54,32 +57,45 @@ const OtpForm = () => {
             user_type: USER_TYPE_HEADER,
           },
         });
-        console.log("Response from API:", response.data);
-        toast({
-          title: response.data.message,
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "top",
-        });
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        setTimeout(() => {
+        const { success, message } = response.data;
+
+        if (!success) {
+          setIsLoading(false);
+          // console.log("Response from API:", response.data);
+          toast({
+            title: message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+            position: "bottom",
+          });
+        } else if (success) {
+          toast({
+            title: response.data.message,
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+          const token = response.data.token;
+          localStorage.setItem("token", token);
           router.push("/community");
-        }, 2000);
+        }
       } catch (error) {
-        console.log("Error from API:", error);
+        setIsLoading(false);
+        // console.log("Error from API:", error);
         toast({
-          title: "Signin Failed",
+          title: error,
           status: "error",
           duration: 2000,
           isClosable: true,
           position: "top",
-          description: "Invalid OTP submission",
         });
       }
     };
     if (otp.length !== 4) {
+      setIsLoading(!isLoading);
+
       toast({
         title: "OTP Required",
         status: "info",
@@ -96,8 +112,9 @@ const OtpForm = () => {
   ///////////////////////handlling resend otp api calling///////////////////////////
   const handleResendOtp = (e) => {
     e.preventDefault();
+    setResendOtpState(true);
 
-    const resendOtp = async () => {
+    (async () => {
       try {
         const response = await axios.post(
           RESEND_OTP_API_ENDPOINT,
@@ -113,31 +130,41 @@ const OtpForm = () => {
           }
         );
         console.log("Response from API:", response.data);
-        toast({
-          title: "OTP Sent On your registered Email account",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "top",
-        });
+        const { success, message } = response.data;
+        if (success) {
+          setResendOtpState(false);
+          toast({
+            title: message,
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        } else if (!success) {
+          setResendOtpState(false);
+          toast({
+            title: message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        }
+
         return response.data;
       } catch (error) {
+        setResendOtpState(false);
         console.log("Error from API:", error);
         toast({
-          title: "Signin Failed",
+          title: error,
           status: "error",
           duration: 2000,
           isClosable: true,
           position: "top",
-          description: "Something went wrong try again!",
         });
       }
-    };
-    
-      resendOtp();
-    
+    })();
   };
-
   return (
     <Box
       height={"800px"}
@@ -194,21 +221,44 @@ const OtpForm = () => {
           <Box>
             <Text>didnt recieve the Verification OTP?</Text>
           </Box>{" "}
-          <Box onClick={(e) => handleResendOtp(e)}>
-            <Text cursor={"pointer"} color={"green"} fontWeight="700">
-              Resend again
-            </Text>
+          <Box display={"flex"} onClick={(e) => handleResendOtp(e)}>
+            {resendOtpState ? (
+              <Box>
+                <Spinner color="green" />
+              </Box>
+            ) : (
+              <Text cursor={"pointer"} color={"green"} fontWeight="700">
+                Resend again
+              </Text>
+            )}
           </Box>
         </Flex>
-        <Button
+        <CustomButton
+          mt={["20px", "15px"]}
+          onClick={onSubmitOTP}
+          color="white"
+          widthArray={["80%", "50%", "45%", "22%"]}
+          text={isLoading ? "Submitting.." : "Verify"}
+          spinner={isLoading}
+          imageSrc=""
+          btnDisabled={false}
+          buttonBgColor="#00E276"
+          customHeight={[]}
+          btnBorderRadius={["15px"]}
+          mb={[]}
+          iconVisStatus={false}
+          btnHoverColor=""
+          fontSize={[]}
+        />
+        {/* <Button
           mt="15px"
           bg="#00E276"
           color="white"
           w={["60%", "50%", "45%", "22%"]}
-          onClick={onSubmitOTP}
+          onClick={}
         >
           Verify
-        </Button>
+        </Button> */}
         <Box mt={30}>
           <CustomText
             variant={variants.SMALL_HEADING}

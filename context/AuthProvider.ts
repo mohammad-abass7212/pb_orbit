@@ -17,7 +17,6 @@ export const login = () => {
       const user = result.user;
       console.log({ credential, token, user });
       const idToken = credential?.idToken;
-      
     })
     .catch((error) => {
       // Handle Errors here.

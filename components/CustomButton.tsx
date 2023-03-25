@@ -8,13 +8,11 @@ import {
   Img,
   Text,
 } from "@chakra-ui/react";
-import React, { useRef } from 'react';
-import { useClickAnimation } from './useClickAnimation';
-
+import React, { useRef } from "react";
+import { useClickAnimation } from "./useClickAnimation";
 
 // Defining a new type for CustomButtonProps, which extends ButtonProps
 type CustomButtonProps = ButtonProps & {
-
   onClick: Function;
   imageSrc: string;
   text: string;
@@ -28,10 +26,11 @@ type CustomButtonProps = ButtonProps & {
   fontSize: object;
   iconVisStatus: boolean;
   btnHoverColor: string;
+  spinner: boolean;
 };
 
 // Defining the CustomButton functional component that accepts CustomButtonProps
-const         CustomButton = ({
+const CustomButton = ({
   // Destructuring the props here
   onClick,
   imageSrc,
@@ -47,19 +46,19 @@ const         CustomButton = ({
   iconVisStatus = false,
   btnHoverColor,
   color = "white",
+  spinner,
 }: CustomButtonProps) => {
   const buttonRef = useRef(null);
   useClickAnimation(buttonRef, {
     size: 100,
     duration: 1000,
-    color: 'red',
-    effectName: 'ripple',
+    color: "red",
+    effectName: "ripple",
   });
-  
 
   return (
     <Button
-    ref={buttonRef}
+      ref={buttonRef}
       onClick={onClick}
       disabled={btnDisabled}
       display="flex"
@@ -75,6 +74,8 @@ const         CustomButton = ({
       mb={mb}
       fontSize={fontSize}
       color={color}
+      isLoading={spinner}
+      colorScheme="blue"
     >
       {/* Rendering a Flex component that displays an dynamic icon and text */}
       <Flex gap={4}>
