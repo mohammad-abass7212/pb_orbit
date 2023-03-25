@@ -6,8 +6,11 @@ import {
   Center,
   Flex,
   Heading,
+  HStack,
   Image,
   Input,
+  PinInput,
+  PinInputField,
   Spinner,
   Text,
   useToast,
@@ -33,17 +36,20 @@ const OtpForm = () => {
   const toast = useToast();
   const otpRef = useRef(null);
   const router = useRouter();
+  const otpRef1 = useRef(null);
+  const otpRef2 = useRef(null);
+  const otpRef3 = useRef(null);
+  const otpRef4 = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [resendOtpState, setResendOtpState] = useState(false);
-  const handleChange = (e) => {
-    setOtp(e.target.value);
+  const handleChange = (value) => {
+    setOtp(value);
   };
   const user_id = localStorage.getItem("user_id");
   ///////////////////////handlling verifying otp api calling///////////////////////////
 
   const onSubmitOTP = (e) => {
     e.preventDefault();
-    setIsLoading(true);
     const otpVerification = async (otp, user_id) => {
       const formdata = {
         type: "email",
@@ -61,7 +67,6 @@ const OtpForm = () => {
 
         if (!success) {
           setIsLoading(false);
-          // console.log("Response from API:", response.data);
           toast({
             title: message,
             status: "error",
@@ -85,7 +90,7 @@ const OtpForm = () => {
         setIsLoading(false);
         // console.log("Error from API:", error);
         toast({
-          title: error,
+          title: "Something went Wrong please try again!",
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -94,7 +99,8 @@ const OtpForm = () => {
       }
     };
     if (otp.length !== 4) {
-      setIsLoading(!isLoading);
+      console.log(otp, otp.length);
+      setIsLoading(true);
 
       toast({
         title: "OTP Required",
@@ -102,10 +108,27 @@ const OtpForm = () => {
         duration: 2000,
         isClosable: true,
         position: "top",
-        description: "Fill all the input fields",
+        description: "Please enter the OTP code.",
+      });
+      setTimeout(() => {
+        setIsLoading(false);
+      });
+    } else if (otp.length == 0) {
+      toast({
+        title: "OTP Required",
+        status: "info",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+        description: "OTP code should be 4 digits long.",
+      });
+      setTimeout(() => {
+        setIsLoading(false);
       });
     } else {
-      otpVerification(otp, user_id);
+      setIsLoading(true);
+      const otpValue = `${otpRef1.current.value}${otpRef2.current.value}${otpRef3.current.value}${otpRef4.current.value}`;
+      otpVerification(otpValue, user_id);
     }
   };
 
@@ -156,7 +179,7 @@ const OtpForm = () => {
         setResendOtpState(false);
         console.log("Error from API:", error);
         toast({
-          title: error,
+          title: "Something went Wrong please try again!",
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -186,7 +209,6 @@ const OtpForm = () => {
           w={["40%", "40%", "40%", "30%", "20%"]}
           mb={["73px", "73px", "73px", "40px", "57px"]}
         >
-          {/* <Spin> */}
           <Image
             w={["100%", "100%", "100%", "100%", "100%"]}
             mb={["20px", "20px", "20px", "20px", "20px"]}
@@ -201,25 +223,32 @@ const OtpForm = () => {
             </Text>
           </Flex>
         </Box>
-        <Box>
-          <Input
-            name="otp"
-            value={otp}
-            onChange={handleChange}
-            color="white"
-            border={"1px solid white"}
-            size="lg"
-            placeholder="Enter OTP...."
-            ref={otpRef}
-            maxLength="4"
-            w={["400px"]}
-            pl={["30px"]}
-            type="text"
-          />
+        <Box
+          display={"felx"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          margin={"auto"}
+        >
+          <HStack color="white" name="otpInput" spacing={4}>
+            <PinInput
+              value={otp}
+              onChange={(value) => handleChange(value)}
+              size="lg"
+              variant="flushed"
+              border="none"
+              placeholder=""
+              focusBorderColor="#00e276"
+            >
+              <PinInputField ref={otpRef1} />
+              <PinInputField ref={otpRef2} />
+              <PinInputField ref={otpRef3} />
+              <PinInputField ref={otpRef4} />
+            </PinInput>
+          </HStack>
         </Box>
         <Flex color={"white"} gap="8px">
           <Box>
-            <Text>didnt recieve the Verification OTP?</Text>
+            <Text>{`didn't recieve the Verification OTP?`}</Text>
           </Box>{" "}
           <Box display={"flex"} onClick={(e) => handleResendOtp(e)}>
             {resendOtpState ? (
@@ -250,15 +279,6 @@ const OtpForm = () => {
           btnHoverColor=""
           fontSize={[]}
         />
-        {/* <Button
-          mt="15px"
-          bg="#00E276"
-          color="white"
-          w={["60%", "50%", "45%", "22%"]}
-          onClick={}
-        >
-          Verify
-        </Button> */}
         <Box mt={30}>
           <CustomText
             variant={variants.SMALL_HEADING}
