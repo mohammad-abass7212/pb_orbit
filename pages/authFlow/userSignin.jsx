@@ -98,7 +98,7 @@ const UserSignIn = () => {
       id="usersigninpage"
       bg="#050017"
       pt={["166px", "200px", "200px", "200px", "100px"]}
-      pb={["110px", "400px", "400px", "40px", "140px"]}
+      pb={["450px", "640px", "800px", "300px", "360px"]}
       position="relative"
       flexDirection={"column"}
       alignItems={"center"}

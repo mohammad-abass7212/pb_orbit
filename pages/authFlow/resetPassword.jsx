@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-const ResetPassword= () => {
+const ResetPassword = () => {
   const [password, setPassword] = React.useState("");
   const [newpassword, setNewPassword] = React.useState("");
   const handleupdatePassword = () => {
@@ -22,26 +22,13 @@ const ResetPassword= () => {
   };
   const [hidden, setHidden] = React.useState(true);
   const [hidden2, setHidden2] = React.useState(true);
-  const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
 
-  const updateWindowSize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("resize", updateWindowSize);
-    updateWindowSize();
-    return () => {
-      window.removeEventListener("resize", updateWindowSize);
-    };
-  }, []);
   return (
     <Box
       bg="#050017"
       pt={["236px", "260px", "450px", "60px", "100px"]}
-      pb={["170px", "400px", "400px", "40px", "40px"]}
+      pb={["130px", "120px", "150px", "105px", "105px"]}
       position="relative"
-      style={{ height: windowSize.height, width: windowSize.width }}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
