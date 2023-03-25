@@ -1,4 +1,4 @@
-/* :root {
+:root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
@@ -71,7 +71,7 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-} */
+}
 
 * {
   box-sizing: border-box;
@@ -301,7 +301,7 @@ body {
   background-position: 0% 100%;
   transition: background-position 0.7s, background-size 0.5s ease-in-out;
 }
-/* scroll animation */
+scroll animation
 /* Create a container for the scroll indicator */
 .scroll-indicator {
   width: 100%;
@@ -653,17 +653,3 @@ body {
     opacity: 0;
   }
 }
-
-/* #globalLoader {
-  position: fixed;
-  z-index: 9999;
-  top: 50%;
-  left: 50%;
-  background-color: #fff;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-} */

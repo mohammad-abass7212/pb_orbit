@@ -29,9 +29,11 @@ export const AdminSignupCaller = async (formData: AdminSignUpModel) => {
   }
 };
 
-export const AdminLoginCaller = async (formData: AdminLoginModel) => {
+export const AdminLoginCaller = async (formData: any) => {
   try {
-    console.log("FORMDATA____________", formData);
+    console.log(formData);
+    //
+
     const response = await axios.post(ADMIN_LOGIN_API_ENDPOINT, formData, {
       headers: {
         "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
@@ -39,7 +41,6 @@ export const AdminLoginCaller = async (formData: AdminLoginModel) => {
       },
     });
     console.log("Response from API:", response.data);
-
     return response.data;
   } catch (error) {
     console.log("Error from API:", error);

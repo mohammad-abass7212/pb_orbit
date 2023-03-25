@@ -2,16 +2,13 @@ import "@/styles/globals.css";
 import "firebase/auth";
 import "firebase/firestore";
 import React from "react";
-import { AppProps } from "next/app";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
-import Layout from "@/components/layout/Layout";
 import { useRouter } from "next/router";
-import Loader from "@/components/Animations/Loader";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -48,11 +45,9 @@ export default function App({ Component, pageProps }) {
           <ThemeProvider theme={theme}>
             <Server></Server>
             <AnimatePresence exitBeforeEnter>
-                <Client>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </Client>
+              <Client>
+                <Component {...pageProps} />
+              </Client>
             </AnimatePresence>
           </ThemeProvider>
         </ChakraProvider>

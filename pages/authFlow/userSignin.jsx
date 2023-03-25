@@ -16,22 +16,11 @@ import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
 import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
 import { useClickAnimation } from "@/components/useClickAnimation";
+import AuthFlowLayout from "@/components/layouts/AuthFlowLayout";
 // interface ISigninProps {}
 const UserSignIn = () => {
   const toast = useToast();
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
-  const updateWindowSize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWindowSize);
-    updateWindowSize();
-    return () => {
-      window.removeEventListener("resize", updateWindowSize);
-    };
-  }, []);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -65,38 +54,38 @@ const UserSignIn = () => {
         position: "top",
       });
     }
-    handleLoginSubmit(event);
   };
+  // console.log(response);
 
-  React.useEffect(() => {
-    {
-      success === true && !undefined
-        ? toast({
-            title: "logged In successfully!",
-            description: message,
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-            position: "top",
-          }) &&
-          setTimeout(() => {
-            router.push("/community");
-          }, 2000)
-        : null;
-    }
-    {
-      success === false && !undefined
-        ? toast({
-            title: "",
-            description: message,
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-            position: "top",
-          })
-        : null;
-    }
-  });
+  // React.useEffect(() => {
+  //   {
+  //     success === true && !undefined
+  //       ? toast({
+  //           title: "logged In successfully!",
+  //           description: message,
+  //           status: "success",
+  //           duration: 9000,
+  //           isClosable: true,
+  //           position: "top",
+  //         }) &&
+  //         setTimeout(() => {
+  //           router.push("/community");
+  //         }, 2000)
+  //       : null;
+  //   }
+  //   {
+  //     success === false && !undefined
+  //       ? toast({
+  //           title: "",
+  //           // description: message,
+  //           status: "error",
+  //           duration: 9000,
+  //           isClosable: true,
+  //           position: "top",
+  //         })
+  //       : null;
+  //   }
+  // });
   const buttonRef = useRef(null);
   useClickAnimation(buttonRef, {
     size: 100,
@@ -114,7 +103,6 @@ const UserSignIn = () => {
       flexDirection={"column"}
       alignItems={"center"}
       gap="10px"
-      style={{ height: windowSize.height, width: windowSize.width }}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
@@ -124,7 +112,6 @@ const UserSignIn = () => {
         src="/utils/Common/bg.png"
         alt=""
       />
-      {/* <Flex border={'1px solid red'} flexDirection={'column'} alignItems={'center'} gap="10px"> */}
       <Image width="150px" src="/utils/common/logo.png" alt="pborbit_logo" />
       <Heading color={"white"}>Welcome Back</Heading>
       <Text color={"white"}>Start with signing up or sign in</Text>
@@ -132,53 +119,62 @@ const UserSignIn = () => {
       <Box
         display={"flex"}
         border={"1px solid white"}
-        borderRadius="5px"
+        borderRadius="10px"
         w={["60%", "50%", "45%", "22%"]}
         pl="10px"
       >
         {" "}
         <Image src="/utils/common/attherate.svg" alt="pborbit_logo" />
         <Input
+          variant={"flushed"}
+          focusBorderColor="#00e276"
+          errorBorderColor="red.300"
+          _placeholder={{ color: "#656565" }}
+          type={"text"}
           name="username"
-          variant="unstyled"
+          value={formData.username}
+          onChange={handleLoginInput}
           p="10px"
           color="white"
           border={"none"}
-          autoComplete="email"
+          size="lg"
+          placeholder="Username"
           required
           useref={usernameRef}
-          placeholder="Enter Address or email"
-          onChange={handleLoginInput}
-          value={formData.username}
+          autoComplete={"off"}
         />
       </Box>
 
       <Box
         display={"flex"}
         border={"1px solid white"}
-        borderRadius="5px"
+        borderRadius="10px"
         w={["60%", "50%", "45%", "22%"]}
         pl="10px"
       >
         {" "}
-        <Image
-          src="/utils/common/password.svg"
-          alt="pborbit_logo"
-          onClick={togglePasswordVisibility}
-        />
+        <Image src="/utils/common/password.svg" alt="pborbit_logo" />
         <Input
           name="password"
           useref={passwordRef}
-          variant="unstyled"
+          type={passwordShown ? "text" : "password"}
+          _placeholder={{ color: "#656565" }}
+          variant={"flushed"}
+          focusBorderColor="#00e276"
+          value={formData.password}
+          onChange={handleLoginInput}
           p="10px"
           color="white"
           border={"none"}
-          type="password"
-          autoComplete="new-password"
+          size="lg"
+          placeholder="Password"
           required
-          placeholder="password"
-          onChange={handleLoginInput}
-          value={formData.password}
+          ref={passwordRef}
+        />
+        <Image
+          src="/utils/common/hide-2.svg"
+          alt="pborbit_logo"
+          onClick={togglePasswordVisibility}
         />
       </Box>
       <Box
@@ -191,7 +187,7 @@ const UserSignIn = () => {
         <Checkbox color="white" size="sm">
           Remember me
         </Checkbox>
-        <Link href={"/resetPassword"}>
+        <Link href={"/authFlow/resetPassword"}>
           <Text color="white" fontSize={["8px", "12px", "12px", "12px"]}>
             Forgot Password ?
           </Text>

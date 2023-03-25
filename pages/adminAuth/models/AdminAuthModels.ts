@@ -6,7 +6,12 @@ export interface AdminSignUpModel {
   social_login: string;
 }
 
-export interface AdminLoginModel {
+export class AdminLoginModel {
+
   username: string;
   password: string;
+  constructor(usrnm:string, pss:string){
+    this.username = usrnm,
+    this.password = pss
+  };
 }

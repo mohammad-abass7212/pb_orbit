@@ -7,17 +7,16 @@ import {
   Link,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
-import { FunctionComponent } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CustomButton from "../Common/CustomButton";
-import CustomText, { variants } from "../Common/CustomText";
 
-const Pricing: FunctionComponent | any = () => {
+const Pricing = () => {
   const [ref, inView] = useInView();
 
-  const newLocal: object | any = {
+  const newLocal = {
     w: "77%",
     position: "absolute",
     bottom: "57px",
@@ -26,7 +25,7 @@ const Pricing: FunctionComponent | any = () => {
     zIndex: "-1",
   };
 
-  const NewType: String = "relative";
+  const NewType = "relative";
 
   return (
     <Box position={["relative", "relative", "relative"]} zIndex="0" mb="40px">
@@ -34,7 +33,11 @@ const Pricing: FunctionComponent | any = () => {
         <Heading>Our Best Pricing</Heading>
       </Center>
       <Center mt="20px">
-        <Text w={["60%", "65%","60%", "35%","35%"]} textAlign="center" color="#B4B4B6">
+        <Text
+          w={["60%", "65%", "60%", "35%", "35%"]}
+          textAlign="center"
+          color="#B4B4B6"
+        >
           Lorem Ipsum is simply dummy text of the printing and type setting
           industryLorem Ipsum is simply
         </Text>
@@ -52,7 +55,7 @@ const Pricing: FunctionComponent | any = () => {
           alignItems="center"
           display={["block", "block", "block", "flex", "flex"]}
         >
-          <Box w={["100%", "60%", "60%", "80%", "90%"]}m="auto" >
+          <Box w={["100%", "60%", "60%", "80%", "90%"]} m="auto">
             <motion.div
               ref={ref} // attach the ref returned by useInView
               initial={{ opacity: 0, y: 50 }}
@@ -134,30 +137,33 @@ const Pricing: FunctionComponent | any = () => {
                     </Box>
                     <Box display="flex" alignItems="center" gap={"10px"}>
                       {" "}
-                      <Image
+                      {/* <Image
                         boxSize="20px"
                         src="/utils/Common/checklist.png"
                         alt="pb"
-                      />
+                      /> */}
+                      <AiOutlineCloseCircle color="red" size={22} />
                       <Text fontSize="20px"> Court reservations</Text>
                     </Box>
                     <Box display="flex" alignItems="center" gap={"10px"}>
                       {" "}
-                      <Image
+                      {/* <Image
                         boxSize="20px"
                         src="/utils/Common/checklist.png"
                         alt="pb"
-                      />
+                      /> */}
+                      <AiOutlineCloseCircle color="red" size={22} />
                       <Text fontSize="20px"> Install app and get Rewards</Text>
                     </Box>
 
                     <Box display="flex" alignItems="center" gap={"10px"}>
                       {" "}
-                      <Image
+                      {/* <Image
                         boxSize="20px"
                         src="/utils/Common/checklist.png"
                         alt="pb"
-                      />
+                      /> */}
+                      <AiOutlineCloseCircle color="red" size={22} />
                       <Text fontSize="20px"> Community Manage</Text>
                     </Box>
                   </Box>
@@ -189,7 +195,7 @@ const Pricing: FunctionComponent | any = () => {
               </Box>
             </motion.div>
           </Box>
-          <Box w={["100%", "60%", "60%", "80%", "90%"]} m="auto" >
+          <Box w={["100%", "60%", "60%", "80%", "90%"]} m="auto">
             <motion.div
               ref={ref} // attach the ref returned by useInView
               initial={{ opacity: 0, y: 50 }}
