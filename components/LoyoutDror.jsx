@@ -1,48 +1,67 @@
-import React from "react";
-import  {IoMdArrowDropdownCircle} from "react-icons/io";
-const LoyoutDror = () => {
+import React, { useState } from "react";
+import  {MdOutlineKeyboardArrowDown,MdOutlineKeyboardArrowRight} from "react-icons/md";
+import  {GiHamburgerMenu} from "react-icons/gi";
+const LoyoutDror = ({onclick ,drop1}) => {
+  const [drop ,setDrop]=useState(false)
   return (
-    <div>
+    
+    <>
+  
+   {drop1 ?
+   <div>
+<div className="w-40 my-10">
+
+<img className="" src="/utils/Common/logo.png" alt="" onClick={onclick} />
+</div>
       <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
         <li onClick={open} className="hover:bg-white py-2 px-4 w-full">
-          Dashboard
+          
+          <span className="flex gap-3" ><img src="/utils/common/dash.svg" alt="pborbit_logo" />Dashboard</span> 
         </li>
 
         <li onClick={open} className="hover:text-white py-2 px-4 w-full">
-          Profile
+    
+          <span className="flex gap-3" ><img src="/utils/common/proflie.svg" alt="pborbit_logo" />Profile</span> 
         </li>
-
+        <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+    
+    <span className="flex gap-3" ><img src="/utils/common/sub.svg" alt="pborbit_logo" />Subscription</span> 
+  </li>
         <div className="group">
-          <li className="hover:text-hov py-2 px-4 w-full flex justify-between  ">
-           <span className="flex gap-3" ><img src="/utils/common/email2.svg" alt="pborbit_logo" />Community</span> 
+          <li className="hover:text-hov py-2 px-4 w-full flex justify-between  " onClick={()=>setDrop(!drop)} >
+           <span className="flex gap-3" ><img src="/utils/common/com.svg" alt="pborbit_logo" />Community</span> 
             <span className="">
-              <IoMdArrowDropdownCircle />
+             { drop?<MdOutlineKeyboardArrowDown />:<MdOutlineKeyboardArrowRight/>}
             </span>
           </li>
-          <div className="hidden group-hover:block ">
+        {  drop&&<div className=" pl-5 group-hover:block ">
             <ul className="flex flex-col ">
               <li onClick={open} className="hover:text-white py-2 px-8 w-full">
                 Add Community
+                
               </li>
               <li onClick={open} className="hover:text-white py-2 px-8 w-full">
                 View Community
               </li>
             </ul>
-          </div>
+          </div>}
         </div>
 
         <div className="group">
           <li className="hover:text-white py-2 px-4 w-full flex justify-between">
-            Reservations
-            
+         
+            <span className="flex gap-3" ><img src="/utils/common/reser.svg" alt="reser" />   Reservations</span> 
           </li>
         </div>
 
-        <li className="hover:text-white py-2 px-4 w-full">Notification</li>
+        <li className="hover:text-white py-2 px-4 w-full">
+        <span className="flex gap-3" ><img src="/utils/common/noti.svg" alt="noti" />Notification</span> 
+          </li>
 
         <div className="group">
           <li className="hover:text-white py-2 px-4 w-full flex justify-between">
-            Logout
+            
+            <span className="flex gap-3" ><img src="/utils/common/logout.svg" alt="logout" />Logout</span> 
           </li>
         </div>
       </ul>
@@ -50,7 +69,70 @@ const LoyoutDror = () => {
 
 
      
-    </div>
+    </div>:<div>
+<div className="w-80 my-10">
+
+{/* <img className="" src="/utils/Common/logo.png" alt=""  /> */}
+<div onClick={onclick} className="ml-5" > <GiHamburgerMenu/> </div>
+</div>
+      <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
+        <li onClick={open} className=" py-2 px-4 w-full">
+          
+          <span className="flex gap-3" ><img src="/utils/common/dash.svg" alt="pborbit_logo" /></span> 
+        </li>
+
+        <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+    
+          <span className="flex gap-3" ><img src="/utils/common/proflie.svg" alt="pborbit_logo" /></span> 
+        </li>
+        <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+    
+    <span className="flex gap-3" ><img src="/utils/common/sub.svg" alt="pborbit_logo" /></span> 
+  </li>
+        <div className="group">
+          <li className="hover:text-hov py-2 px-4 w-full flex gap-3 " onClick={()=>setDrop(!drop)} >
+           <span className="flex gap-3" ><img src="/utils/common/com.svg" alt="pborbit_logo" /></span> 
+            <span className="">
+             { drop?<MdOutlineKeyboardArrowDown />:<MdOutlineKeyboardArrowRight/>}
+            </span>
+          </li>
+        {  drop&&<div className=" pl-5 group-hover:block ">
+            <ul className="flex flex-col ">
+              <li onClick={open} className="hover:text-white py-2 px-8 w-full">
+                Add Community
+                
+              </li>
+              <li onClick={open} className="hover:text-white py-2 px-8 w-full">
+                View Community
+              </li>
+            </ul>
+          </div>}
+        </div>
+
+        <div className="group">
+          <li className="hover:text-white py-2 px-4 w-full flex justify-between">
+         
+            <span className="flex gap-3" ><img src="/utils/common/reser.svg" alt="reser" />   </span> 
+          </li>
+        </div>
+
+        <li className="hover:text-white py-2 px-4 w-full">
+        <span className="flex gap-3" ><img src="/utils/common/noti.svg" alt="noti" /></span> 
+          </li>
+
+        <div className="group">
+          <li className="hover:text-white py-2 px-4 w-full flex justify-between">
+            
+            <span className="flex gap-3" ><img src="/utils/common/logout.svg" alt="logout" /></span> 
+          </li>
+        </div>
+      </ul>
+
+
+
+     
+    </div>}
+    </>
   );
 };
 
