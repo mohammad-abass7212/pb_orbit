@@ -81,7 +81,7 @@ const CustomButton = ({
       <Flex gap={4}>
         {iconVisStatus ? (
           <Box ml={{ base: 10 }}>
-            <Img src={imageSrc} alt="Button_Icon" />
+            <Img src={imageSrc} alt="" />
           </Box>
         ) : null}
         <Center>
