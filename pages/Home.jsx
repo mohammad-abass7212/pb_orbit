@@ -9,12 +9,31 @@ import Why_choose from "@/components/Home/Why_Choose";
 import MainLayout from "@/components/layouts/MainLayout";
 import Navbar from "@/components/navbar/Navbar";
 import { Box } from "@chakra-ui/react";
+import LoyoutDror from "@/components/LoyoutDror";
+// import { Add_Community } from '@/pages/';Add_Community
+import Add_Community from './Add_Community';
+import Payment_Done from './Payment_Done';
+import No_user_Screen from './No_user_Screen';
+import Payemnt_Page from './Payemnt_Page';
+import Communities from './Communities';
+import SuccessMyRservations from './SuccessMyRservations';
+import Not404 from './Not404';
+import Edit_Profile from './Edit_Profile';
 
 const Home = () => {
   return (
     <MainLayout>
-      <Box>
-        <Navbar />
+      <div>
+        {/* <Add_Community /> */}
+        {/* <Payemnt_Page /> */}
+        {/* <Payment_Done/> */}
+        {/* <Communities/> */}
+        {/* <SuccessMyRservations/> */}
+        {/* <Not404 /> */}
+        <Edit_Profile/>
+        {/* <No_user_Screen/> */}
+        {/* <LoyoutDror /> */}
+        {/* <Navbar />
         <HomePage />
         <About />
         <How_it_work />
@@ -23,8 +42,8 @@ const Home = () => {
         <People />
         <Pricing />
         <hr></hr>
-        <Footer />  
-      </Box>
+        <Footer />   */}
+      </div>
     </MainLayout>
   );
 };
