@@ -34,7 +34,7 @@ function Homee() {
       >
         <main>
           <Box bg="#050017" color={"white"}>
-            <Image
+            {/* <Image
               position="absolute"
               w={["65%", "65%", "65%", "65%", "65%"]}
               right={["1px", "1px", "1px", "1px", "10px"]}
@@ -42,9 +42,9 @@ function Homee() {
               zIndex="1"
               src="/utils/Common/banner-1.png"
               alt="pborbit"
-            />
+            /> */}
 
-            <Image
+            {/* <Image
               style={{
                 position: "absolute",
                 right: "-20px",
@@ -54,7 +54,7 @@ function Homee() {
               }}
               src="/utils/Common/half-circle.png"
               alt="pborbit"
-            />
+            /> */}
             {/* leading page */}
             <Home />
           </Box>
