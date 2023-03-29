@@ -16,11 +16,12 @@ import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
 import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
 import { useClickAnimation } from "@/components/useClickAnimation";
-import AuthFlowLayout from "@/components/layouts/AuthFlowLayout";
+import { AdminLoginCaller } from "../adminAuth/adminStateManager/adminAuth";
 // interface ISigninProps {}
 const UserSignIn = () => {
   const toast = useToast();
-
+  const [userDetails, setUserDetails] = useState({});
+  const [password, setPassword] = useState("");
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -29,7 +30,7 @@ const UserSignIn = () => {
     isLoading,
     error,
     response,
-    handleLoginInput,
+    // handleLoginInput,
     handleLoginSubmit,
   } = USE_LOGIN();
   const [passwordShown, setPasswordShown] = React.useState(false);
@@ -39,11 +40,18 @@ const UserSignIn = () => {
     setPasswordShown(!passwordShown);
   };
 
+  const handleLoginInput = (event) => {
+    const { value, name } = event.target;
+    setUserDetails({ ...userDetails, [name]: value });
+  };
   const handleLogin = (event) => {
     event.preventDefault();
-    const errors = LoginFormValidate(formData);
+    console.log(formData, formData);
+    const errors = LoginFormValidate(userDetails);
+    console.log(errors);
     if (Object.keys(errors).length === 0) {
-      handleLoginSubmit(event);
+      // handleLoginSubmit(event);
+      AdminLoginCaller(userDetails);
     } else {
       toast({
         title: "credentials are wrongs!",
@@ -132,7 +140,7 @@ const UserSignIn = () => {
           _placeholder={{ color: "#656565" }}
           type={"text"}
           name="username"
-          value={formData.username}
+          value={userDetails.username}
           onChange={handleLoginInput}
           p="10px"
           color="white"
@@ -161,7 +169,7 @@ const UserSignIn = () => {
           _placeholder={{ color: "#656565" }}
           variant={"flushed"}
           focusBorderColor="#00e276"
-          value={formData.password}
+          value={userDetails.password}
           onChange={handleLoginInput}
           p="10px"
           color="white"

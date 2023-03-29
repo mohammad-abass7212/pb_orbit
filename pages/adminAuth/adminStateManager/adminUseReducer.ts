@@ -159,7 +159,7 @@ export const USE_LOGIN = () => {
     dispatch({
       type: "SET_FORM_DATA",
       payload: {
-        ...state.formData.formData,
+        ...state,
         [name]: value,
       },
     });

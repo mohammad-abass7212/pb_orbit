@@ -48,8 +48,6 @@ const LoyoutDror = () => {
       </ul>
 
 
-
-     
     </div>
   );
 };

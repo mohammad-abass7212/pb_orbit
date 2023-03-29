@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import gsap, { TimelineMax } from 'gsap';
 import styled from 'styled-components';
 

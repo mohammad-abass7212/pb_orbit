@@ -33,7 +33,6 @@ export const AdminLoginCaller = async (formData: any) => {
   try {
     console.log(formData);
     //
-
     const response = await axios.post(ADMIN_LOGIN_API_ENDPOINT, formData, {
       headers: {
         "Content-Type": CONTENT_TYPE_HEADER_LOGIN,

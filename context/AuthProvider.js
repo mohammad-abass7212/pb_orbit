@@ -2,11 +2,10 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase";
 
 // Inside AuthProvider
-const provider = new GoogleAuthProvider();
-
 export const login = () => {
   console.log("process auth domain", process.env.AUTH_DOMAIN);
   console.log("in oauth2");
+  const provider = new GoogleAuthProvider();
   console.log("provider...", provider);
   signInWithPopup(auth, provider)
     .then((result) => {

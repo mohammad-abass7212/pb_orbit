@@ -23,14 +23,14 @@ const CardReservations = () => {
               {" "}
               <span>
                 {" "}
-                <img src="/utils/common/msm.svg"  />{" "}
+                <img src="/utils/common/msm.svg" alt="CommonIcon"  />{" "}
               </span>{" "}
               <p >9 Jan, 10:30 - 11:30am</p>{" "}
             </div>{" "}
             <div className="flex gap-2">
               <span>
                 {" "}
-                <img src="/utils/common/msm.svg" />{" "}
+                <img src="/utils/common/msm.svg" alt="CommonIcon"/>{" "}
               </span>{" "}
               <p>Court 2</p>
             </div>{" "}
@@ -38,7 +38,7 @@ const CardReservations = () => {
           <div className="text-[#A097BF] text-lg flex gap-3">
             <span>
               {" "}
-              <img src="/utils/common/Location.svg" />{" "}
+              <img src="/utils/common/Location.svg" alt="CommonIcon"/>{" "}
             </span>{" "}
             Player : Shivani Singh
           </div>{" "}
@@ -47,7 +47,7 @@ const CardReservations = () => {
           onClick={() => setView(!view)}
           className="absolute top-10 right-8"
           src="/utils/common/threedot.svg"
-          alt=""
+          alt="CommonIcon"
         />
         {/* <div className="absolute top-20  bg-white right-6 p-6 text-black"> <h2>delete</h2>
         <h2>edit</h2> </div> */}
