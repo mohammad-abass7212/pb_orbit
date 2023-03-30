@@ -1,6 +1,6 @@
 import React from "react";
 
-const Payemnt_Page = () => {
+const Payment_Page = () => {
   return (
     <div>
       <div className="flex flex-col justify-center py-10 ">
@@ -19,7 +19,7 @@ const Payemnt_Page = () => {
               <img
                 className="m-auto"
                 src="/utils/common/Group 17932.svg"
-                alt=""
+                alt="commonIcon"
               />
             </div>
             <div className="hover:bg-[#FF6600] p-5 rounded-lg bg-white m-auto w-1/3 ">
@@ -97,4 +97,4 @@ const Payemnt_Page = () => {
   );
 };
 
-export default Payemnt_Page;
+export default Payment_Page;

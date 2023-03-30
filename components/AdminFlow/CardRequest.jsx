@@ -6,7 +6,7 @@ const CardRequest = () => {
       <div className="flex gap-4 ">
         <div>
           {" "}
-          <img src="/utils/common/Avatar.png" alt="" />{" "}
+          <img src="/utils/common/Avatar.png" alt="CommonIcon" />{" "}
         </div>
         <div>
           <div>Rozanne Barrientes</div>
@@ -17,14 +17,14 @@ const CardRequest = () => {
               {" "}
               <span>
                 {" "}
-                <img src="/utils/common/msm.svg"  />{" "}
+                <img src="/utils/common/msm.svg" alt="CommonIcon" />{" "}
               </span>{" "}
               <p >+1 676 676 67612</p>{" "}
             </div>{" "}
             <div className="flex gap-2">
               <span>
                 {" "}
-                <img src="/utils/common/msm.svg" />{" "}
+                <img src="/utils/common/msm.svg" alt="CommonIcon"/>{" "}
               </span>{" "}
               <p>rozanne barriendat@gmail,com</p>
             </div>{" "}

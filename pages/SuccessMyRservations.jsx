@@ -1,5 +1,5 @@
-import React from 'react'
-import CardReservations from './../components/CardReservations';
+import React from "react";
+import CardReservations from "../components/AdminFlow/CardReservations";
 
 const SuccessMyRservations = () => {
   return (
@@ -33,9 +33,9 @@ const SuccessMyRservations = () => {
       Pborbit © 2023 All rights reserved
       </p>
           </div>  */}
-          <CardReservations/>
+      <CardReservations />
     </div>
-  )
-}
+  );
+};
 
-export default SuccessMyRservations
+export default SuccessMyRservations;

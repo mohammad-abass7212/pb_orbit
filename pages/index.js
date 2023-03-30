@@ -42,9 +42,9 @@ function Homee() {
               zIndex="1"
               src="/utils/Common/banner-1.png"
               alt="pborbit"
-            /> */}
+            />
 
-            {/* <Image
+            <Image
               style={{
                 position: "absolute",
                 right: "-20px",
@@ -55,7 +55,7 @@ function Homee() {
               src="/utils/Common/half-circle.png"
               alt="pborbit"
             /> */}
-            {/* leading page */}
+
             <Home />
           </Box>
         </main>

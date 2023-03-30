@@ -1,44 +1,20 @@
-import Footer from "@/components/footer/footer";
-import About from "@/components/Home/About";
-import App_install from "@/components/Home/App_install";
-import HomePage from "@/components/Home/HomePage";
-import How_it_work from "@/components/Home/How_it_work";
-import People from "@/components/Home/People";
-import Pricing from "@/components/Home/Pricing";
-import Why_choose from "@/components/Home/Why_Choose";
 import MainLayout from "@/components/layouts/MainLayout";
 import Navbar from "@/components/navbar/Navbar";
-import { Box } from "@chakra-ui/react";
-import LoyoutDror from "@/components/LoyoutDror";
-// import { Add_Community } from '@/pages/';Add_Community
-
-import Payment_Done from './Payment_Done';
-import No_user_Screen from './No_user_Screen';
-import Payemnt_Page from './Payemnt_Page';
-import Communities from './Communities';
-import SuccessMyRservations from './SuccessMyRservations';
-import Not404 from './Not404';
-import Edit_Profile from './Edit_Profile';
-import createCommunity from './createCommunity';
-import Add_Community from './../components/Add_Community';
-import SecondPage from './SecondPage';
+import HomePage from "@/components/Home/HomePage";
+import About from "@/components/Home/About";
+import How_it_work from "@/components/Home/How_it_work";
+import Why_choose from "@/components/Home/Why_Choose";
+import App_install from "@/components/Home/App_install";
+import People from "@/components/Home/People";
+import Pricing from "@/components/Home/Pricing";
+import Footer from "@/components/footer/footer";
+import SecondPage from "./SecondPage";
 
 const Home = () => {
   return (
     <MainLayout>
       <div>
-        {/* <Add_Community /> */}
-        <SecondPage/>
-        {/* <Payemnt_Page /> */}
-        {/* <Payment_Done/> */}
-        {/* <Communities/> */}
-        {/* <SuccessMyRservations/> */}
-        {/* <Not404 /> */}
-        {/* <Edit_Profile/> */}
-        {/* <createCommunity /> */}
-        {/* <No_user_Screen/> */}
-        {/* <LoyoutDror /> */}
-        {/* <Navbar />
+        <Navbar />
         <HomePage />
         <About />
         <How_it_work />
@@ -47,7 +23,7 @@ const Home = () => {
         <People />
         <Pricing />
         <hr></hr>
-        <Footer />   */}
+        <Footer /> 
       </div>
     </MainLayout>
   );

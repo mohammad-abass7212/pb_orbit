@@ -1,12 +1,12 @@
 import ChooseSignupMedium from "@/components/chooseSignupMedium/ChooseSignupMedium";
 import { useRouter } from "next/router";
 import ForgotPassword from "./forgotPassword";
-import NotFound from "./NotFound";
 import OtpForm from "./otp";
 import ResetPassword from "./resetPassword";
 import SignupForm from "./signupForm";
 import UserSignIn from "./userSignin";
 import chooseSignup from "./ChooseSignup";
+import Not404 from "../404";
 
 const AuthFlowPage = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ const AuthFlowPage = () => {
     case "authFlow/SignupForm":
       return <SignupForm />;
     default:
-      return <NotFound />;
+      return <Not404 />;
   }
 };
 
