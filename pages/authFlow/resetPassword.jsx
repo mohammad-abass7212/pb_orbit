@@ -9,20 +9,91 @@ import {
   Image,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
+import {
+  CONTENT_TYPE_HEADER_LOGIN,
+  USER_TYPE_HEADER,
+} from "../adminAuth/headers/adminRequestHeaders";
+import { CHANGE_PASSWORD_API_ENDPOINT } from "../api/apiVariables";
 
 const ResetPassword = () => {
+  const toast = useToast();
   const [password, setPassword] = React.useState("");
   const [newpassword, setNewPassword] = React.useState("");
-  const handleupdatePassword = () => {
-    const payload = {
-      password,
-      newpassword,
-    };
-  };
   const [hidden, setHidden] = React.useState(true);
   const [hidden2, setHidden2] = React.useState(true);
 
+  const handleupdatePassword = async () => {
+    const user_id = localStorage.getItem("user_id");
+    if (!password || !newpassword) {
+      toast({
+        title: "Please enter your password.",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (password !== newpassword) {
+      toast({
+        title: "Your password and confirm password does not match.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      try {
+        const response = await axios.post(
+          CHANGE_PASSWORD_API_ENDPOINT,
+          {
+            user_id,
+            password,
+            confirm_password: newpassword,
+          },
+          {
+            headers: {
+              "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
+              user_type: USER_TYPE_HEADER,
+            },
+          }
+        );
+        if (response.data?.success) {
+          toast({
+            title: response.data?.message,
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            router.push("/authflow/userSignin");
+          }, 1000);
+        } else {
+          toast({
+            title: response.data?.message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        }
+        return response.data;
+      } catch (error) {
+        console.log("Error from API:", error);
+        toast({
+          title: "Request Failed",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+          description: "Try again",
+        });
+      }
+    }
+  };
   return (
     <Box
       bg="#050017"

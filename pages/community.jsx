@@ -8,6 +8,10 @@ import CustomText, { variants } from "@/components/Common/CustomText";
 const Community = () => {
   const router = useRouter();
 
+  useEffect(() => {
+    localStorage.removeItem("forget-password");
+  }, []);
+
   const handleviewCommunity = () => {
     router.push("/viewCommunity");
   };

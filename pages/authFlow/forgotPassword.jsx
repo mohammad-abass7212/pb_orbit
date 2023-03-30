@@ -11,18 +11,20 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import * as React from "react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useState } from "react";
 import {
   CONTENT_TYPE_HEADER_LOGIN,
   USER_TYPE_HEADER,
 } from "../adminAuth/headers/adminRequestHeaders";
-import { RESEND_OTP_API_ENDPOINT } from "../api/apiVariables";
+import { SEND_OTP_EMAIL_API_ENDPOINT } from "../api/apiVariables";
 // interface IAppProps {}
 
 const ForgotPassword = () => {
+  const router = useRouter();
   const toast = useToast();
   const emailRef = useRef(null);
 
@@ -33,6 +35,10 @@ const ForgotPassword = () => {
   const updateWindowSize = () => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   };
+
+  useEffect(() => {
+    localStorage.removeItem("forget-password");
+  }, []);
 
   React.useEffect(() => {
     window.addEventListener("resize", updateWindowSize);
@@ -48,9 +54,9 @@ const ForgotPassword = () => {
     const sendOtpOnEmail = async (email) => {
       try {
         const response = await axios.post(
-          RESEND_OTP_API_ENDPOINT,
+          SEND_OTP_EMAIL_API_ENDPOINT,
           {
-            email: email,
+            email,
           },
           {
             headers: {
@@ -59,21 +65,28 @@ const ForgotPassword = () => {
             },
           }
         );
-        console.log("Response from API:", response.data);
-        toast({
-          title: "Signin Successfull",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "top",
-        });
-        toast({
-          title: "OTP has been sent",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "top",
-        });
+        if (response.data?.success) {
+          localStorage.setItem("user_id", response.data?.user_id);
+          toast({
+            title: response.data?.message,
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+          localStorage.setItem("forget-password", true);
+          setTimeout(() => {
+            router.push("/authFlow/otp");
+          }, 1000);
+        } else {
+          toast({
+            title: response.data?.message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+        }
         return response.data;
       } catch (error) {
         console.log("Error from API:", error);

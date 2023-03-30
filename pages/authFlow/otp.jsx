@@ -83,9 +83,12 @@ const OtpForm = () => {
             isClosable: true,
             position: "top",
           });
+          setIsLoading(false);
           const token = response.data.token;
+          //Checking route of user.
+          const prevPath = localStorage.getItem("forget-password");
           localStorage.setItem("token", token);
-          router.push("/community");
+          router.push(prevPath ? "/authFlow/resetPassword" : "/community");
         }
       } catch (error) {
         setIsLoading(false);
@@ -153,7 +156,6 @@ const OtpForm = () => {
             },
           }
         );
-        console.log("Response from API:", response.data);
         const { success, message } = response.data;
         if (success) {
           setResendOtpState(false);

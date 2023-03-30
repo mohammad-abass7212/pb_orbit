@@ -44,14 +44,41 @@ const UserSignIn = () => {
     const { value, name } = event.target;
     setUserDetails({ ...userDetails, [name]: value });
   };
-  const handleLogin = (event) => {
+
+  useEffect(() => {
+    localStorage.removeItem("forget-password");
+  }, []);
+
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(formData, formData);
+    console.log(userDetails, "userDetails");
     const errors = LoginFormValidate(userDetails);
     console.log(errors);
     if (Object.keys(errors).length === 0) {
       // handleLoginSubmit(event);
-      AdminLoginCaller(userDetails);
+      const response = await AdminLoginCaller(userDetails);
+      if (response?.success) {
+        toast({
+          title: "Logged In successfully!",
+          description: response?.message,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
+        setTimeout(() => {
+          router.push("/community");
+        }, 2000);
+      } else {
+        toast({
+          title: response.message,
+          description: errors.message,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     } else {
       toast({
         title: "credentials are wrongs!",
@@ -195,7 +222,7 @@ const UserSignIn = () => {
         <Checkbox color="white" size="sm">
           Remember me
         </Checkbox>
-        <Link href={"/authFlow/resetPassword"}>
+        <Link href={"/authFlow/forgotPassword"}>
           <Text color="white" fontSize={["8px", "12px", "12px", "12px"]}>
             Forgot Password ?
           </Text>

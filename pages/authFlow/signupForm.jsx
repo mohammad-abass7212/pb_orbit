@@ -136,6 +136,9 @@ const SignupForm = () => {
       });
     }
   };
+  useEffect(()=>{
+    localStorage.removeItem("forget-password");
+  },[]);
   React.useEffect(() => {
     if (success === true && !undefined) {
       toast({
