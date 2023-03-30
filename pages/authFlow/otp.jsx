@@ -43,6 +43,7 @@ const OtpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [resendOtpState, setResendOtpState] = useState(false);
   const handleChange = (value) => {
+    console.log(value, "value");
     setOtp(value);
   };
   const user_id = localStorage.getItem("user_id");

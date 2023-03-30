@@ -62,9 +62,10 @@ const SignupForm = () => {
   };
 
   const handleSubmit = (event) => {
-    console.log("hi there formm triggered");
+    console.log(formData, "hi there formm triggered");
     event.preventDefault();
     const errors = validate(formData);
+
     errors.email &&
       toast({
         title: "Required field",
@@ -74,6 +75,7 @@ const SignupForm = () => {
         isClosable: true,
         position: "top",
       });
+
     errors.password &&
       toast({
         title: "Required field",
@@ -93,8 +95,21 @@ const SignupForm = () => {
         position: "top",
       });
     console.log("errors", errors);
-    if (Object.keys(errors).length === 0) {
+    // return
+    if (
+      Object.keys(errors).length === 0 &&
+      formData.password === formData.confirmPassword
+    ) {
       handleFormSubmit(event);
+    } else if (formData.password !== formData.confirmPassword) {
+      toast({
+        title: "Required field",
+        description: "Confirm password does not match.",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
     } else {
       toast({
         title: "Please fill all required fields!",
@@ -122,31 +137,26 @@ const SignupForm = () => {
     }
   };
   React.useEffect(() => {
-    {
-      success === true && !undefined
-        ? toast({
-            title: message,
-            description: "Check your email inbox",
-            status: "success",
-            duration: 4000,
-            isClosable: true,
-            position: "top",
-          }) && router.push("/authFlow/otp")
-        : null;
+    if (success === true && !undefined) {
+      toast({
+        title: message,
+        description: "Check your email inbox",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      }) && router.push("/authFlow/otp");
+    } else if (success === false && !undefined) {
+      toast({
+        title: "",
+        description: message,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      });
     }
-    {
-      success === false && !undefined
-        ? toast({
-            title: "",
-            description: message,
-            status: "error",
-            duration: 4000,
-            isClosable: true,
-            position: "top",
-          })
-        : null;
-    }
-  });
+  }, [message, router, success, toast]);
 
   return (
     <AuthFlowLayout>

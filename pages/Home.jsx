@@ -8,7 +8,7 @@ import App_install from "@/components/Home/App_install";
 import People from "@/components/Home/People";
 import Pricing from "@/components/Home/Pricing";
 import Footer from "@/components/footer/footer";
-import SecondPage from "./SecondPage";
+import CommunityframeFlow from "./communityFrameFlow/index";
 
 const Home = () => {
   return (
@@ -23,7 +23,7 @@ const Home = () => {
         <People />
         <Pricing />
         <hr></hr>
-        <Footer /> 
+        <Footer />
       </div>
     </MainLayout>
   );

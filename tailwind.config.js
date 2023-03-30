@@ -1,21 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/createCommunity.jsx}",
-  "./components/LoyoutDror.jsx",
-  "./pages/Payment_Done.jsx",
-  "./pages/No_user_Screen.jsx",
-  "./components/Add_Community.jsx",
-  "./pages/Payemnt_Page.jsx" ,
-  "./pages/SuccessMyRservations.jsx" ,
-  "./pages/Not404.jsx" ,
-  "./components/CardCommunities.jsx",
-  "./components/CardDetail.jsx",
-  "./components/CardRequest.jsx",
-  "./pages/Communities.jsx",
-  "./pages/SecondPage.jsx"
-]
-  ,
-
+  content: [
+    "./components/AdminFlow/Add_Community.jsx",
+    "./components/AdminFlow/AdminDrawer.jsx",
+    "./components/AdminFlow/CardCommunities.jsx",
+    "./components/AdminFlow/CardDetail.jsx",
+    "./components/AdminFlow/CardReservations.jsx",
+    "./components/AdminFlow/Communities.jsx",
+    "./components/AdminFlow/LoyoutDror.jsx",
+    "./components/AdminFlow/CardRequest.jsx",
+    "./pages/communityFrameFlow/index.js",
+  ],
   theme: {
     container: {
       center: true,

@@ -7,11 +7,12 @@ import CustomText, { variants } from "@/components/Common/CustomText";
 
 const Community = () => {
   const router = useRouter();
+
   const handleviewCommunity = () => {
     router.push("/viewCommunity");
   };
   const handleCreateCommunity = () => {
-    router.push("/createCommunity");
+    router.push("/communityFrameFlow");
   };
   return (
     <Box

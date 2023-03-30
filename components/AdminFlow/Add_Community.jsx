@@ -1,4 +1,5 @@
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -21,20 +22,25 @@ const Add_Community = () => {
   const [value, setValue] = useState("09:00");
   const [value2, setValue2] = useState("20:00");
   const [payload, setPayload] = useState({
-    name:"",
-    Courts:0
-    ,
-    location:""
-
+    name: "",
+    Courts: 0,
+    location: "",
   });
   const onChange = (timeValue) => {
-      
     setValue(timeValue);
   };
   const onChange2 = (timeValue2) => {
     setValue2(timeValue2);
   };
-console.log(payload)
+  console.log(payload);
+  const router = useRouter();
+
+  const [paymentTrigger, setPaymentTrigger] = useState(false);
+
+  const handlePayment = () => {
+    // router.push("/")
+
+  };
   return (
     <div className="flex flex-col justify-center py-10 text-[#6C6290]">
       {/* <Line data={this.state.chartData} /> */}
@@ -49,7 +55,7 @@ console.log(payload)
             name="email"
             // value={formData.email}
             // onChange={handleInputChange}
-            onChange={(e)=>setPayload({...payload,name:e.target.value}) }
+            onChange={(e) => setPayload({ ...payload, name: e.target.value })}
             value={payload.name}
             placeholder="Community Name"
             required
@@ -66,16 +72,16 @@ console.log(payload)
             type={"tel"}
             name="email"
             // value={formData.email}
-            onChange={(e)=>setPayload({...payload,Courts:e.target.value}) }
-value={payload.Courts}
+            onChange={(e) => setPayload({ ...payload, Courts: e.target.value })}
+            value={payload.Courts}
             placeholder="Number of Courts"
             required
             // ref={emailRef}
             autoComplete={"off"}
             className="outline-none bg-[#050017] "
           >
-            <option  >Number of Courts</option>
-            <option value="1" >1</option>
+            <option>Number of Courts</option>
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -86,7 +92,7 @@ value={payload.Courts}
       </div>
       <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
         {" "}
-        <img src="/utils/common/loc.svg" alt="pborbit_logo" />
+        <img src="/utils/common/loc.svg" alt="pborbit_logo"/>
         <input
           _placeholder={{ color: "#656565" }}
           type={"tel"}
@@ -97,8 +103,8 @@ value={payload.Courts}
           placeholder="Location"
           required
           // ref={emailRef}
-          onChange={(e)=>setPayload({...payload,location:e.target.value}) }
-value={payload.location}
+          onChange={(e) => setPayload({ ...payload, location: e.target.value })}
+          value={payload.location}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
         />
@@ -113,13 +119,12 @@ value={payload.location}
       </div>
 
       <div className="flex sm:ml-0 ml-20 gap-14 justify-end sm:w-[29%] pb-5 ">
-    
-          <div className="w-[55%] sm:w-[55%] flex gap-5 sm:gap-16  ">
-            <h1 className="text-left" > Open </h1>
-              <h1 className="text-left"> Close </h1>
-            {/* <TimePicker /> */}
-          </div>
+        <div className="w-[55%] sm:w-[55%] flex gap-5 sm:gap-16  ">
+          <h1 className="text-left"> Open </h1>
+          <h1 className="text-left"> Close </h1>
+          {/* <TimePicker /> */}
         </div>
+      </div>
       <div className="flex flex-col gap-4  ">
         <div className="flex gap-14 ">
           <span className="sm:w-24">Monday:</span>
@@ -213,7 +218,7 @@ value={payload.location}
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={(e)=>setValue(e.target.value)}
+              onChange={(e) => setValue(e.target.value)}
               value={value}
             />
             <input
@@ -243,12 +248,17 @@ value={payload.location}
         </div>
       </div>
       <div className="my-10 ">
-        <button className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28">
+        <button
+          onClick={handlePayment}
+          className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28"
+        >
           Continue to Pay
         </button>
       </div>
 
-      <p className="text-center text-white">Pborbit © 2023 All rights reserved</p>
+      <p className="text-center text-white">
+        Pborbit © 2023 All rights reserved
+      </p>
     </div>
   );
 };

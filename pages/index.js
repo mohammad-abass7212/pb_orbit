@@ -1,6 +1,6 @@
 import Head from "next/head";
 // import { Inter } from "@next/font/google";
-
+import { useRouter } from "next/router";
 import {
   Box,
   Image,
@@ -14,12 +14,14 @@ import {
 } from "@chakra-ui/react";
 import Home from "./Home";
 import { AnimatePresence } from "framer-motion";
-// import Home from "./home";
-// declare module "react-Reveal";
-// const inter = Inter({ subsets: ["latin"] });
+import MainLayout from "@/components/layouts/MainLayout";
+
 
 function Homee() {
+  // current URL path
+
   return (
+    
     <Box>
       <Head>
         <title>Create Next App</title>
@@ -34,7 +36,7 @@ function Homee() {
       >
         <main>
           <Box bg="#050017" color={"white"}>
-            {/* <Image
+            <Image
               position="absolute"
               w={["65%", "65%", "65%", "65%", "65%"]}
               right={["1px", "1px", "1px", "1px", "10px"]}
@@ -54,9 +56,9 @@ function Homee() {
               }}
               src="/utils/Common/half-circle.png"
               alt="pborbit"
-            /> */}
+            />
 
-            <Home />
+              <Home />
           </Box>
         </main>
       </AnimatePresence>
