@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
 // import Add_Community from "./../components/Add_Community";
+import Payment_Page from "../Payemnt_Page";
 import No_user_Screen from "../No_user_Screen";
 import Edit_Profile from "../Edit_Profile";
 import Payment_Done from "../Payment_Done";
-import adminDashboard from "../protectedRoutes/adminDashboard";
-import payment_Page from "../protectedRoutes/payment_Page";
 import SuccessMyRservations from "../SuccessMyRservations";
-import Not404 from "../404";
 import Add_Community from "../../components/AdminFlow/Add_Community";
 import Communities from "../../components/AdminFlow/Communities";
-import createCommunity from "../createCommunity";
 import MainLayout from "@/components/layouts/MainLayout";
 const CommunityframeFlow = () => {
   const [drop1, setDrop1] = useState(false);
@@ -19,6 +16,14 @@ const CommunityframeFlow = () => {
     setDrop1(!drop1);
     setW("w-1/6");
   };
+  const [addCommunityShow, setaddCommunityShow] = useState(true);
+  const [payment_PageShow, setpayment_PageShow] = useState(false);
+  const [reservationSucesShow, setRervationSucesShow] = useState(false);
+  const [editProfileShow, setEditProfileShow] = useState(false);
+  const [noUserShow, setNoUserShow] = useState(false);
+  const [payment_Done, setPayment_Done] = useState(false);
+  const [showCommunities, setShowCommunities] = useState(false);
+
 
   return (
     <MainLayout>
@@ -30,7 +35,6 @@ const CommunityframeFlow = () => {
               : "w-1/12 border-r-2 pb-5 hidden sm:block"
           }
         >
-
           <AdminDrawer onclick={onclick} drop1={drop1} />
         </div>
         <div className="w-[80%] py-5">
@@ -44,17 +48,14 @@ const CommunityframeFlow = () => {
           <div />
 
           <div>
-            <Add_Community />
+            {addCommunityShow && <Add_Community />}
+            {payment_PageShow && <Payment_Page />}
+            {payment_Done && <Payment_Done />}
+            {showCommunities && <Communities />}
+            {reservationSucesShow && <SuccessMyRservations />}
+            {editProfileShow && <Edit_Profile />}
+            {noUserShow && <No_user_Screen />}
           </div>
-         
-          {/* <Payment_Done/> */}
-          {/* <Communities /> */}
-          {/* <SuccessMyRservations/> */}
-          {/* <Not404 /> */}
-          {/* <Edit_Profile/> */}
-          {/* <createCommunity /> */}
-          {/* <No_user_Screen /> */}
-          {/* <Payemnt_Page /> */}
         </div>
       </div>
     </MainLayout>
