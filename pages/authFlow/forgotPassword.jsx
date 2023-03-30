@@ -10,6 +10,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
 
 import * as React from "react";
 import { useRef } from "react";
@@ -18,13 +19,14 @@ import {
   CONTENT_TYPE_HEADER_LOGIN,
   USER_TYPE_HEADER,
 } from "../adminAuth/headers/adminRequestHeaders";
+import { RESEND_OTP_API_ENDPOINT } from "../api/apiVariables";
 // interface IAppProps {}
 
 const ForgotPassword = () => {
   const toast = useToast();
   const emailRef = useRef(null);
 
-  const [emailChange, setEmailChange] = useState("");
+  const [email, setEmail] = useState("");
 
   const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
 
@@ -43,12 +45,12 @@ const ForgotPassword = () => {
   const handlesendOtpOnEmail = (e) => {
     e.preventDefault();
 
-    const sendOtpOnEmail = async (emailChange) => {
+    const sendOtpOnEmail = async (email) => {
       try {
         const response = await axios.post(
           RESEND_OTP_API_ENDPOINT,
           {
-            email: emailChange,
+            email: email,
           },
           {
             headers: {
@@ -86,7 +88,7 @@ const ForgotPassword = () => {
       }
     };
 
-    sendOtpOnEmail(emailChange);
+    sendOtpOnEmail(email);
   };
   const requestedEmail = "saurabhsingh95573@gmial.com";
   return (
@@ -137,11 +139,12 @@ const ForgotPassword = () => {
             p="10px"
             color="white"
             border={"none"}
+            value={email}
             autoComplete="email"
             required
             placeholder="Enter Address"
-            onChange={setEmailChange}
-            ref={emailRef}
+            onChange={(e) => setEmail(e.target.value)}
+            // ref={emailRef}
           />
         </Box>
         <Button
