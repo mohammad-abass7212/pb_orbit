@@ -63,6 +63,6 @@
     "components/Common/CustomText.jsx",
     "pages/adminAuth/adminStateManager/adminUseReducer.ts",
     "pages/protectedRoutes/adminDashboard.jsx"
-, "customHooks/animationhook.ts", "customHooks/windowdimensions.js"  ],
+, "customHooks/animationhook.ts", "customHooks/windowdimensions.js", "components/AdminFlow/CommonUserCard.jsx"  ],
   "exclude": ["node_modules"]
 }

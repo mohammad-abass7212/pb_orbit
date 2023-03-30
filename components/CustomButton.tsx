@@ -58,6 +58,11 @@ const CustomButton = ({
 
   return (
     <Button
+      _hover={{
+        transform: "translateY(-2px)",
+        boxShadow: "lg",
+        bg: btnHoverColor,
+      }}
       ref={buttonRef}
       onClick={onClick}
       disabled={btnDisabled}
@@ -69,7 +74,6 @@ const CustomButton = ({
       height={customHeight}
       width={widthArray}
       borderRadius={btnBorderRadius}
-      _hover={{ bg: btnHoverColor }}
       mt={mt}
       mb={mb}
       fontSize={fontSize}

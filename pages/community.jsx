@@ -8,12 +8,12 @@ import CustomText, { variants } from "@/components/Common/CustomText";
 const Community = () => {
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.removeItem("forget-password");
   }, []);
 
   const handleviewCommunity = () => {
-    router.push("/viewCommunity");
+    router.push("/communityFrameFlow");
   };
   const handleCreateCommunity = () => {
     router.push("/communityFrameFlow");

@@ -1,4 +1,6 @@
 import CustomButton from "@/components/CustomButton";
+import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
+import axios from "axios";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useState } from "react";
@@ -36,14 +38,44 @@ const Add_Community = () => {
   const router = useRouter();
 
   const [paymentTrigger, setPaymentTrigger] = useState(false);
+  console.log(value, value2, payload);
 
+  // input taking and axios logic below
   const handlePayment = () => {
-    // router.push("/")
+    console.log("its working");
+    const schedule = {
+      Monday: { start_time: value, end_time: value2 },
+      Tuesday: { start_time: value, end_time: value2 },
+      Wednesday: { start_time: value, end_time: value2 },
+      Thursday: { start_time: value, end_time: value2 },
+      Friday: { start_time: value, end_time: value2 },
+      Saturday: { start_time: value, end_time: value2 },
+      Sunday: { start_time: value, end_time: value2 },
+    };
 
+    const data = {
+      community_name: payload.name,
+      courts: parseInt(payload.Courts),
+      latitude: "23.032",
+      longitude: "29.456",
+      address: payload.location,
+      schedule,
+    };
+
+    axios
+      .post(CREATE_COMMUNITY_API_ENDPOINT, data)
+      .then((response) => {
+        console.log(response.data);
+        // Do something with the response
+      })
+      .catch((error) => {
+        console.log(error);
+        // Handle the error
+      });
   };
+
   return (
     <div className="flex flex-col justify-center py-10 text-[#6C6290]">
-      {/* <Line data={this.state.chartData} /> */}
 
       <div className="sm:gap-8 sm:flex ">
         <div className=" w-[18rem] sm:w-[22rem] flex bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4  ">
@@ -92,7 +124,7 @@ const Add_Community = () => {
       </div>
       <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
         {" "}
-        <img src="/utils/common/loc.svg" alt="pborbit_logo"/>
+        <img src="/utils/common/loc.svg" alt="pborbit_logo" />
         <input
           _placeholder={{ color: "#656565" }}
           type={"tel"}
@@ -252,7 +284,7 @@ const Add_Community = () => {
           onClick={handlePayment}
           className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28"
         >
-          Continue to Pay
+          Create Community
         </button>
       </div>
 

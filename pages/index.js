@@ -16,12 +16,10 @@ import Home from "./Home";
 import { AnimatePresence } from "framer-motion";
 import MainLayout from "@/components/layouts/MainLayout";
 
-
 function Homee() {
   // current URL path
 
   return (
-    
     <Box>
       <Head>
         <title>Create Next App</title>
@@ -30,9 +28,10 @@ function Homee() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AnimatePresence
-        exitBeforeEnter
         initial={false}
         onExitComplete={() => window.scrollTo(0, 0)}
+        exitBeforeEnter={false}
+        mode="wait"
       >
         <main>
           <Box bg="#050017" color={"white"}>
@@ -58,7 +57,7 @@ function Homee() {
               alt="pborbit"
             />
 
-              <Home />
+            <Home />
           </Box>
         </main>
       </AnimatePresence>

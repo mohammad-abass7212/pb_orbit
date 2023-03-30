@@ -17,8 +17,10 @@ import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
 import { useClickAnimation } from "@/components/useClickAnimation";
 import { AdminLoginCaller } from "../adminAuth/adminStateManager/adminAuth";
+import { useRouter } from "next/router";
 // interface ISigninProps {}
 const UserSignIn = () => {
+  const router=useRouter()
   const toast = useToast();
   const [userDetails, setUserDetails] = useState({});
   const [password, setPassword] = useState("");
