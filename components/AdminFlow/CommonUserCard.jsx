@@ -19,6 +19,7 @@ function CommonUserCard({ cards }) {
   return cards.map((card) => {
     return (
       <Card
+        height={"140px"}
         key={card.id}
         borderRadius="15"
         alignItems="center"
@@ -26,9 +27,9 @@ function CommonUserCard({ cards }) {
         p={6}
         bgColor={"#26203A"}
         color={"white"}
-        width={["550px"]}
+        width={["470px"]}
       >
-        <Flex gap={-2}>
+        <Flex mt={"-4%"}>
           <Box mr={6} width={"30%"}>
             <Image
               zIndex={1}
@@ -38,15 +39,21 @@ function CommonUserCard({ cards }) {
               borderRadius={15}
             />
           </Box>
-          <Box width={["220px"]} pt={5}>
+          <Box width={["200px"]} pt={5}>
             <Heading color={"#A097BF"} size="md" pt={2}>
               {card.name}
             </Heading>
-            <Text pt={2} fontWeight={600} fontSize={"20px"}>
+            <Text pt={1} fontWeight={600} fontSize={"20px"}>
               {card.location}
             </Text>
-            <HStack pt={2}>
-              <GrLocation />
+            <HStack pt={1}>
+              <Image
+                zIndex={1}
+                name={""}
+                src={"utils/Common/Location.svg"}
+                alt={"communityIcons"}
+                borderRadius={15}
+              />
               <Text color={"#A097BF"}>{card.location}</Text>
             </HStack>
           </Box>

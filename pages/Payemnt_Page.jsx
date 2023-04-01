@@ -3,7 +3,10 @@ import React from "react";
 const Payemnt_Page = () => {
   return (
     <div>
-      <div className="flex flex-col justify-center py-10 ">
+      <div
+        className="flex flex-col justify-center py-10"
+        style={{ width: "700px", margin: "auto" }}
+      >
         <div>
           <h1 className="font-bold text-4xl text-center">$400.00</h1>
         </div>
@@ -19,7 +22,7 @@ const Payemnt_Page = () => {
               <img
                 className="m-auto"
                 src="/utils/common/Group 17932.svg"
-                alt=""
+                alt="image"
               />
             </div>
             <div className="hover:bg-[#FF6600] p-5 rounded-lg bg-white m-auto w-1/3 ">
@@ -27,7 +30,7 @@ const Payemnt_Page = () => {
               <img
                 className="m-auto"
                 src="/utils/common/Group 833.svg"
-                alt=""
+                alt="imageIcon"
               />{" "}
             </div>
             <div className="hover:bg-[#FF6600] p-5 rounded-lg bg-white m-auto w-1/3">
@@ -79,7 +82,9 @@ const Payemnt_Page = () => {
             <div className="border-#DFDFDF border-2 flex gap-4 p-3 text-white rounded-lg">
               <div className="w-1/2 m-auto text-black">
                 {" "}
-                <h1 className="font-bold sm:text-4xl text-center">$400.00</h1>{" "}
+                <h1 className="font-bold sm:text-4xl text-center">
+                  $400.00
+                </h1>{" "}
               </div>{" "}
               <div className="w-1/2 m-auto">
                 {" "}
@@ -90,7 +95,6 @@ const Payemnt_Page = () => {
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

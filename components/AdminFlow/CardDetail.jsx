@@ -2,7 +2,11 @@ import React from "react";
 
 const CardDetail = () => {
   return (
-    <div className=" sm:flex justify-between text-sm rounded-lg bg-[#26203A] py-10 sm:px-5">
+    <div style={{padding:"50px"}}>
+    <div
+     
+      className=" sm:flex justify-between text-sm rounded-lg bg-[#26203A] py-10 sm:px-5"
+    >
       <div className="flex gap-4 ">
         <div>
           {" "}
@@ -37,6 +41,7 @@ const CardDetail = () => {
           remove
         </button>{" "}
       </div>
+    </div>
     </div>
   );
 };

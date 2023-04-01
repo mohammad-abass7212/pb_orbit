@@ -4,8 +4,7 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
-const AdminDrawer = ({ onclick, drop1 }) => {
-  const [drop, setDrop] = useState(false);
+const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
   return (
     <>
       {drop1 ? (
@@ -19,20 +18,29 @@ const AdminDrawer = ({ onclick, drop1 }) => {
             />
           </div>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
-            <li onClick={open} className="hover:bg-white py-2 px-4 w-full">
+            <li
+              onClick={() => setDrop("Dashboard")}
+              className="hover:bg-white py-2 px-4 w-full"
+            >
               <span className="flex gap-3">
                 <img src="/utils/common/dash.svg" alt="pborbit_logo" />
                 Dashboard
               </span>
             </li>
 
-            <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+            <li
+              onClick={() => setDrop("Profile")}
+              className="hover:text-white py-2 px-4 w-full"
+            >
               <span className="flex gap-3">
                 <img src="/utils/common/proflie.svg" alt="pborbit_logo" />
                 Profile
               </span>
             </li>
-            <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+            <li
+              onClick={() => setDrop()}
+              className="hover:text-white py-2 px-4 w-full"
+            >
               <span className="flex gap-3">
                 <img src="/utils/common/sub.svg" alt="pborbit_logo" />
                 Subscription
@@ -59,13 +67,13 @@ const AdminDrawer = ({ onclick, drop1 }) => {
                 <div className=" pl-5 group-hover:block ">
                   <ul className="flex flex-col ">
                     <li
-                      onClick={open}
+                      onClick={() => setDrop("Add Community")}
                       className="hover:text-white py-2 px-8 w-full"
                     >
                       Add Community
                     </li>
                     <li
-                      onClick={open}
+                      onClick={() => setDrop("View Community")}
                       className="hover:text-white py-2 px-8 w-full"
                     >
                       View Community
@@ -110,18 +118,24 @@ const AdminDrawer = ({ onclick, drop1 }) => {
             </div>
           </div>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
-            <li onClick={open} className=" py-2 px-4 w-full">
+            <li onClick={() => setDrop()} className=" py-2 px-4 w-full">
               <span className="flex gap-3">
                 <img src="/utils/common/dash.svg" alt="pborbit_logo" />
               </span>
             </li>
 
-            <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+            <li
+              onClick={() => setDrop()}
+              className="hover:text-white py-2 px-4 w-full"
+            >
               <span className="flex gap-3">
                 <img src="/utils/common/proflie.svg" alt="pborbit_logo" />
               </span>
             </li>
-            <li onClick={open} className="hover:text-white py-2 px-4 w-full">
+            <li
+              onClick={() => setDrop()}
+              className="hover:text-white py-2 px-4 w-full"
+            >
               <span className="flex gap-3">
                 <img src="/utils/common/sub.svg" alt="pborbit_logo" />
               </span>
@@ -146,13 +160,13 @@ const AdminDrawer = ({ onclick, drop1 }) => {
                 <div className=" pl-5 group-hover:block ">
                   <ul className="flex flex-col ">
                     <li
-                      onClick={open}
+                      onClick={() => setDrop()}
                       className="hover:text-white py-2 px-8 w-full"
                     >
                       Add Community
                     </li>
                     <li
-                      onClick={open}
+                      onClick={() => setDrop()}
                       className="hover:text-white py-2 px-8 w-full"
                     >
                       View Community

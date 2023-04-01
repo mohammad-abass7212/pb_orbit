@@ -1,6 +1,6 @@
 import { Avatar, Box, Flex, keyframes } from "@chakra-ui/react";
 
-const AvatarWithRipple = ({ size = "96px", color = "teal", src, ...rest }) => {
+const AvatarWithRipple = ({ size = "50px", color = "teal", src, ...rest }) => {
   const pulseRing = keyframes`
     0% {
       transform: scale(0.33);

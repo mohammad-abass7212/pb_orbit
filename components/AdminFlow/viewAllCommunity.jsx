@@ -43,7 +43,7 @@ function ViewAllCommunity() {
       p={6}
     >
       {cards.map((card) => (
-        <CommonUserCard  key={card.id} cards={cards} />
+        <CommonUserCard key={card.id} cards={cards} />
       ))}
     </Grid>
   );
