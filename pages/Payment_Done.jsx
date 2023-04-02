@@ -1,24 +1,46 @@
-import React from 'react'
+import CustomButton from "@/components/Common/CustomButton";
+import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import React from "react";
 
 const Payment_Done = () => {
   return (
-    <div className='text-center h-screen flex-col justify-center gap-8 m-auto'>
-      
-<img className='m-auto py-10' src="/utils/common/shape.svg" alt="" />
-<div> <h1 className='font-bold text-4xl'>$400.00</h1> </div>
-<div className='m-auto py-10 font-bold'>
-    <p> Your payment has been succesfully complete</p>
-</div>
+    <Box className="text-center h-screen flex-col justify-center gap-8 m-auto">
+      <Image className="m-auto py-10" src="/utils/common/shape.svg" alt="" />
+      <Box>
+        {" "}
+        <Heading color="white" className="font-bold text-4xl">
+          $400.00
+        </Heading>{" "}
+      </Box>
+      <Box className="m-auto py-10 font-bold">
+        <Text color={"white"}> Your payment has been succesfully complete</Text>
+      </Box>
+      <Box display={"flex"} justifyContent={"center"} textAlign={"center"}>
+        <Button
+          onClick={""}
+          bgColor="#00E276"
+          height="45px"
+          width={["250px"]}
+          btnBorderRadius={["15px"]}
+          fontSize="20px"
+          iconVisStatus="false"
+          color="white"
+          _hover={{ bgColor: "#fe6601" }}
+        >
+          View Communities
+        </Button>
+      </Box>
+      <footer>
+        <Box className="m-auto text-center py-10">
+          <Link href={""}>
+            {" "}
+            <Text color={"white"}> Go to Dashboard</Text>
+          </Link>
+        </Box>
+      </footer>
+    </Box>
+  );
+};
 
-<button className='bg-[#00E276] text-sm p-3 rounded-lg sm:px-28' >View Communities</button>
-<footer>
-<div className='m-auto text-center py-10'>
-    <p> Go to Dashboard</p>
-</div>
-</footer>
-
-    </div>
-  )
-}
-
-export default Payment_Done
+export default Payment_Done;

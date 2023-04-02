@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
 // import Add_Community from "./../components/Add_Community";
-import ViewAllCommunity from "../../components/AdminFlow/viewAllCommunity";
-import Payment_Page from "../Payemnt_Page";
-import No_user_Screen from "../No_user_Screen";
-import Edit_Profile from "../Edit_Profile";
-import Payment_Done from "../Payment_Done";
-import SuccessMyRservations from "../SuccessMyRservations";
-import Add_Community from "../../components/AdminFlow/Add_Community";
-import Communities from "../../components/AdminFlow/Communities";
+// import ViewAllCommunity from "../../components/AdminFlow/viewAllCommunity";
+// import Payment_Page from "../Payemnt_Page";
+// import No_user_Screen from "../No_user_Screen";
+// import Edit_Profile from "../Edit_Profile";
+// import Payment_Done from "../Payment_Done";
+// import SuccessMyRservations from "../SuccessMyRservations";
+// import Add_Community from "../../components/AdminFlow/Add_Community";
+// import Communities from "../../components/AdminFlow/Communities";
 import MainLayout from "@/components/layouts/MainLayout";
-import CommonUserCard from "@/components/AdminFlow/CommonUserCard";
 import AvatarWithRipple from "../../components/RippleAvatar";
-import StatusIndicator from "../../components/StatusIndicator";
-import Searchbar from "@/components/AdminFlow/Searchbar";
+// import CommonUserCard from "@/components/AdminFlow/CommonUserCard";
+// import AvatarWithRipple from "../../components/RippleAvatar";
+// import StatusIndicator from "../../components/StatusIndicator";
+// import Searchbar from "@/components/AdminFlow/Searchbar";
 
 const CommunityframeFlow = () => {
   const [drop1, setDrop1] = useState(true);
@@ -77,10 +78,11 @@ const CommunityframeFlow = () => {
             {reservationSucesShow && <SuccessMyRservations />}
             {editProfileShow && <Edit_Profile />}
             {noUserShow && <No_user_Screen />} */}
-            {drop === "ViewAllCommunity" && <ViewAllCommunity />}
-            {drop === "Profile" && <Edit_Profile />}
+            {/* {drop === "ViewAllCommunity" && <ViewAllCommunity />} */}
+            {/* {drop === "Profile" && <Edit_Profile />}
             {drop === "Add Community" && <Add_Community />}
-            {drop === "View Community" && <ViewAllCommunity />}
+            {drop === "View Community" && <ViewAllCommunity />} */}
+            {/* {true && <Payment_Page />} */}
           </div>
         </div>
       </div>

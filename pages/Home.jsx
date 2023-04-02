@@ -8,22 +8,11 @@ import App_install from "@/components/Home/App_install";
 import People from "@/components/Home/People";
 import Pricing from "@/components/Home/Pricing";
 import Footer from "@/components/footer/footer";
-import CommunityframeFlow from "./communityFrameFlow/index";
-import Searchbar from "@/components/AdminFlow/Searchbar";
-import CardDetail from "@/components/AdminFlow/CardDetail";
-import CardRequest from "@/components/AdminFlow/CardRequest";
-import CommonUserCard from "@/components/AdminFlow/CommonUserCard";
-import ViewAllCommunity from "@/components/AdminFlow/viewAllCommunity";
-import Communities from "@/components/AdminFlow/Communities";
-import UserCard from "../components/AdminFlow/UserCard";
+
 const Home = () => {
   return (
     <MainLayout>
       <div>
-        {/* <CommonUserCard/>
-        <ViewAllCommunity/> */}
-        {/* <UserCard /> */}
-        {/* <Communities/> */}
         <Navbar />
         <HomePage />
         <About />

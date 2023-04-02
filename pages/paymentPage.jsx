@@ -7,7 +7,31 @@ import Payment_page from "./Payemnt_Page";
 function Paymentpage() {
   return (
     <MainLayout>
-      <Box bgColor={"#050017"} height={"1000px"}>
+      <VStack
+        position={"fixed"}
+        left={"100px"}
+        gap={5}
+        alignItems={"left"}
+        float="left"
+        display="block"
+        pb={"100px"}
+      >
+        <Box>
+          <Image
+            mt={"5"}
+            mb={"2"}
+            width={"30%"}
+            src="/utils/Common/logo.png"
+            alt="pborbit_logo"
+          />
+        </Box>
+        <Box>
+          <Text pl={10} color={"white"} fontSize={"25px"}>
+            Payment Page
+          </Text>
+        </Box>
+      </VStack>
+      <Box bgColor={"#050017"} marginTop={-10}>
         <Payment_page />
       </Box>
     </MainLayout>
