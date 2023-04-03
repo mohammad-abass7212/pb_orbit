@@ -29,3 +29,4 @@ export const DISABLE_USER_API_ENDPOINT = BASE_API_URL + "/users/disable";
 export const ENABLE_USER_API_ENDPOINT = BASE_API_URL + "/users/enable";
 export const REMOVE_PLAYER_FROM_COMMUNITY_API_ENDPOINT =
   BASE_API_URL + "/communities/remove_player";
+export const GET_ALL_COMMUNITY_FREE = BASE_API_URL + "/community/free";
