@@ -1,0 +1,9 @@
+.otpContainer {
+  background-color: red;
+  border: 5px solid red;
+}
+
+.otpInput:focus {
+  border-bottom: 2px solid #00e276;
+  
+}

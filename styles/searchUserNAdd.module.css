@@ -1,0 +1,10 @@
+.mydiv {
+    overflow: auto;
+    max-height: 300px;
+    scrollbar-width: none; /* hide scrollbar on Firefox */
+    -ms-overflow-style: none; /* hide scrollbar on Internet Explorer and Edge */
+  }
+  
+  .mydiv::-webkit-scrollbar {
+    display: none; /* hide scrollbar on Chrome, Safari, and Opera */
+  }
