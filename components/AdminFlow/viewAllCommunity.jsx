@@ -37,8 +37,6 @@ const cards = [
 ];
 
 function ViewAllCommunity() {
-<<<<<<< HEAD
-=======
   const [card, setCard] = useState([]);
   const [apiStatus, setApiStatus] = useState({
     inProgress: false,
@@ -73,7 +71,6 @@ function ViewAllCommunity() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
->>>>>>> mohammad-abass7212/main
   return (
     <Grid
       templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
@@ -82,13 +79,10 @@ function ViewAllCommunity() {
       alignItems="center"
       p={6}
     >
-<<<<<<< HEAD
-      {cards.map((card) => (
-        <CommonUserCard key={card.id} cards={cards} />
-=======
+
+
       {card.map((card) => (
         <CommonUserCard key={card.id} cards={card} />
->>>>>>> mohammad-abass7212/main
       ))}
     </Grid>
   );
