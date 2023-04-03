@@ -5,7 +5,8 @@ import Searchusernadd from "../components/AdminFlow/SearchUserNAdd";
 import { useState } from "react";
 import { useEffect } from "react";
 import AddUserCardUtils from "../components/AdminFlow/AddUserCardUtils";
-
+import Edit_Profile from "./Edit_Profile";
+import CardReservations from "../components/AdminFlow/CardReservations";
 const Searchuseradd = () => {
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);
@@ -31,9 +32,8 @@ const Searchuseradd = () => {
   }, [query]);
 
   return (
-    <Box>
+    <Box bgColor={"#050017"}>
       <Searchusernadd queryhandler={queryhandler} data={data} />
-      <AddUserCardUtils />
     </Box>
   );
 };

@@ -1,9 +1,14 @@
 import CustomButton from "@/components/Common/CustomButton";
 import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Payment_Done = () => {
+  const router = useRouter();
+  const handleAddusers = () => {
+    router.push("/communityFrameFlow");
+  };
   return (
     <Box className="text-center h-screen flex-col justify-center gap-8 m-auto">
       <Image className="m-auto py-10" src="/utils/common/shape.svg" alt="" />
@@ -18,7 +23,7 @@ const Payment_Done = () => {
       </Box>
       <Box display={"flex"} justifyContent={"center"} textAlign={"center"}>
         <Button
-          onClick={""}
+          onClick={handleAddusers}
           bgColor="#00E276"
           height="45px"
           width={["250px"]}
@@ -28,12 +33,12 @@ const Payment_Done = () => {
           color="white"
           _hover={{ bgColor: "#fe6601" }}
         >
-          View Communities
+          Add users
         </Button>
       </Box>
       <footer>
         <Box className="m-auto text-center py-10">
-          <Link href={""}>
+          <Link href={"/protectedRoutes/adminDashboard"}>
             {" "}
             <Text color={"white"}> Go to Dashboard</Text>
           </Link>

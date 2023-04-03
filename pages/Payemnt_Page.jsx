@@ -1,7 +1,12 @@
 import { Box, Flex, Heading, Icon, Image, Input, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Payemnt_Page = () => {
+  const router = useRouter();
+  const handlePayment = () => {
+    router.push("/paymentSuccessful");
+  };
   return (
     <Box>
       <Box
@@ -88,7 +93,10 @@ const Payemnt_Page = () => {
             </Box>
           </Box>
 
-          <Box className="bg-white text-black px-4 py-10 flex flex-col gap-4">
+          <Box
+            color={"white"}
+            className="bg-white text-black px-4 py-10 flex flex-col gap-4"
+          >
             <Heading>Enter your payment details</Heading>
 
             <Box className="border-#DFDFDF border-2 px-10 py-2 rounded-lg">
@@ -132,13 +140,19 @@ const Payemnt_Page = () => {
             <Box className="border-#DFDFDF border-2 flex gap-4 p-3 text-white rounded-lg">
               <Box className="w-1/2 m-auto text-black">
                 {" "}
-                <Heading className="font-bold sm:text-4xl text-center">
+                <Heading
+                  color={"white"}
+                  className="font-bold sm:text-4xl text-center"
+                >
                   $400.00
                 </Heading>{" "}
               </Box>{" "}
               <Box className="w-1/2 m-auto">
                 {" "}
-                <button className="bg-[#00E276] p-3 rounded-lg sm:px-28">
+                <button
+                  onClick={handlePayment}
+                  className="bg-[#00E276] p-3 rounded-lg sm:px-28"
+                >
                   Pay Now
                 </button>
               </Box>

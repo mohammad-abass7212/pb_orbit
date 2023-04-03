@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { countries } from "../../components/countries";
+import axios from "axios";
 import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
 // import Add_Community from "./../components/Add_Community";
 // import ViewAllCommunity from "../../components/AdminFlow/viewAllCommunity";
@@ -13,17 +15,20 @@ import MainLayout from "@/components/layouts/MainLayout";
 import AvatarWithRipple from "../../components/RippleAvatar";
 // import CommonUserCard from "@/components/AdminFlow/CommonUserCard";
 // import AvatarWithRipple from "../../components/RippleAvatar";
-// import StatusIndicator from "../../components/StatusIndicator";
+import StatusIndicator from "../../components/StatusIndicator";
+import Searchusernadd from "../../components/AdminFlow/SearchUserNAdd";
+import { Box } from "@chakra-ui/react";
+import ViewAllCommunity from "../../components/AdminFlow/viewAllCommunity";
 // import Searchbar from "@/components/AdminFlow/Searchbar";
-
 const CommunityframeFlow = () => {
+ 
   const [drop1, setDrop1] = useState(true);
   const [we, setW] = useState("w-1/12");
   const onclick = () => {
     setDrop1(!drop1);
     setW("w-1/6");
   };
-  const [drop, setDrop] = useState("Add Community");
+  const [drop, setDrop] = useState("Addusers");
   // const [addCommunityShow, setaddCommunityShow] = useState(true);
   // const [payment_PageShow, setpayment_PageShow] = useState(false);
   // const [reservationSucesShow, setRervationSucesShow] = useState(false);
@@ -35,7 +40,7 @@ const CommunityframeFlow = () => {
 
   return (
     <MainLayout>
-      <div className="flex gap-10">
+      <Box className="flex gap-10">
         <div
           className={
             drop1
@@ -81,11 +86,14 @@ const CommunityframeFlow = () => {
             {/* {drop === "ViewAllCommunity" && <ViewAllCommunity />} */}
             {/* {drop === "Profile" && <Edit_Profile />}
             {drop === "Add Community" && <Add_Community />}
-            {drop === "View Community" && <ViewAllCommunity />} */}
             {/* {true && <Payment_Page />} */}
+            {drop === "View Community" && <ViewAllCommunity />}
+            {drop == "Addusers" && (
+              <Searchusernadd />
+            )}
           </div>
         </div>
-      </div>
+      </Box>
     </MainLayout>
   );
 };

@@ -42,7 +42,7 @@ const Add_Community = () => {
 
   // input taking and axios logic below
   const handlePayment = () => {
-    console.log("its working");
+    router.push("/paymentPage")
     const schedule = {
       Monday: { start_time: value, end_time: value2 },
       Tuesday: { start_time: value, end_time: value2 },
