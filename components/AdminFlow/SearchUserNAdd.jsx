@@ -23,7 +23,9 @@ import {
   ADD_USERS_TO_COMMUNITY_API_ENDPOINT,
   BASE_API_URL,
 } from "../../pages/api/apiVariables";
+import { useRouter } from "next/router";
 const Searchusernadd = () => {
+  const router=useRouter()
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);
   // console.log("query:-", query);
@@ -237,6 +239,7 @@ const Searchusernadd = () => {
               newUserArray.push(user[i].id);
             }
             postUserDataUsingApi(newUserArray);
+            router.push("/")
           }}
         >
           Add users

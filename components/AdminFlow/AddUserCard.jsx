@@ -6,10 +6,18 @@ import {
   Heading,
   Text,
   HStack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-
+import { RxDotsVertical } from "react-icons/rx";
+// import Userremoveblockmodel from "./Userremoveblockmodel";
 function AddUserCard({ userCardData }) {
+  const { onOpen } = useDisclosure(); // get onOpen function from useDisclosure hook
+
+  const handleOpenModal = () => {
+    onOpen(); // call onOpen function to open modal
+  };
+
   return userCardData.map((card) => {
     return (
       <>
@@ -65,7 +73,16 @@ function AddUserCard({ userCardData }) {
               </Flex>
             </Box>
           </Flex>
-          <Box position={"relative"}></Box>
+          <Box
+            onClick={handleOpenModal}
+            position={"relative"}
+            left={260}
+            top={-100}
+            zIndex={1}
+          >
+            <RxDotsVertical />
+            {/* <UserRemoveBlockModel /> */}
+          </Box>
         </Card>
       </>
     );
