@@ -116,7 +116,7 @@ const Navbar = () => {
               </StyledLink>
             </Flex>
             <Box>
-              <Link href="/authFlow/ChooseSignup">
+              <Link href="/authFlow/userSignin">
                 <CustomButton
                   imageSrc={""}
                   text="Login/Signup"
@@ -180,24 +180,28 @@ const Navbar = () => {
                       Login/Signup
                     </Button> */}
                     <Link href={"/authFlow/ChooseSignup"}>
-                      
-                    
-                    <CustomButton
-                      imageSrc="/create_community.svg"
-                      text="Login/Signup"
-                      onClick={() => console.log("Button clicked!")}
-                      size="lg"
-                      btnDisabled={false}
-                      buttonBgColor="#00E276"
-                      customHeight={["40px", "30px", "30px", "40px", "50px"]}
-                      widthArray={["70%", "30%", "35%", "70%", "70%"]}
-                      btnBorderRadius={["20px", "25px", "25px", "25px", "27px"]}
-                      mt={["10px", "10px", "10px", "10px", "40px"]}
-                      mb={["30px", "10px", "10px", "40px", "40px"]}
-                      fontSize={["13px", "16px", "16px", "16px", "20px"]}
-                      iconVisStatus={false} // this is hard coded value
-                      btnHoverColor={"#ff6900"}
-                    />
+                      <CustomButton
+                        imageSrc="/create_community.svg"
+                        text="Login/Signup"
+                        onClick={() => console.log("Button clicked!")}
+                        size="lg"
+                        btnDisabled={false}
+                        buttonBgColor="#00E276"
+                        customHeight={["40px", "30px", "30px", "40px", "50px"]}
+                        widthArray={["70%", "30%", "35%", "70%", "70%"]}
+                        btnBorderRadius={[
+                          "20px",
+                          "25px",
+                          "25px",
+                          "25px",
+                          "27px",
+                        ]}
+                        mt={["10px", "10px", "10px", "10px", "40px"]}
+                        mb={["30px", "10px", "10px", "40px", "40px"]}
+                        fontSize={["13px", "16px", "16px", "16px", "20px"]}
+                        iconVisStatus={false} // this is hard coded value
+                        btnHoverColor={"#ff6900"}
+                      />
                     </Link>
                   </MenuItem>
                 </Link>

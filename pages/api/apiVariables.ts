@@ -22,7 +22,7 @@ export const GET_FREE_COMMUNITIES_API_ENDPOINT =
   BASE_API_URL + "/communities/get_free";
 export const SEARCH_USERS_API_ENDPOINT = BASE_API_URL + "/users/search";
 export const ADD_USERS_TO_COMMUNITY_API_ENDPOINT =
-  BASE_API_URL + "/communities/add_users";
+  BASE_API_URL + "/community/add/users";
 export const GET_USERS_LIST_API_ENDPOINT =
   BASE_API_URL + "/communities/users_list";
 export const DISABLE_USER_API_ENDPOINT = BASE_API_URL + "/users/disable";

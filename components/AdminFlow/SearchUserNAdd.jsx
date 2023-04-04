@@ -19,6 +19,10 @@ import {
 } from "@chakra-ui/react";
 import styles from "/styles/searchUserNAdd.module.css";
 import AddUserCardUtils from "./AddUserCardUtils";
+import {
+  ADD_USERS_TO_COMMUNITY_API_ENDPOINT,
+  BASE_API_URL,
+} from "../../pages/api/apiVariables";
 const Searchusernadd = () => {
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);
@@ -86,13 +90,21 @@ const Searchusernadd = () => {
     }
     setuser(newdata);
   };
-
-  const postUserDataUsingApi = async () => {
-    // axios.post(() => {
-    //   try {
-    //     const response = await;
-    //   } catch {}
-    // });
+  let community_id;
+  const postUserDataUsingApi = async (newUserArray) => {
+    try {
+      const response = await axios.post(
+        `${ADD_USERS_TO_COMMUNITY_API_ENDPOINT}${+"/" + community_id}`,
+        {
+          users: newUserArray,
+        }
+      );
+      console.log("Add users response:", response);
+      // clear the user list after successful API call
+      setuser([]);
+    } catch (error) {
+      console.error("Add users error:", error);
+    }
   };
 
   return (
@@ -224,7 +236,7 @@ const Searchusernadd = () => {
             for (let i = 0; i < user.length; i++) {
               newUserArray.push(user[i].id);
             }
-            postUserDataUsingApi();
+            postUserDataUsingApi(newUserArray);
           }}
         >
           Add users
