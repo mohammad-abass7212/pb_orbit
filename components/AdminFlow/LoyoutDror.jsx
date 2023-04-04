@@ -35,7 +35,7 @@ const LoyoutDror = ({ onclick, drop1 }) => {
             <li onClick={open} className="hover:text-white py-2 px-4 w-full">
               <span className="flex gap-3">
                 <img src="/utils/common/sub.svg" alt="pborbit_logo" />
-                Subscription
+                Add users
               </span>
             </li>
             <div className="group">
