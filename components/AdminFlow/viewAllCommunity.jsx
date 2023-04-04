@@ -1,8 +1,7 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CommonUserCard from "./CommonUserCard";
-import { GET_ALL_COMMUNITY_FREE } from "../../pages/api/apiVariables";
-import axios from "axios";
+import { api } from "../../pages/api/Base_ur";
 const cards = [
   {
     name: "Alaanice",
@@ -53,7 +52,7 @@ function ViewAllCommunity() {
   const fetchCommunity = async () => {
     try {
       changeApiStatus(true, "");
-      const fetchedData = await axios.get(GET_ALL_COMMUNITY_FREE);
+      const fetchedData = await api.get("/community/free");
 
       if (fetchedData.status === 200) {
         changeApiStatus(false, "");
@@ -79,8 +78,6 @@ function ViewAllCommunity() {
       alignItems="center"
       p={6}
     >
-
-
       {card.map((card) => (
         <CommonUserCard key={card.id} cards={card} />
       ))}

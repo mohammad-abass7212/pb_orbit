@@ -16,7 +16,6 @@ import { GrLocation } from "react-icons/gr";
 import { IconContext } from "react-icons";
 
 function CommonUserCard({ cards }) {
-  console.log(cards, "cards>>>>>>>>>>");
   return (
     <Card
       // height={"140px"}
