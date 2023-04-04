@@ -1,10 +1,13 @@
 import CustomButton from "@/components/CustomButton";
 import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
+import { api } from "../../pages/api/Base_ur";
 
 const Add_Community = () => {
   // this.state = {
@@ -21,36 +24,67 @@ const Add_Community = () => {
   //         ]
   //       }
   //     };
-  const [value, setValue] = useState("09:00");
-  const [value2, setValue2] = useState("20:00");
+  const toast = useToast();
+  const [openTime, setOpenTime] = useState({
+    Monday: "",
+    Tueday: "",
+    Wedneday: "",
+    Thuesday: "",
+    Friday: "",
+    Satuday: "",
+    Sunday: "",
+  });
+  const [closingTime, setClosingTime] = useState({
+    Monday: "",
+    Tueday: "",
+    Wedneday: "",
+    Thuesday: "",
+    Friday: "",
+    Satuday: "",
+    Sunday: "",
+  });
+  // const [value2, setValue2] = useState("20:00");
+  // const [value, setValue] = useState("21:00");
   const [payload, setPayload] = useState({
     name: "",
-    Courts: 0,
+    Courts: "",
     location: "",
   });
-  const onChange = (timeValue) => {
-    setValue(timeValue);
+  const handleOpenTimeChange = (time) => (e) => {
+    setOpenTime({ ...openTime, [time]: e.target.value });
   };
-  const onChange2 = (timeValue2) => {
-    setValue2(timeValue2);
+  const handleClosingTimeChange = (time) => (e) => {
+    setClosingTime({ ...closingTime, [time]: e.target.value });
   };
+  const onOtherChange = (val) => (e) => {
+    setPayload({ ...payload, [val]: e.target.value });
+  };
+
   console.log(payload);
   const router = useRouter();
 
   const [paymentTrigger, setPaymentTrigger] = useState(false);
-  console.log(value, value2, payload);
 
   // input taking and axios logic below
-  const handlePayment = () => {
-    router.push("/paymentPage")
+  const handlePayment = async () => {
+    const token = localStorage.getItem("token");
     const schedule = {
-      Monday: { start_time: value, end_time: value2 },
-      Tuesday: { start_time: value, end_time: value2 },
-      Wednesday: { start_time: value, end_time: value2 },
-      Thursday: { start_time: value, end_time: value2 },
-      Friday: { start_time: value, end_time: value2 },
-      Saturday: { start_time: value, end_time: value2 },
-      Sunday: { start_time: value, end_time: value2 },
+      Monday: { start_time: openTime.Monday, end_time: closingTime.Monday },
+      Tuesday: {
+        start_time: openTime.Thuesday,
+        end_time: closingTime.Thuesday,
+      },
+      Wednesday: {
+        start_time: openTime.Wedneday,
+        end_time: closingTime.Wedneday,
+      },
+      Thursday: {
+        start_time: openTime.Thuesday,
+        end_time: closingTime.Thuesday,
+      },
+      Friday: { start_time: openTime.Friday, end_time: closingTime.Friday },
+      Saturday: { start_time: openTime.Satuday, end_time: closingTime.Satuday },
+      Sunday: { start_time: openTime.Sunday, end_time: closingTime.Sunday },
     };
 
     const data = {
@@ -62,10 +96,25 @@ const Add_Community = () => {
       schedule,
     };
 
-    axios
-      .post(CREATE_COMMUNITY_API_ENDPOINT, data)
+    await api
+      .post("/community/create", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
-        console.log(response.data);
+        console.log(response, "community");
+        toast({
+          title: " Created successfully!",
+          description: response?.message,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
+        setTimeout(() => {
+          router.push("/community");
+        }, 2000);
+        router.push("/paymentPage");
+
         // Do something with the response
       })
       .catch((error) => {
@@ -76,18 +125,22 @@ const Add_Community = () => {
 
   return (
     <div className="flex flex-col justify-center py-10 text-[#6C6290]">
-
       <div className="sm:gap-8 sm:flex ">
         <div className=" w-[18rem] sm:w-[22rem] flex bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4  ">
           {" "}
-          <img src="/utils/common/com.svg" alt="pborbit_logo" />
+          <Image
+            src="/utils/common/com.svg"
+            alt="pborbit_logo"
+            width={20}
+            height={20}
+          />
           <input
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
             // value={formData.email}
             // onChange={handleInputChange}
-            onChange={(e) => setPayload({ ...payload, name: e.target.value })}
+            onChange={onOtherChange("name")}
             value={payload.name}
             placeholder="Community Name"
             required
@@ -98,13 +151,18 @@ const Add_Community = () => {
         </div>
         <div className="flex w-[18rem] sm:w-[22rem] bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 ">
           {" "}
-          <img src="/utils/common/court.svg" alt="pborbit_logo" />
+          <Image
+            src="/utils/common/court.svg"
+            alt="pborbit_logo"
+            width={20}
+            height={20}
+          />
           <select
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
             // value={formData.email}
-            onChange={(e) => setPayload({ ...payload, Courts: e.target.value })}
+            onChange={onOtherChange("Courts")}
             value={payload.Courts}
             placeholder="Number of Courts"
             required
@@ -124,18 +182,23 @@ const Add_Community = () => {
       </div>
       <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
         {" "}
-        <img src="/utils/common/loc.svg" alt="pborbit_logo" />
+        <Image
+          src="/utils/common/loc.svg"
+          alt="pborbit_logo"
+          width={20}
+          height={20}
+        />
         <input
           _placeholder={{ color: "#656565" }}
           type={"tel"}
-          name="email"
+          // name="email"
           // value={formData.email}
           // onChange={handleInputChange}
 
           placeholder="Location"
           required
           // ref={emailRef}
-          onChange={(e) => setPayload({ ...payload, location: e.target.value })}
+          onChange={onOtherChange("location")}
           value={payload.location}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
@@ -145,7 +208,7 @@ const Add_Community = () => {
         {" "}
         <h1 className="text-white font-medium">Schedules</h1>{" "}
         <div className="">
-          <input type="checkbox" class="default:ring-2 ..." />{" "}
+          <input type="checkbox" className="default:ring-2 ..." />{" "}
           <span>Use Defualt Schedule for Now</span>
         </div>{" "}
       </div>
@@ -164,14 +227,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Monday")}
+              value={openTime.Monday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Monday")}
+              value={closingTime.Monday}
             />
             {/* <TimePicker /> */}
           </div>
@@ -182,14 +245,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Tueday")}
+              value={openTime.Tueday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Tueday")}
+              value={closingTime.Tueday}
             />
           </div>
         </div>
@@ -199,14 +262,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Wedneday")}
+              value={openTime.Wedneday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Wedneday")}
+              value={closingTime.Wedneday}
             />
           </div>
         </div>
@@ -216,14 +279,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Thuesday")}
+              value={openTime.Thuesday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Thuesday")}
+              value={closingTime.Thuesday}
             />
           </div>
         </div>
@@ -233,14 +296,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Friday")}
+              value={openTime.Friday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Friday")}
+              value={closingTime.Friday}
             />
           </div>
         </div>
@@ -250,14 +313,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={(e) => setValue(e.target.value)}
-              value={value}
+              onChange={handleOpenTimeChange("Satuday")}
+              value={openTime.Satuday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Satuday")}
+              value={closingTime.Satuday}
             />
           </div>
         </div>
@@ -267,14 +330,14 @@ const Add_Community = () => {
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange}
-              value={value}
+              onChange={handleOpenTimeChange("Sunday")}
+              value={openTime.Sunday}
             />
             <input
               className="text-black  rounded-sm px-2"
               type="time"
-              onChange={onChange2}
-              value={value2}
+              onChange={handleClosingTimeChange("Sunday")}
+              value={closingTime.Sunday}
             />
           </div>
         </div>
