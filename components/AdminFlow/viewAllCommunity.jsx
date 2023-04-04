@@ -1,5 +1,8 @@
 import { Grid } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import CommonUserCard from "./CommonUserCard";
+import { GET_ALL_COMMUNITY_FREE } from "../../pages/api/apiVariables";
+import axios from "axios";
 const cards = [
   {
     name: "Alaanice",
@@ -34,6 +37,40 @@ const cards = [
 ];
 
 function ViewAllCommunity() {
+  const [card, setCard] = useState([]);
+  const [apiStatus, setApiStatus] = useState({
+    inProgress: false,
+    failed: false,
+    failMessage: "",
+  });
+  const changeApiStatus = (inProgress, failMessage) => {
+    setApiStatus({
+      inProgress,
+      failed: !!failMessage,
+      failMessage,
+    });
+  };
+  const fetchCommunity = async () => {
+    try {
+      changeApiStatus(true, "");
+      const fetchedData = await axios.get(GET_ALL_COMMUNITY_FREE);
+
+      if (fetchedData.status === 200) {
+        changeApiStatus(false, "");
+
+        setCard(fetchedData?.data?.data);
+      } else {
+        throw new Error(fetchedData.error);
+      }
+    } catch (err) {
+      changeApiStatus(false, err.response ? err.response.data.error : err);
+    }
+  };
+  useEffect(() => {
+    fetchCommunity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Grid
       templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
@@ -42,8 +79,10 @@ function ViewAllCommunity() {
       alignItems="center"
       p={6}
     >
-      {cards.map((card) => (
-        <CommonUserCard key={card.id} cards={cards} />
+
+
+      {card.map((card) => (
+        <CommonUserCard key={card.id} cards={card} />
       ))}
     </Grid>
   );

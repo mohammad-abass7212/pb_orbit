@@ -10,6 +10,7 @@ module.exports = {
     "./components/AdminFlow/LoyoutDror.jsx",
     "./components/AdminFlow/CardRequest.jsx",
     "./pages/communityFrameFlow/index.js",
+    "./pages/protectedRoutes/adminDashboard.jsx",
   ],
   theme: {
     container: {
