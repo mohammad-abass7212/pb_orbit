@@ -22,38 +22,43 @@ import AddUserCardUtils from "./AddUserCardUtils";
 const Searchusernadd = () => {
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);
-
+  // console.log("query:-", query);
   const userData = () => {
     return axios
-      .get(`http://34.148.83.101:5000/community/search/${"r"}`)
+      .get(`http://34.148.83.101:5000/community/search/${query}`)
       .then(function (response) {
-        console.log(response.data.users);
+        return response.data.users;
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log("Error:-", error);
       });
   };
-  console.log(userData());
 
   const queryhandler = (val) => {
     setquery(val);
   };
   useEffect(() => {
-    if (query == "") {
-      setData([]);
-    } else {
-      let newText = query.trim().toLowerCase();
-      const newdata = users
-        .filter((el) => {
-          return el.country.toLowerCase().indexOf(newText) != -1 ? true : false;
-        })
-        .map((el) => el.country);
+    const usersPromise = userData();
+    usersPromise.then(function (users) {
+      // Store the retrieved data in a new variable
+      const myUsers = users;
+      // console.log("users data", myUsers, typeof myUsers);
+      if (query == "") {
+        setData([]);
+      } else {
+        // let newText = query.trim().toLowerCase();
+        // const newdata = myUsers
+        //   .filter((el) => {
+        //     return el.first_name.toLowerCase().indexOf(newText) != -1
+        //       ? true
+        //       : false;
+        //   })
+        //   .map((el) => el.country);
 
-      setData(newdata);
-    }
+        setData(myUsers);
+      }
+    });
   }, [query]);
-
-  // /handelling query above//////
 
   const [activeOption, setactiveOption] = useState(0);
   const handleQuery = () => {
@@ -61,46 +66,35 @@ const Searchusernadd = () => {
   };
 
   const scrollDiv = useRef();
-  const throttleText = useThrottle(query, 1000);
-
   const [user, setuser] = useState([]);
-
-  const handlefilter = (e) => {
-    let newdata = [...user];
-    if (newdata.includes(e.target.value)) {
-      let tdx = user.indexOf(e.target.value);
-      console.log(tdx);
-      newdata.splice(user.indexOf(e.target.value), 1);
-    } else {
-      newdata.push(e.target.value);
-    }
-    setuser(newdata);
-    console.log(newdata);
-  };
 
   const handleDelete = (val) => {
     let newdata = [...user];
     newdata.splice(user.indexOf(val), 1);
     setuser(newdata);
   };
-
-  const handleParentClick = (e) => {
-    if (user.length == 0) {
-      setuser(data);
-
-      console.log(user);
+  const handlefilter = (e) => {
+    console.log(e.target.value);
+    const userObj = data.find((user) => user.username === e.target.value);
+    let newdata = [...user];
+    console.log("newdata", newdata, typeof newdata);
+    if (newdata.find((user) => user.username === e.target.value)) {
+      newdata = newdata.filter((user) => user.username !== e.target.value);
     } else {
-      setuser([]);
+      const { id, username } = userObj;
+      newdata.push({ id, username });
     }
+    setuser(newdata);
   };
 
-  console.log(user);
+  const postUserDataUsingApi = async () => {
+    // axios.post(() => {
+    //   try {
+    //     const response = await;
+    //   } catch {}
+    // });
+  };
 
-  useEffect(() => {
-    queryhandler(throttleText);
-  }, [throttleText]);
-  // console.log(query)
-  // console.log(data)
   return (
     <Box>
       <Box
@@ -118,7 +112,7 @@ const Searchusernadd = () => {
           <Box
             bgColor={"#040016"}
             display="flex"
-            flexWrap="wrap" // add this line
+            flexWrap="wrap"
             justifyContent="center"
             alignItems="center"
             style={{
@@ -146,7 +140,7 @@ const Searchusernadd = () => {
                     scrollbarWidth: "none",
                   }}
                 >
-                  <Text>{el}</Text>{" "}
+                  <Text>{el.username}</Text>{" "}
                   <AiOutlineCloseCircle onClick={() => handleDelete(el)} />
                 </Flex>
               ))}
@@ -178,18 +172,8 @@ const Searchusernadd = () => {
             <AiOutlineCloseCircle color={"white"} onClick={handleQuery} />
           </InputRightElement>
         </InputGroup>
-        <Flex>
-          <Checkbox
-            type="checkbox"
-            value="Parent"
-            style={{ marginRight: "5%" }}
-            checked={user == data}
-            onChange={handleParentClick}
-            borderColor="#453A6C"
-            colorScheme="#453A6C"
-          />
-          <Text color={"white"}>All Users</Text>
-        </Flex>
+
+        {/* this box displaying the data above the searchbar */}
         <Box
           className={styles.mydiv}
           limit={5}
@@ -207,16 +191,16 @@ const Searchusernadd = () => {
                 <CheckboxGroup>
                   <Checkbox
                     type="checkbox"
-                    value={el}
+                    value={el.username}
                     checked={user.includes(el)}
-                    onChange={handlefilter}
+                    onChange={(e) => handlefilter(e)}
                     defaultChecked={false}
                     borderColor="#453A6C"
                     colorScheme="#453A6C"
                   />
                 </CheckboxGroup>
 
-                <AddUserCardUtils el={el} />
+                <AddUserCardUtils data={el} />
               </Flex>
             ))}
         </Box>
@@ -235,6 +219,13 @@ const Searchusernadd = () => {
           color={"white"}
           m={"auto"}
           _hover={{ bgColor: "#FF6600" }}
+          onClick={() => {
+            let newUserArray = [];
+            for (let i = 0; i < user.length; i++) {
+              newUserArray.push(user[i].id);
+            }
+            postUserDataUsingApi();
+          }}
         >
           Add users
         </Button>{" "}
