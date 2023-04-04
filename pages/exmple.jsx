@@ -17,7 +17,7 @@ import UserCard from "../components/AdminFlow/UserCard";
 import viewAllCommunity from "../components/AdminFlow/viewAllCommunity";
 
 AddUserCardUtils;
-function exmple() {
+const exmple = () => {
   const userCardData = [
     {
       id: 1,
@@ -42,9 +42,9 @@ function exmple() {
     <MainLayout>
       <Box height={"1000px"}>
         <AddUserCard userCardData={userCardData} />
+        <CardReservations />
         {/* <CardDetails userCardData={userCardData} />
         <CommunityDetail />
-        <CardReservations />
         <Add_Community />
         <CardRequest />
         <CommonUserCard />
@@ -55,6 +55,6 @@ function exmple() {
       </Box>
     </MainLayout>
   );
-}
+};
 
 export default exmple;

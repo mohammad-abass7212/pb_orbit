@@ -24,14 +24,20 @@ import {
   BASE_API_URL,
 } from "../../pages/api/apiVariables";
 import { useRouter } from "next/router";
+import setCurrentPage from "../../reduxStore/actions";
+import { useDispatch } from "react-redux";
 const Searchusernadd = () => {
-  const router=useRouter()
+  const dispatch = useDispatch();
+
+  const router = useRouter();
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);
   // console.log("query:-", query);
   const userData = () => {
+    const token = localStorage.getItem("token");
+
     return axios
-      .get(`http://34.148.83.101:5000/community/search/${query}`)
+      .get(`http://34.148.83.101:5000/community/search/${query}`, token)
       .then(function (response) {
         return response.data.users;
       })
@@ -239,7 +245,7 @@ const Searchusernadd = () => {
               newUserArray.push(user[i].id);
             }
             postUserDataUsingApi(newUserArray);
-            router.push("/")
+            dispatch(setCurrentPage("All Users"));
           }}
         >
           Add users

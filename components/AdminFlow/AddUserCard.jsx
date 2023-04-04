@@ -10,12 +10,19 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { RxDotsVertical } from "react-icons/rx";
+import UserRemoveBlockModel from "./userRemoveNdisableModel";
+import { useState } from "react";
 // import Userremoveblockmodel from "./Userremoveblockmodel";
-function AddUserCard({ userCardData }) {
-  const { onOpen } = useDisclosure(); // get onOpen function from useDisclosure hook
+const AddUserCard = ({ userCardData }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleOpenModal = () => {
-    onOpen(); // call onOpen function to open modal
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return userCardData.map((card) => {
@@ -74,19 +81,25 @@ function AddUserCard({ userCardData }) {
             </Box>
           </Flex>
           <Box
-            onClick={handleOpenModal}
             position={"relative"}
             left={260}
             top={-100}
             zIndex={1}
+            onClick={() => handleOpenModal()}
           >
             <RxDotsVertical />
-            {/* <UserRemoveBlockModel /> */}
+            <UserRemoveBlockModel
+              onClick={() => handleOpenModal()}
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              isDisabled={isDisabled}
+              setIsDisabled={setIsDisabled}
+            />
           </Box>
         </Card>
       </>
     );
   });
-}
+};
 
 export default AddUserCard;

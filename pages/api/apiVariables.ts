@@ -25,8 +25,8 @@ export const ADD_USERS_TO_COMMUNITY_API_ENDPOINT =
   BASE_API_URL + "/community/add/users";
 export const GET_USERS_LIST_API_ENDPOINT =
   BASE_API_URL + "/communities/users_list";
-export const DISABLE_USER_API_ENDPOINT = BASE_API_URL + "/users/disable";
-export const ENABLE_USER_API_ENDPOINT = BASE_API_URL + "/users/enable";
+export const DISABLE_USER_API_ENDPOINT = BASE_API_URL + "/community/disable/";
+export const ENABLE_USER_API_ENDPOINT = BASE_API_URL + "/community/disable/";
 export const REMOVE_PLAYER_FROM_COMMUNITY_API_ENDPOINT =
-  BASE_API_URL + "/communities/remove_player";
+  BASE_API_URL + "/community/remove/";
 export const GET_ALL_COMMUNITY_FREE = BASE_API_URL + "/community/free";

@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const CardReservations = () => {
+const CardReservations = (props) => {
+  console.log(props);
   return (
     <Card
       height={"140px"}
@@ -52,13 +53,13 @@ const CardReservations = () => {
               <Text pt={1} color={"#A097BF"} fontSize={"15px"}>
                 Player :
               </Text>
-              <Text>{`${"sdkjsdf"}`}</Text>
+              <Text>{}</Text>
             </HStack>
             <HStack>
               <Text pt={1} color={"#A097BF"} fontSize={"15px"}>
                 Phone :
               </Text>
-              <Text>{`${"card.phone"}`}</Text>
+              <Text>{}</Text>
             </HStack>
           </Flex>
         </Box>

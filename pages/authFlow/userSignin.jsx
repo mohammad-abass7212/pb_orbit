@@ -181,6 +181,11 @@ const UserSignIn = () => {
           required
           useref={usernameRef}
           autoComplete={"off"}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleLogin(e);
+            }
+          }}
         />
       </Box>
 
@@ -209,6 +214,11 @@ const UserSignIn = () => {
           placeholder="Password"
           required
           ref={passwordRef}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleLogin(e);
+            }
+          }}
         />
         <Image
           src="/utils/common/hide-2.svg"

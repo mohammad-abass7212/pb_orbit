@@ -245,7 +245,14 @@ const OtpForm = () => {
               <PinInputField ref={otpRef1} />
               <PinInputField ref={otpRef2} />
               <PinInputField ref={otpRef3} />
-              <PinInputField ref={otpRef4} />
+              <PinInputField
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onSubmitOTP(e);
+                  }
+                }}
+                ref={otpRef4}
+              />
             </PinInput>
           </HStack>
         </Box>
@@ -260,7 +267,7 @@ const OtpForm = () => {
               </Box>
             ) : (
               <Text cursor={"pointer"} color={"green"} fontWeight="700">
-                Resend again
+                Resend
               </Text>
             )}
           </Box>

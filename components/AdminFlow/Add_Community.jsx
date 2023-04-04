@@ -1,11 +1,11 @@
 import CustomButton from "@/components/CustomButton";
 import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
-import { useToast } from "@chakra-ui/react";
+import { position, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { api } from "../../pages/api/Base_ur";
 
@@ -60,7 +60,6 @@ const Add_Community = () => {
     setPayload({ ...payload, [val]: e.target.value });
   };
 
-  console.log(payload);
   const router = useRouter();
 
   const [paymentTrigger, setPaymentTrigger] = useState(false);
@@ -103,7 +102,7 @@ const Add_Community = () => {
       .then((response) => {
         console.log(response, "community");
         toast({
-          title: " Created successfully!",
+          title: " request submitted successfully!",
           description: response?.message,
           status: "success",
           duration: 9000,
@@ -121,7 +120,67 @@ const Add_Community = () => {
         // Handle the error
       });
   };
+  // geoLocaiton logic below
 
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPostion, showError);
+    } else {
+      alert("Geolocation is not supported by this browser");
+    }
+  };
+  const showPostion = (position) => {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    fetchLocaionUsingApi(latitude, longitude);
+  };
+  const showError = (error) => {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable");
+        break;
+      case error.TIMEOUT:
+        alert("The request to get the user location timed out");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occured");
+        break;
+      default:
+        alert("An unknown error occured");
+    }
+  };
+  // google geolocation service will be integrated here
+  const apiKey = "";
+  const fetchLocaionUsingApi = async ({ latitude, longitude }) => {
+    const res = await fetch(`https://ipapi.co/json/`);
+    const data = await res.json();
+    setPayload({
+      location: data.city,
+    });
+  };
+  const setDefaultValue = () => {
+    setClosingTime({
+      Monday: "12:00",
+      Tueday: "12:00",
+      Wedneday: "12:00",
+      Thuesday: "12:00",
+      Friday: "12:00",
+      Satuday: "12:00",
+      Sunday: "12:00",
+    });
+    setOpenTime({
+      Monday: "09:00",
+      Tueday: "09:00",
+      Wedneday: "09:00",
+      Thuesday: "09:00",
+      Friday: "09:00",
+      Satuday: "09:00",
+      Sunday: "09:00",
+    });
+  };
   return (
     <div className="flex flex-col justify-center py-10 text-[#6C6290]">
       <div className="sm:gap-8 sm:flex ">
@@ -193,7 +252,7 @@ const Add_Community = () => {
           // name="email"
           // value={formData.email}
           // onChange={handleInputChange}
-
+          onClick={() => getLocation()}
           placeholder="Location"
           required
           // ref={emailRef}
@@ -207,7 +266,11 @@ const Add_Community = () => {
         {" "}
         <h1 className="text-white font-medium">Schedules</h1>{" "}
         <div className="">
-          <input type="checkbox" className="default:ring-2 ..." />{" "}
+          <input
+            onClick={setDefaultValue}
+            type="checkbox"
+            className="default:ring-2 ..."
+          />{" "}
           <span>Use Defualt Schedule for Now</span>
         </div>{" "}
       </div>

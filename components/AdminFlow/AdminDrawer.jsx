@@ -1,22 +1,40 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Box, useToast } from "@chakra-ui/react";
 const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
+  const router = useRouter();
+  const toast = useToast();
+
+  const handleLogout = () => {
+    // Remove user data from local storage
+    localStorage.removeItem("token");
+    // Redirect to login page
+    router.push("/authFlow/userSignin");
+    toast({
+      description: "Sucessfully logout out!",
+      status: "sucess",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
+  };
   return (
     <>
       {drop1 ? (
-        <div>
-          <div className="w-40 my-10">
+        <Box pb={["500px"]}>
+          <Box className="w-40 my-10">
             <img
               className=""
               src="/utils/Common/logo.png"
               alt=""
               onClick={onclick}
             />
-          </div>
+          </Box>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
             <li
               onClick={() => setDrop("Dashboard")}
@@ -38,15 +56,15 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               </span>
             </li>
             <li
-              onClick={() => setDrop("Addusers")}
+              onClick={() => setDrop("Add Users")}
               className="hover:text-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
                 <img src="/utils/common/sub.svg" alt="pborbit_logo" />
-               Add users
+                Add users
               </span>
             </li>
-            <div className="group">
+            <Box className="group">
               <li
                 className="hover:text-hov py-2 px-4 w-full flex justify-between  "
                 onClick={() => setDrop(!drop)}
@@ -64,7 +82,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 </span>
               </li>
               {drop && (
-                <div className=" pl-5 group-hover:block ">
+                <Box className=" pl-5 group-hover:block ">
                   <ul className="flex flex-col ">
                     <li
                       onClick={() => setDrop("Add Community")}
@@ -79,17 +97,17 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                       View Community
                     </li>
                   </ul>
-                </div>
+                </Box>
               )}
-            </div>
+            </Box>
 
-            <div className="group">
+            <Box className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
                   <img src="/utils/common/reser.svg" alt="reser" /> Reservations
                 </span>
               </li>
-            </div>
+            </Box>
 
             <li className="hover:text-white py-2 px-4 w-full">
               <span className="flex gap-3">
@@ -98,25 +116,28 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               </span>
             </li>
 
-            <div className="group">
-              <li className="hover:text-white py-2 px-4 w-full flex justify-between">
+            <Box className="group">
+              <li
+                onClick={handleLogout}
+                className="hover:text-white py-2 px-4 w-full flex justify-between"
+              >
                 <span className="flex gap-3">
                   <img src="/utils/common/logout.svg" alt="logout" />
                   Logout
                 </span>
               </li>
-            </div>
+            </Box>
           </ul>
-        </div>
+        </Box>
       ) : (
-        <div>
-          <div className="w-80 my-10">
+        <Box>
+          <Box className="w-80 my-10">
             {/* <img className="" src="/utils/Common/logo.png" alt=""  /> */}
-            <div onClick={onclick} className="ml-5">
+            <Box onClick={onclick} className="ml-5">
               {" "}
               <GiHamburgerMenu />{" "}
-            </div>
-          </div>
+            </Box>
+          </Box>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
             <li onClick={() => setDrop()} className=" py-2 px-4 w-full">
               <span className="flex gap-3">
@@ -140,7 +161,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 <img src="/utils/common/sub.svg" alt="pborbit_logo" />
               </span>
             </li>
-            <div className="group">
+            <Box className="group">
               <li
                 className="hover:text-hov py-2 px-4 w-full flex gap-3 "
                 onClick={() => setDrop(!drop)}
@@ -157,7 +178,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 </span>
               </li>
               {drop && (
-                <div className=" pl-5 group-hover:block ">
+                <Box className=" pl-5 group-hover:block ">
                   <ul className="flex flex-col ">
                     <li
                       onClick={() => setDrop()}
@@ -172,17 +193,17 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                       View Community
                     </li>
                   </ul>
-                </div>
+                </Box>
               )}
-            </div>
+            </Box>
 
-            <div className="group">
+            <Box className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
                   <img src="/utils/common/reser.svg" alt="reser" />{" "}
                 </span>
               </li>
-            </div>
+            </Box>
 
             <li className="hover:text-white py-2 px-4 w-full">
               <span className="flex gap-3">
@@ -190,15 +211,15 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               </span>
             </li>
 
-            <div className="group">
+            <Box className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
                   <img src="/utils/common/logout.svg" alt="logout" />
                 </span>
               </li>
-            </div>
+            </Box>
           </ul>
-        </div>
+        </Box>
       )}
     </>
   );

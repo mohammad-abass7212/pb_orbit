@@ -38,7 +38,7 @@ const Payment_Done = () => {
       </Box>
       <footer>
         <Box className="m-auto text-center py-10">
-          <Link href={"/protectedRoutes/adminDashboard"}>
+          <Link href={"/communityFrameFlow"}>
             {" "}
             <Text color={"white"}> Go to Dashboard</Text>
           </Link>

@@ -136,9 +136,9 @@ const SignupForm = () => {
       });
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.removeItem("forget-password");
-  },[]);
+  }, []);
   React.useEffect(() => {
     if (success === true && !undefined) {
       toast({
@@ -226,6 +226,11 @@ const SignupForm = () => {
                 required
                 ref={emailRef}
                 autoComplete={"off"}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit(e);
+                  }
+                }}
               />
             </Box>
             <Box
@@ -253,6 +258,11 @@ const SignupForm = () => {
                 placeholder="Mobile Number"
                 required
                 ref={mobileNumberRef}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit(e);
+                  }
+                }}
               />
             </Box>
             <Box
@@ -279,6 +289,11 @@ const SignupForm = () => {
                 placeholder="Password"
                 required
                 ref={passwordRef}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit(e);
+                  }
+                }}
               />
               <Image
                 src="/utils/common/hide-2.svg"
@@ -313,6 +328,11 @@ const SignupForm = () => {
                 placeholder="Confirm Password"
                 ref={confirmPasswordRef}
                 required
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit(e);
+                  }
+                }}
               />
               <Image
                 src="/utils/common/hide-2.svg"

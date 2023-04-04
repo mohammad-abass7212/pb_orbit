@@ -38,6 +38,7 @@
     "react-ios-time-picker": "^0.2.2",
     "react-redux": "^8.0.5",
     "react-use": "^17.4.0",
+    "redux": "^4.2.1",
     "styled-components": "^5.3.6",
     "use-throttle": "^0.0.3"
   },

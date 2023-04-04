@@ -5,63 +5,77 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalCloseButton,
-  ModalBody,
   ModalFooter,
+  ModalBody,
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import { DISABLE_USER_API_ENDPOINT, REMOVE_PLAYER_FROM_COMMUNITY_API_ENDPOINT } from "../../pages/api/apiVariables";
+import axios from "axios";
 
-const UserRemoveBlockModel = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [disable, setDisable] = useState(false); // track disabled state
+function UserRemoveBlockModel({ isOpen, onClose,setIsDisabled ,isDisabled}) {
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleDisableClick = () => {
-    setDisable(true); // set disable to true when clicked
+
+  const handleDisable =async () => {
+    setIsLoading(true);
+    // perform disable action
+    try {
+      await axios.patch(`${DISABLE_USER_API_ENDPOINT}/`);
+      // perform disable action
+      setIsDisabled(true)
+      onClose();
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+    onClose();
   };
 
-  const handleRemoveClick = () => {
-    onClose(); // close the modal when remove button is clicked
-  };
-
-  const handleEnableClick = () => {
-    setDisable(false); // set disable to false when clicked
+  const handleRemove =async () => {
+    setIsLoading(true);
+    try {
+      await axios.delete(`${REMOVE_PLAYER_FROM_COMMUNITY_API_ENDPOINT}/${itemId}`);
+      // perform remove action
+      onClose();
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+    // perform remove action
+    // 
+    onClose();
   };
 
   return (
-    <>
-      {/* render the modal */}
-      <Modal size="sm" isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-
-          {/* render different content based on disable state */}
-          {disable ? (
-            <>
-              <ModalBody>Modal is disabled.</ModalBody>
-              <ModalFooter>
-                <Button onClick={handleEnableClick}>Enable</Button>
-                <Button ml={3} onClick={handleRemoveClick}>
-                  Remove
-                </Button>
-              </ModalFooter>
-            </>
-          ) : (
-            <>
-              <ModalBody>
-                This is the modal body. Click the button below to disable this
-                modal.
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={handleDisableClick}>Disable</Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Confirm Action</ModalHeader>
+        <ModalBody>
+          Are you sure you want to disable/remove this user?
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            colorScheme="red"
+            mr={3}
+            onClick={handleRemove}
+            isLoading={isLoading}
+            loadingText="Removing"
+          >
+            Remove
+          </Button>
+          <Button
+            colorScheme="gray"
+            variant="outline"
+            onClick={isDisabled? handleEnable : handleDisable}
+            isLoading={isLoading}
+            loadingText="Disabling"
+          >
+          {isDisabled? "Enable":"Disable"}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
-};
+}
 
 export default UserRemoveBlockModel;
