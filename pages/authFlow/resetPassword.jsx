@@ -29,7 +29,7 @@ const ResetPassword = () => {
     const user_id = localStorage.getItem("user_id");
     if (!password || !newpassword) {
       toast({
-        title: "Please enter your password.",
+        title: "Please enter both password type.",
         status: "error",
         duration: 2000,
         isClosable: true,
@@ -45,16 +45,17 @@ const ResetPassword = () => {
       });
     } else {
       try {
+        console.log(password, newpassword, user_id);
         const response = await axios.post(
           CHANGE_PASSWORD_API_ENDPOINT,
           {
             user_id,
-            password,
+            password: password,
             confirm_password: newpassword,
           },
           {
             headers: {
-              "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
+              "Content-type": CONTENT_TYPE_HEADER_LOGIN,
               user_type: USER_TYPE_HEADER,
             },
           }
@@ -84,7 +85,7 @@ const ResetPassword = () => {
       } catch (error) {
         console.log("Error from API:", error);
         toast({
-          title: "Request Failed",
+          title: error.message,
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -146,6 +147,11 @@ const ResetPassword = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleupdatePassword(e);
+              }
+            }}
           />
           <Image
             onClick={() => setHidden(!hidden)}
@@ -173,6 +179,11 @@ const ResetPassword = () => {
             placeholder="Confirm password"
             onChange={(e) => setNewPassword(e.target.value)}
             value={newpassword}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleupdatePassword(e);
+              }
+            }}
           />
           <Image
             src="/utils/common/hide-2.svg"
@@ -180,7 +191,6 @@ const ResetPassword = () => {
             onClick={() => setHidden2(!hidden2)}
           />
         </Box>
-
         <Button
           mt="15px"
           bg="#00E276"

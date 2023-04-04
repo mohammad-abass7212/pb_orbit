@@ -4,8 +4,20 @@ import MainLayout from "../components/layouts/MainLayout";
 import CardDetails from "../components/AdminFlow/CardDetail";
 import CardReservations from "../components/AdminFlow/CardReservations";
 import CommunityDetail from "../components/AdminFlow/CommunityDetail";
+import AddUserCard from "../components/AdminFlow/AddUserCard";
+import Add_Community from "../components/AdminFlow/Add_Community";
+import AddUserCardUtils from "../components/AdminFlow/AddUserCardUtils";
+import CardDetail from "../components/AdminFlow/CardDetail";
+import CardRequest from "../components/AdminFlow/CardRequest";
+import CommonUserCard from "../components/AdminFlow/CommonUserCard";
+import Payment_Done from "../components/AdminFlow/Payment_Done";
+import SearchUserNAdd from "../components/AdminFlow/SearchUserNAdd";
+import Tabview from "../components/AdminFlow/Tabview";
+import UserCard from "../components/AdminFlow/UserCard";
+import viewAllCommunity from "../components/AdminFlow/viewAllCommunity";
 
-function exmple() {
+AddUserCardUtils;
+const exmple = () => {
   const userCardData = [
     {
       id: 1,
@@ -29,11 +41,20 @@ function exmple() {
   return (
     <MainLayout>
       <Box height={"1000px"}>
-        <CardDetails userCardData={userCardData} />
+        <AddUserCard userCardData={userCardData} />
+        <CardReservations />
+        {/* <CardDetails userCardData={userCardData} />
         <CommunityDetail />
+        <Add_Community />
+        <CardRequest />
+        <CommonUserCard />
+        <Payment_Done />
+        <SearchUserNAdd />
+        <UserCard /> */}
+        {/* <TabviewAllCommunityview /> */}
       </Box>
     </MainLayout>
   );
-}
+};
 
 export default exmple;

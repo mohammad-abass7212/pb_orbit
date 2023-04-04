@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+import { Provider } from "react-redux";
+import store from "../reduxStore/store";
 import "firebase/auth";
 import "firebase/firestore";
 import React from "react";
@@ -41,16 +43,18 @@ export default function App({ Component, pageProps }) {
       }}
     >
       <HydrationProvider>
-        <ChakraProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <Server></Server>
-            <AnimatePresence exitBeforeEnter>
-              <Client>
-                <Component {...pageProps} />
-              </Client>
-            </AnimatePresence>
-          </ThemeProvider>
-        </ChakraProvider>
+        <Provider store={store}>
+          <ChakraProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <Server></Server>
+              <AnimatePresence exitBeforeEnter>
+                <Client>
+                  <Component {...pageProps} />
+                </Client>
+              </AnimatePresence>
+            </ThemeProvider>
+          </ChakraProvider>
+        </Provider>
       </HydrationProvider>
     </motion.div>
   );

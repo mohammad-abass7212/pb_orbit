@@ -1,10 +1,11 @@
 import React from "react";
 import MainLayout from "../components/layouts/MainLayout";
 import ViewAllCommunity from "../components/AdminFlow/viewAllCommunity";
-import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import Searchbar from "../components/AdminFlow/Searchbar";
 import { useRef } from "react";
-function viewAllCommunityPage() {
+import Link from "next/link";
+const viewAllCommunityPage = () => {
   return (
     <MainLayout>
       <VStack
@@ -16,7 +17,7 @@ function viewAllCommunityPage() {
         display="block"
         pb={"100px"}
       >
-        <Box>
+        <Flex>
           <Image
             mt={"5"}
             mb={"2"}
@@ -24,23 +25,33 @@ function viewAllCommunityPage() {
             src="/utils/Common/logo.png"
             alt="pborbit_logo"
           />
-        </Box>
-        <Box>
+        </Flex>
+        <Flex justifyContent={"space-between"}>
           <Text color={"white"} fontSize={"25px"}>
             Communities
           </Text>
-        </Box>
+          <Box pb={"15px"}>
+            <Link href={"/add_community_page"}>
+              <Button
+                color={"white"}
+                bgColor={"#00E276"}
+                _hover={{ bgColor: "#FF6600" }}
+              >
+                Create Community
+              </Button>
+            </Link>
+          </Box>
+        </Flex>
         <Box
           position={"fixed"}
           border={"1px solid #251A4B"}
           width={"85%"}
           margin={"auto"}
-          zIndex={1}
         ></Box>
       </VStack>
-      <Box position={"fixed"} left={"100px"} top={"140px"} zIndex={1}>
+      <Flex position={"fixed"} left={"100px"} top={"140px"} zIndex={1}>
         <Searchbar />
-      </Box>
+      </Flex>
 
       <VStack justifyContent={"space-between"}>
         <Box
@@ -62,6 +73,6 @@ function viewAllCommunityPage() {
       </VStack>
     </MainLayout>
   );
-}
+};
 
 export default viewAllCommunityPage;

@@ -1,11 +1,28 @@
-import { Box, Flex, Heading, Icon, Image, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Icon,
+  Image,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 
 const Payemnt_Page = () => {
   const router = useRouter();
+  const toast = useToast();
   const handlePayment = () => {
     router.push("/paymentSuccessful");
+    toast({
+      description: "Payment Sucess!",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
   };
   return (
     <Box>

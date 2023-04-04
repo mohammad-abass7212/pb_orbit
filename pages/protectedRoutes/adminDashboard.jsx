@@ -7,6 +7,7 @@ import pickleparkdemo from "../../assets/images/pickleparkdemo.png";
 import Avater from "../../assets/images/Avatar.png";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
+import Admin from "../../components//layouts/admin";
 import React from "react";
 ChartJS.register(ArcElement, Tooltip);
 const Dashboard = () => {
@@ -28,13 +29,7 @@ const Dashboard = () => {
   };
   const [drop, setDrop] = React.useState("adminDashboard");
   return (
-    <Flex backgroundColor={"#050017"} gap={-20}>
-      <AdminDrawer
-        drop={drop}
-        onclick={onclick}
-        drop1={drop1}
-        setDrop={setDrop}
-      />
+    <Flex backgroundColor={"#050017"} margin={"auto"} pr={10}>
       <section className="lg:ml-64 min-h-screen" id="wrapper">
         <div className={` pb-5 pt-20 sm:pt-28 lg:pt-[126px] px-3 sm:px-8`}>
           <div className="flex flex-col justify-center items-center mb-5">
@@ -115,7 +110,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <h4 className="mb-5 text-lg">My Events</h4>
+          <Text color={"white"} className="mb-5 text-lg">
+            My Events
+          </Text>
 
           <div className="grid gap-4  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
             <div className="max-w-sm bg-[#26203A]  w-full lg:max-w-full lg:flex">
@@ -213,7 +210,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <h4 className="mt-5 mb-2 text-lg">User Request</h4>
+          <Text color={"white"} className="mt-5 mb-2 text-lg">
+            User Request
+          </Text>
           <div className="grid gap-4  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 ">
             <div className="max-w-sm bg-[#26203A]  w-full lg:max-w-full lg:flex">
               <div className="h-48 lg:h-auto w-24  bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden flex flex-col items-center justify-center">

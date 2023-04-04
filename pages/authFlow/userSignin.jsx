@@ -20,7 +20,7 @@ import { AdminLoginCaller } from "../adminAuth/adminStateManager/adminAuth";
 import { useRouter } from "next/router";
 // interface ISigninProps {}
 const UserSignIn = () => {
-  const router=useRouter()
+  const router = useRouter();
   const toast = useToast();
   const [userDetails, setUserDetails] = useState({});
   const [password, setPassword] = useState("");
@@ -60,6 +60,8 @@ const UserSignIn = () => {
       // handleLoginSubmit(event);
       const response = await AdminLoginCaller(userDetails);
       if (response?.success) {
+        console.log(response, "responselogin");
+        localStorage.setItem("token", response?.token);
         toast({
           title: "Logged In successfully!",
           description: response?.message,
@@ -179,6 +181,11 @@ const UserSignIn = () => {
           required
           useref={usernameRef}
           autoComplete={"off"}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleLogin(e);
+            }
+          }}
         />
       </Box>
 
@@ -207,6 +214,11 @@ const UserSignIn = () => {
           placeholder="Password"
           required
           ref={passwordRef}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleLogin(e);
+            }
+          }}
         />
         <Image
           src="/utils/common/hide-2.svg"

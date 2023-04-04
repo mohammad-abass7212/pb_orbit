@@ -1,43 +1,80 @@
 import CustomButton from "@/components/CustomButton";
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
+import Tabview from "../components/AdminFlow/Tabview";
 
 const Edit_Profile = () => {
   const [view, setView] = useState(true);
+  const { colorMode } = useColorMode();
+  const activeTabTextColor = colorMode != "dark" ? "white" : "#6C6290";
 
   return (
-    <div>
-      <div className="flex w-full gap-10 m-auto justify-around">
-        <button
+    <Box>
+      <Box className="flex w-full gap-10 m-auto justify-around">
+        {/* <Button
           className={`view?${"text-white"}:${"text-[#6C6290]"}`}
           onClick={() => setView(!false)}
         >
           Personal Details
-        </button>
-        <button
+        </Button>
+        <Button
           className={` view&& text-[#6C6290] `}
           onClick={() => setView(!true)}
         >
           Community Details
-        </button>
-      </div>
+        </Button> */}
+        <Tabs isFitted variant="line" size={"md"} width={"200vh"}>
+          <TabList>
+            <Tab onClick={() => setView(!false)} color={activeTabTextColor}>
+              {"Personal Details"}
+            </Tab>
+            <Tab onClick={() => setView(!true)} color={activeTabTextColor}>
+              {"Community Details"}
+            </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Flex justifyContent={"space-between"}>
+                {/* /<Searchbar TooltipLabel="Search User" /> */}
+              </Flex>
+              {/* <CardDetail userCardData={userCardData} /> */}
+            </TabPanel>
+            <TabPanel>
+              {/* <CardRequest userCardData={userCardData} /> */}
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
 
       {view ? (
-        <div className="flex flex-col gap-8 w-80 m-auto justify-center py-10">
+        <Box className="flex flex-col gap-8 w-80 m-auto justify-center py-10">
           {/* <Line data={this.state.chartData} /> */}
 
-          <div className="flex m-auto">
-            <div className="m-auto">
-              <img className="auto" src="/utils/common/Avatar.png" alt="" />
-            </div>
-            <button className=" bg-[#5B4F82] sm:px-10 sm:py-4 px-5 py-2 text-center m-auto mx-4 my-4 sm:my-5 sm:text-xl rounded-lg">
+          <Box className="flex m-auto">
+            <Box className="m-auto">
+              <Image className="auto" src="/utils/common/Avatar.png" alt="" />
+            </Box>
+            <Button className=" bg-[#5B4F82] sm:px-10 sm:py-4 px-5 py-2 text-center m-auto mx-4 my-4 sm:my-5 sm:text-xl rounded-lg">
               {" "}
               Upload Photo
-            </button>
-          </div>
-          <div className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+            </Button>
+          </Box>
+          <Box className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -51,10 +88,10 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
-          <div className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+          </Box>
+          <Box className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -68,11 +105,11 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
+          </Box>
 
-          <div className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+          <Box className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -86,91 +123,111 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
-          <div className="   py-10 flex gap-8">
+          </Box>
+          <Box className="   py-10 flex gap-8">
             {" "}
-            <h1>Schedules</h1>{" "}
-            <div className="">
+            <Text color={"white"}>Schedules</Text>{" "}
+            <Box className="">
               <input type="checkbox" class="default:ring-2 ..." />{" "}
-              <span>Use Defualt Schedule for Now</span>
-            </div>{" "}
-          </div>
+              <Text color="white">Use Defualt Schedule for Now</Text>
+            </Box>{" "}
+          </Box>
 
-          <div className="flex flex-col gap-4  ">
-            <div className="m-auto flex gap-5">
-              <span className="">Monday:</span>
-              <div className=" flex gap-2">
+          <Box className="flex flex-col gap-4  ">
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Monday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Tuesday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Tuesday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Wednesday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Wednesday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Thrusday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Thrusday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Friday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Friday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Saturday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Saturday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-            <div className="m-auto flex gap-5">
-              <span className="">Sunday:</span>
-              <div className=" flex gap-2">
+              </Box>
+            </Box>
+            <Box className="m-auto flex gap-5">
+              <Text color={"white"} className="">
+                Sunday:
+              </Text>
+              <Box className=" flex gap-2">
                 <input className="text-black" type="time" />
                 <input className="text-black" type="time" />
-              </div>
-            </div>
-          </div>
-          <div className="my-10 m-auto ">
-            <button className="bg-[#00E276] p-3 rounded-lg px-10 sm:px-18">
+              </Box>
+            </Box>
+          </Box>
+          <Box className="my-10 m-auto ">
+            <Button
+              color={"white"}
+              bgColor={"#00E276"}
+              className="bg-[#00E276] p-3 rounded-lg px-10 sm:px-18"
+            >
               Continue to Pay
-            </button>
-          </div>
+            </Button>
+          </Box>
 
-          <p className="text-center">Pborbit © 2023 All rights reserved</p>
-        </div>
+          <Text color={"white"} className="text-center">
+            Pborbit © 2023 All rights reserved
+          </Text>
+        </Box>
       ) : (
-        <div className="flex flex-col gap-8 w-80 m-auto justify-center py-10">
+        <Box className="flex flex-col gap-8 w-80 m-auto justify-center py-10">
           {/* <Line data={this.state.chartData} /> */}
 
-          <div className="flex m-auto">
-            <div className="m-auto">
-              <img className="auto" src="/utils/common/Avatar.png" alt="" />
-            </div>
-            <button className=" bg-[#5B4F82] sm:px-10 sm:py-4 px-5 py-2 text-center m-auto mx-4 my-4 sm:my-5 sm:text-xl rounded-lg">
+          <Box className="flex m-auto">
+            <Box className="m-auto">
+              <Image className="auto" src="/utils/common/Avatar.png" alt="" />
+            </Box>
+            <Button className=" bg-[#5B4F82] sm:px-10 sm:py-4 px-5 py-2 text-center m-auto mx-4 my-4 sm:my-5 sm:text-xl rounded-lg">
               {" "}
               Upload Photo
-            </button>
-          </div>
-          <div className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+            </Button>
+          </Box>
+          <Box className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -184,10 +241,10 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
-          <div className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+          </Box>
+          <Box className="flex bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -201,11 +258,11 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
+          </Box>
 
-          <div className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+          <Box className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -219,10 +276,10 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
-          <div className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
+          </Box>
+          <Box className="flex   bg-[#050017] gap-4 border-collapse border-2 rounded-lg border-inherit p-4 ">
             {" "}
-            <img src="/utils/common/email2.svg" alt="pborbit_logo" />
+            <Image src="/utils/common/email2.svg" alt="pborbit_logo" />
             <input
               _placeholder={{ color: "#656565" }}
               type={"tel"}
@@ -236,76 +293,78 @@ const Edit_Profile = () => {
               autoComplete={"off"}
               className="outline-none bg-[#050017] "
             />
-          </div>
+          </Box>
 
-          {/* <div className="flex flex-col gap-4  ">
-     <div className="m-auto flex gap-5">
+          {/* <Box className="flex flex-col gap-4  ">
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-     <div className="m-auto flex gap-5">
+     </Box>
+     </Box>
+     <Box className="m-auto flex gap-5">
 
-<span className="">Monday:</span>
-     <div className=" flex gap-2">
+<Text className="">Monday:</Text>
+     <Box className=" flex gap-2">
 <input className="text-black" type="time"  /><input className="text-black" type="time"  />
 
-     </div>
-     </div>
-    </div> */}
-          <div className="my-10 m-auto ">
-            <button className="bg-[#00E276] p-3 rounded-lg px-10 sm:px-18">
+     </Box>
+     </Box>
+    </Box> */}
+          <Box className="my-10 m-auto ">
+            <Button className="bg-[#00E276] p-3 rounded-lg px-10 sm:px-18">
               Update
-            </button>
-          </div>
+            </Button>
+          </Box>
 
-          <p className="text-center">Pborbit © 2023 All rights reserved</p>
-        </div>
+          <Text color={"white"} className="text-center">
+            Pborbit © 2023 All rights reserved
+          </Text>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

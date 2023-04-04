@@ -30,68 +30,67 @@ const ForgotPassword = () => {
 
   const [email, setEmail] = useState("");
 
-  const [windowSize, setWindowSize] = React.useState({ width: 0, height: 0 });
-
-  const updateWindowSize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  };
-
   useEffect(() => {
     localStorage.removeItem("forget-password");
-  }, []);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", updateWindowSize);
-    updateWindowSize();
-    return () => {
-      window.removeEventListener("resize", updateWindowSize);
-    };
   }, []);
 
   const handlesendOtpOnEmail = (e) => {
     e.preventDefault();
 
     const sendOtpOnEmail = async (email) => {
-      try {
-        const response = await axios.post(
-          SEND_OTP_EMAIL_API_ENDPOINT,
-          {
-            email,
-          },
-          {
-            headers: {
-              "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
-              user_type: USER_TYPE_HEADER,
+      if (validateEmail(email)) {
+        console.log("Email is valid");
+
+        try {
+          const response = await axios.post(
+            SEND_OTP_EMAIL_API_ENDPOINT,
+            {
+              email,
             },
+            {
+              headers: {
+                "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
+                user_type: USER_TYPE_HEADER,
+              },
+            }
+          );
+          if (response.data?.success) {
+            localStorage.setItem("user_id", response.data?.user_id);
+            toast({
+              title: response.data?.message,
+              status: "success",
+              duration: 2000,
+              isClosable: true,
+              position: "top",
+            });
+            localStorage.setItem("forget-password", true);
+            setTimeout(() => {
+              router.push("/authFlow/otp");
+            }, 1000);
+          } else {
+            toast({
+              title: response.data?.message,
+              status: "error",
+              duration: 2000,
+              isClosable: true,
+              position: "top",
+            });
           }
-        );
-        if (response.data?.success) {
-          localStorage.setItem("user_id", response.data?.user_id);
+          return response.data;
+        } catch (error) {
+          console.log("Error from API:", error);
           toast({
-            title: response.data?.message,
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-            position: "top",
-          });
-          localStorage.setItem("forget-password", true);
-          setTimeout(() => {
-            router.push("/authFlow/otp");
-          }, 1000);
-        } else {
-          toast({
-            title: response.data?.message,
+            title: "Request Failed",
             status: "error",
             duration: 2000,
             isClosable: true,
             position: "top",
+            description: "Try again",
           });
         }
-        return response.data;
-      } catch (error) {
-        console.log("Error from API:", error);
+      } else {
         toast({
-          title: "Request Failed",
+          title: "Invalid email",
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -103,14 +102,22 @@ const ForgotPassword = () => {
 
     sendOtpOnEmail(email);
   };
-  const requestedEmail = "saurabhsingh95573@gmial.com";
+  const validateEmail = (email) => {
+    // Regular expression for validating an email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check if the email matches the regular expression
+    return emailRegex.test(email);
+  };
+
+  // Example usage
+
   return (
     <Box
       bg="#050017"
       pt={["236px", "260px", "450px", "60px", "100px"]}
-      pb={["170px", "400px", "400px", "40px", "40px"]}
+      pb={["170px", "400px", "400px", "300px", "300px"]}
       position="relative"
-      style={{ height: windowSize.height, width: windowSize.width }}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
@@ -132,7 +139,12 @@ const ForgotPassword = () => {
             alt=""
           />
         </Box>
-        <Flex flexDirection={"column"} alignItems={"center"}>
+        <Flex
+          w={["80%"]}
+          overflow
+          flexDirection={"column"}
+          alignItems={"center"}
+        >
           <Heading mb={5} color={"white"}>
             Provide your email address{" "}
           </Heading>
@@ -157,10 +169,19 @@ const ForgotPassword = () => {
             required
             placeholder="Enter Address"
             onChange={(e) => setEmail(e.target.value)}
-            // ref={emailRef}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handlesendOtpOnEmail(e);
+              }
+            }}
           />
         </Box>
         <Button
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handlesendOtpOnEmail();
+            }
+          }}
           mt="15px"
           bg="#00E276"
           color="white"
