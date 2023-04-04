@@ -78,9 +78,7 @@ const Community = () => {
           btnHoverColor="#fe6601"
         />
         <Image src="/utils/Common/play-player.png" alt="" />
-        <Link href="/signin">
-          <Text color="white">Already have an account? Signin</Text>
-        </Link>
+
         <Box mt={100}>
           <CustomText
             variant={variants.SMALL_HEADING}
