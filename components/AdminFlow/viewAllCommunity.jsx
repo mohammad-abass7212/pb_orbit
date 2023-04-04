@@ -78,8 +78,6 @@ function ViewAllCommunity() {
       alignItems="center"
       p={6}
     >
-
-
       {card.map((card) => (
         <CommonUserCard key={card.id} cards={card} />
       ))}
