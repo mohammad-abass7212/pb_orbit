@@ -111,9 +111,8 @@ const Add_Community = () => {
           position: "top",
         });
         setTimeout(() => {
-          router.push("/community");
+          router.push("/paymentPage");
         }, 2000);
-        router.push("/paymentPage");
 
         // Do something with the response
       })
