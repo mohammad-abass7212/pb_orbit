@@ -7,6 +7,11 @@ import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 import { api } from "../../pages/api/Base_ur";
 
 const Add_Community = () => {
@@ -24,6 +29,57 @@ const Add_Community = () => {
   //         ]
   //       }
   //     };
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      /* Define search scope here */
+    },
+    debounce: 300,
+  });
+  console.log(value, "value");
+  const ref = useOnclickOutside(() => {
+    // When user clicks outside of the component, we can dismiss
+    // the searched suggestions by calling this method
+    clearSuggestions();
+  });
+
+  const handleInput = (e) => {
+    // Update the keyword of the input element
+    setValue(e.target.value);
+  };
+  const handleSelect =
+    ({ description }) =>
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
+
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description }).then((results) => {
+        const { lat, lng } = getLatLng(results[0]);
+        console.log("📍 Coordinates: ", { lat, lng });
+      });
+    };
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+    });
   const toast = useToast();
   const [openTime, setOpenTime] = useState({
     Monday: "",
@@ -92,7 +148,7 @@ const Add_Community = () => {
       courts: parseInt(payload.Courts),
       latitude: "23.032",
       longitude: "29.456",
-      address: payload.location,
+      address: value,
       schedule,
     };
 
@@ -179,7 +235,10 @@ const Add_Community = () => {
           </select>
         </div>
       </div>
-      <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
+      <div
+        ref={ref}
+        className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 "
+      >
         {" "}
         <Image
           src="/utils/common/loc.svg"
@@ -197,11 +256,17 @@ const Add_Community = () => {
           placeholder="Location"
           required
           // ref={emailRef}
-          onChange={onOtherChange("location")}
-          value={payload.location}
+          // onChange={onOtherChange("location")}
+          onChange={handleInput}
+          // value={payload.location}
+          value={value}
+          // disabled={!ready}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
         />
+        {status === "OK" && (
+          <ul className="text-white">{renderSuggestions()}</ul>
+        )}
       </div>
       <div className="   py-10 flex gap-10 sm:gap-20">
         {" "}
@@ -212,8 +277,8 @@ const Add_Community = () => {
         </div>{" "}
       </div>
 
-      <div className="flex sm:ml-0 ml-20 gap-14 justify-end sm:w-[29%] pb-5 ">
-        <div className="w-[55%] sm:w-[55%] flex gap-5 sm:gap-16  ">
+      <div className="flex sm:ml-0 ml-20 gap-4 justify-end sm:w-[65%] pb-5 ">
+        <div className="w-[55%] justify-end flex mx-auto gap-20 sm:gap-20">
           <h1 className="text-left"> Open </h1>
           <h1 className="text-left"> Close </h1>
           {/* <TimePicker /> */}

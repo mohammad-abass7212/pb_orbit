@@ -9,7 +9,11 @@ const variants = {
 };
 const MainLayout = ({ children }) => {
   return (
-    <Box bg="#050017" style={{ fontFamily: "Poppins, sans-serif" }}>
+    <Box
+      bg="#050017"
+      height={"100vh"}
+      style={{ fontFamily: "Poppins, sans-serif" }}
+    >
       <motion.main
         initial="hidden"
         animate="enter"
@@ -17,7 +21,7 @@ const MainLayout = ({ children }) => {
         variants={variants}
         transition={{ type: "linear" }}
         className="
-                    flex flex-col items-start w-full pt-10
+                    flex flex-col items-start w-full 
                     px-8 sm:px-16 md:px-36 lg:px-52 xl:px-80 2xl:px-96
                     pt-24 h-full
                 "

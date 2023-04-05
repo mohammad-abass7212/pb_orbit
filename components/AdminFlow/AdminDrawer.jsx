@@ -4,17 +4,20 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Image from "next/image";
 const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
   return (
     <>
       {drop1 ? (
-        <div>
+        <div className="w-[100%] ">
           <div className="w-40 my-10">
-            <img
+            <Image
               className=""
               src="/utils/Common/logo.png"
               alt=""
               onClick={onclick}
+              width={100}
+              height={100}
             />
           </div>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
@@ -23,7 +26,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               className="hover:bg-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
-                <img src="/utils/common/dash.svg" alt="pborbit_logo" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/dash.svg"
+                  alt="pborbit_logo"
+                />
                 Dashboard
               </span>
             </li>
@@ -33,7 +41,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               className="hover:text-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
-                <img src="/utils/common/proflie.svg" alt="pborbit_logo" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/proflie.svg"
+                  alt="pborbit_logo"
+                />
                 Profile
               </span>
             </li>
@@ -42,8 +55,13 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               className="hover:text-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
-                <img src="/utils/common/sub.svg" alt="pborbit_logo" />
-               Add users
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/sub.svg"
+                  alt="pborbit_logo"
+                />
+                Add users
               </span>
             </li>
             <div className="group">
@@ -52,7 +70,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 onClick={() => setDrop(!drop)}
               >
                 <span className="flex gap-3">
-                  <img src="/utils/common/com.svg" alt="pborbit_logo" />
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/com.svg"
+                    alt="pborbit_logo"
+                  />
                   Community
                 </span>
                 <span className="">
@@ -86,14 +109,25 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             <div className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
-                  <img src="/utils/common/reser.svg" alt="reser" /> Reservations
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/reser.svg"
+                    alt="reser"
+                  />{" "}
+                  Reservations
                 </span>
               </li>
             </div>
 
             <li className="hover:text-white py-2 px-4 w-full">
               <span className="flex gap-3">
-                <img src="/utils/common/noti.svg" alt="noti" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/noti.svg"
+                  alt="noti"
+                />
                 Notification
               </span>
             </li>
@@ -101,7 +135,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             <div className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
-                  <img src="/utils/common/logout.svg" alt="logout" />
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/logout.svg"
+                    alt="logout"
+                  />
                   Logout
                 </span>
               </li>
@@ -113,14 +152,18 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
           <div className="w-80 my-10">
             {/* <img className="" src="/utils/Common/logo.png" alt=""  /> */}
             <div onClick={onclick} className="ml-5">
-              {" "}
-              <GiHamburgerMenu />{" "}
+              <GiHamburgerMenu className="invert" />{" "}
             </div>
           </div>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
             <li onClick={() => setDrop()} className=" py-2 px-4 w-full">
               <span className="flex gap-3">
-                <img src="/utils/common/dash.svg" alt="pborbit_logo" />
+                <Image
+                  src="/utils/common/dash.svg"
+                  alt="pborbit_logo"
+                  width={20}
+                  height={20}
+                />
               </span>
             </li>
 
@@ -129,7 +172,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               className="hover:text-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
-                <img src="/utils/common/proflie.svg" alt="pborbit_logo" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/proflie.svg"
+                  alt="pborbit_logo"
+                />
               </span>
             </li>
             <li
@@ -137,7 +185,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               className="hover:text-white py-2 px-4 w-full"
             >
               <span className="flex gap-3">
-                <img src="/utils/common/sub.svg" alt="pborbit_logo" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/sub.svg"
+                  alt="pborbit_logo"
+                />
               </span>
             </li>
             <div className="group">
@@ -146,7 +199,12 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 onClick={() => setDrop(!drop)}
               >
                 <span className="flex gap-3">
-                  <img src="/utils/common/com.svg" alt="pborbit_logo" />
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/com.svg"
+                    alt="pborbit_logo"
+                  />
                 </span>
                 <span className="">
                   {drop ? (
@@ -179,21 +237,36 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             <div className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
-                  <img src="/utils/common/reser.svg" alt="reser" />{" "}
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/reser.svg"
+                    alt="reser"
+                  />{" "}
                 </span>
               </li>
             </div>
 
             <li className="hover:text-white py-2 px-4 w-full">
               <span className="flex gap-3">
-                <img src="/utils/common/noti.svg" alt="noti" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/noti.svg"
+                  alt="noti"
+                />
               </span>
             </li>
 
             <div className="group">
               <li className="hover:text-white py-2 px-4 w-full flex justify-between">
                 <span className="flex gap-3">
-                  <img src="/utils/common/logout.svg" alt="logout" />
+                  <Image
+                    width={20}
+                    height={20}
+                    src="/utils/common/logout.svg"
+                    alt="logout"
+                  />
                 </span>
               </li>
             </div>

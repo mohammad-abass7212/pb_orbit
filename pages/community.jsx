@@ -20,10 +20,10 @@ const Community = () => {
   };
   return (
     <Box
-      height={"800px"}
+      height={"100vh"}
       bg="#050017"
-      // pt={["236px", "260px", "450px", "60px", "100px"]}
-      // pb={["170px", "400px", "400px", "40px", "40px"]}
+      pt={["236px", "260px", "450px", "60px", "100px"]}
+      pb={["170px", "400px", "400px", "40px", "40px"]}
       position="relative"
     >
       <Image

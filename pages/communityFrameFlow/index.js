@@ -21,7 +21,6 @@ import { Box } from "@chakra-ui/react";
 import ViewAllCommunity from "../../components/AdminFlow/viewAllCommunity";
 // import Searchbar from "@/components/AdminFlow/Searchbar";
 const CommunityframeFlow = () => {
- 
   const [drop1, setDrop1] = useState(true);
   const [we, setW] = useState("w-1/12");
   const onclick = () => {
@@ -44,8 +43,8 @@ const CommunityframeFlow = () => {
         <div
           className={
             drop1
-              ? "w-1/6 border-r-2 pb-5 hidden sm:block"
-              : "w-1/12 border-r-2 pb-5 hidden sm:block"
+              ? "w-1/6 border-r-2 pb-5 hidden min-h-screen sm:block"
+              : "w-1/12 border-r-2 pb-5 hidden min-h-screen sm:block"
           }
         >
           <AdminDrawer
@@ -56,7 +55,7 @@ const CommunityframeFlow = () => {
           />
         </div>
         <div className="w-[80%] py-5">
-          <div className=" border-b-2 pb-5 ">
+          <div className=" border-b-2  pb-5 ">
             <div className="flex justify-end" style={{ zIndex: 1 }}>
               {" "}
               <AvatarWithRipple src={"https://bit.ly/dan-abramov"} />
@@ -88,9 +87,7 @@ const CommunityframeFlow = () => {
             {drop === "Add Community" && <Add_Community />}
             {/* {true && <Payment_Page />} */}
             {drop === "View Community" && <ViewAllCommunity />}
-            {drop == "Addusers" && (
-              <Searchusernadd />
-            )}
+            {drop == "Addusers" && <Searchusernadd />}
           </div>
         </div>
       </Box>

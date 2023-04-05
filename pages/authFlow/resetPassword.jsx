@@ -17,16 +17,20 @@ import {
   USER_TYPE_HEADER,
 } from "../adminAuth/headers/adminRequestHeaders";
 import { CHANGE_PASSWORD_API_ENDPOINT } from "../api/apiVariables";
+import { useRouter } from "next/router";
 
 const ResetPassword = () => {
   const toast = useToast();
+  const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [newpassword, setNewPassword] = React.useState("");
   const [hidden, setHidden] = React.useState(true);
   const [hidden2, setHidden2] = React.useState(true);
-
+  const token = process.env.NEXT_PUBLIC_API_KEY;
+  console.log(token, "variable");
   const handleupdatePassword = async () => {
     const user_id = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
     if (!password || !newpassword) {
       toast({
         title: "Please enter your password.",
@@ -55,7 +59,9 @@ const ResetPassword = () => {
           {
             headers: {
               "Content-Type": CONTENT_TYPE_HEADER_LOGIN,
+              accept: "application/json",
               user_type: USER_TYPE_HEADER,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -69,7 +75,7 @@ const ResetPassword = () => {
           });
           setTimeout(() => {
             localStorage.clear();
-            router.push("/authflow/userSignin");
+            router.push("/authFlow/userSignin");
           }, 1000);
         } else {
           toast({
@@ -100,6 +106,7 @@ const ResetPassword = () => {
       pt={["236px", "260px", "450px", "60px", "100px"]}
       pb={["130px", "120px", "150px", "105px", "105px"]}
       position="relative"
+      height={"100vh"}
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
