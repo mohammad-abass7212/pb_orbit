@@ -15,13 +15,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
     localStorage.removeItem("token");
     // Redirect to login page
     router.push("/authFlow/userSignin");
-    toast({
-      description: "Sucessfully logout out!",
-      status: "sucess",
-      duration: 2000,
-      isClosable: true,
-      position: "top",
-    });
+    
   };
   return (
     <>
