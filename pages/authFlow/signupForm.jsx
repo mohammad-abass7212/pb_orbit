@@ -164,12 +164,12 @@ const SignupForm = () => {
   return (
     <AuthFlowLayout>
       <Box
-        height={"1000px"}
+        height={"100vh"}
         bg="#050017"
         pt={["80px", "120px", "120px", "120px", "100px"]}
         pb={["80px", "200px", "200px", "20px", "120px"]}
         position="relative"
-        mt={[-100]}
+        // mt={[-100]}
       >
         <Flex m={"auto"} w={["40%", "40%", "40%", "30%", "20%"]} mb={["20px"]}>
           <Image

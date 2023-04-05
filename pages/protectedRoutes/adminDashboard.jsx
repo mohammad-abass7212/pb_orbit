@@ -180,7 +180,12 @@ const Dashboard = () => {
                 className="h-48 lg:h-auto  w-24 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                 title="Woman holding a mug"
               >
-                <Image src={pickleparkdemo} alt="user" />
+                <Image
+                  src={pickleparkdemo}
+                  alt="user"
+                  width={100}
+                  height={100}
+                />
               </div>
               <div className="  bg-[#26203A] rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-4">

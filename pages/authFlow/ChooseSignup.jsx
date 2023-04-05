@@ -19,10 +19,12 @@ const chooseSignup = () => {
   return (
     <AuthFlowLayout>
       <Box
+        height={"100vh"}
         bg="#050017"
-        pt={["236px", "260px", "450px", "60px", "100px"]}
-        pb={["170px", "400px", "400px", "40px", "40px"]}
-        position="relative"
+        py={"20px"}
+        // pt={["236px", "260px", "450px", "60px", "100px"]}
+        // pb={["170px", "400px", "400px", "40px", "40px"]}
+        // position="relative"
       >
         <Image
           w={["80%", "41%", "41%", "41%", "41%"]}
