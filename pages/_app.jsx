@@ -48,15 +48,8 @@ export default function App({ Component, pageProps }) {
             <ChakraProvider theme={theme}>
               <ThemeProvider theme={theme}>
                 <Server></Server>
-<<<<<<< HEAD
-                <AnimatePresence true>
-                  <Client>
-                    <Component {...pageProps} />
-                  </Client>
-=======
-                <AnimatePresence exitBeforeEnter>
+                <AnimatePresence mode="wait">
                   <Client>{getLayout(<Component {...pageProps} />)}</Client>
->>>>>>> a7ad2469b2f9cb581ea09d375161a9f0075264ad
                 </AnimatePresence>
               </ThemeProvider>
             </ChakraProvider>
