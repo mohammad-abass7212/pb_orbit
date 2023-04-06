@@ -6,57 +6,26 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useEffect, useState } from "react";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
+import { Line } from "react-chartjs-2";
+
 import { api } from "../../pages/api/Base_ur";
 
 const Add_Community = () => {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: {},
-    debounce: 300,
-  });
-  console.log(value, "value");
-  const ref = useOnclickOutside(() => {
-    clearSuggestions();
-  });
+  // this.state = {
+  //       chartData: {
+  //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  //         datasets: [
+  //           {
+  //             label: 'Sales',
+  //             data: [12, 19, 3, 5, 2, 3],
+  //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
+  //             borderColor: 'rgba(255, 99, 132, 1)',
+  //             borderWidth: 1,
+  //           }
+  //         ]
+  //       }
+  //     };
 
-  const handleInput = (e) => {
-    setValue(e.target.value);
-  };
-  const handleSelect =
-    ({ description }) =>
-    () => {
-      setValue(description, false);
-      clearSuggestions();
-
-      getGeocode({ address: description }).then((results) => {
-        const { lat, lng } = getLatLng(results[0]);
-        console.log("📍 Coordinates: ", { lat, lng });
-      });
-    };
-
-  const renderSuggestions = () =>
-    data.map((suggestion) => {
-      const {
-        place_id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
-
-      return (
-        <li key={place_id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </li>
-      );
-    });
   const toast = useToast();
   const [openTime, setOpenTime] = useState({
     Monday: "",
@@ -263,10 +232,7 @@ const Add_Community = () => {
           </select>
         </div>
       </div>
-      <div
-        ref={ref}
-        className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 "
-      >
+      <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
         {" "}
         <Image
           src="/utils/common/loc.svg"
@@ -281,8 +247,8 @@ const Add_Community = () => {
           onClick={() => getLocation()}
           placeholder="Location"
           required
-          onChange={handleInput}
-          value={value}
+          onChange={onOtherChange("location")}
+          value={payload.location}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
         />
