@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete);
     };
   }, [router]);
-
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
       <motion.div
@@ -44,16 +44,16 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <HydrationProvider>
-          <ChakraProvider theme={theme}>
-            <ThemeProvider theme={theme}>
-              <Server></Server>
-              <AnimatePresence exitBeforeEnter>
-                <Client>
-                  <Component {...pageProps} />
-                </Client>
-              </AnimatePresence>
-            </ThemeProvider>
-          </ChakraProvider>
+          <Provider store={store}>
+            <ChakraProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <Server></Server>
+                <AnimatePresence exitBeforeEnter>
+                  <Client>{getLayout(<Component {...pageProps} />)}</Client>
+                </AnimatePresence>
+              </ThemeProvider>
+            </ChakraProvider>
+          </Provider>
         </HydrationProvider>
       </motion.div>
     </>
