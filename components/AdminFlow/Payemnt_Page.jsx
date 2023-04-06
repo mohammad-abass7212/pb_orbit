@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   Heading,
-  Icon,
   Image,
   Input,
   Text,

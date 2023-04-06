@@ -1,10 +1,9 @@
 import { Grid } from "@chakra-ui/react";
 import React from "react";
 import CardReservations from "../components/AdminFlow/CardReservations";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const viewAllreservations = () => {
+const ViewAllreservations = () => {
   const reservationCard = [
     {
       id: 1,
@@ -36,7 +35,7 @@ const viewAllreservations = () => {
   const [apiStatus, setApiStatus] = useState({
     inProgress: false,
     failed: false,
-    failMessage: "",
+    failMessage: "",  
   });
   const changeApiStatus = (inProgress, failMessage) => {
     setApiStatus({
@@ -83,4 +82,4 @@ const viewAllreservations = () => {
   );
 };
 
-export default viewAllreservations;
+export default ViewAllreservations;

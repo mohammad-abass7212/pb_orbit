@@ -1,11 +1,12 @@
-import { VStack, Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import MainLayout from "../components/layouts/MainLayout";
+import ViewAllCommunity from "../components/AdminFlow/viewAllCommunity";
+import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import Searchbar from "../components/AdminFlow/Searchbar";
-import Add_Community from "../components/AdminFlow/Community_additiion";
-
-const add_community_page = () => {
+import Payment_page from "../components/AdminFlow/Payemnt_Page";
+const Paymentpage = () => {
   return (
-    <Box bgColor={"#050017"}>
+    <MainLayout>
       <VStack
         position={"fixed"}
         left={"100px"}
@@ -25,19 +26,16 @@ const add_community_page = () => {
           />
         </Box>
         <Box>
-          <Text color={"white"} fontSize={"25px"}>
-            Communities
+          <Text pl={10} color={"white"} fontSize={"25px"}>
+            Payment Page
           </Text>
         </Box>
       </VStack>
-
-      <VStack justifyContent={"space-between"}>
-        <Box marginTop={"160px"}>
-          <Add_Community />
-        </Box>
-      </VStack>
-    </Box>
+      <Box bgColor={"#050017"} marginTop={-10}>
+        <Payment_page />
+      </Box>
+    </MainLayout>
   );
 };
 
-export default add_community_page;
+export default Paymentpage;

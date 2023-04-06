@@ -32,30 +32,37 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete);
     };
   }, [router]);
-
+  const getLayout = Component.getLayout || ((page) => page);
   return (
-    <motion.div
-      initial="pageInitial"
-      animate="pageAnimate"
-      variants={{
-        pageInitial: { opacity: 0 },
-        pageAnimate: { opacity: 1 },
-      }}
-    >
-      <HydrationProvider>
-        <Provider store={store}>
-          <ChakraProvider theme={theme}>
-            <ThemeProvider theme={theme}>
-              <Server></Server>
-              <AnimatePresence exitBeforeEnter>
-                <Client>
-                  <Component {...pageProps} />
-                </Client>
-              </AnimatePresence>
-            </ThemeProvider>
-          </ChakraProvider>
-        </Provider>
-      </HydrationProvider>
-    </motion.div>
+    <>
+      <motion.div
+        initial="pageInitial"
+        animate="pageAnimate"
+        variants={{
+          pageInitial: { opacity: 0 },
+          pageAnimate: { opacity: 1 },
+        }}
+      >
+        <HydrationProvider>
+          <Provider store={store}>
+            <ChakraProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <Server></Server>
+<<<<<<< HEAD
+                <AnimatePresence true>
+                  <Client>
+                    <Component {...pageProps} />
+                  </Client>
+=======
+                <AnimatePresence exitBeforeEnter>
+                  <Client>{getLayout(<Component {...pageProps} />)}</Client>
+>>>>>>> a7ad2469b2f9cb581ea09d375161a9f0075264ad
+                </AnimatePresence>
+              </ThemeProvider>
+            </ChakraProvider>
+          </Provider>
+        </HydrationProvider>
+      </motion.div>
+    </>
   );
 }
