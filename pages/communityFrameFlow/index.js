@@ -13,7 +13,7 @@ import searchUserNAddPage from "../searchUserNAddPage.jsx";
 import ViewAllCommunity from "../../components/AdminFlow/ViewAllCommunity.jsx";
 import No_user_Screen from "../../components/AdminFlow/No_user_Screen.jsx";
 import Edit_Profile from "../Edit_Profile.jsx";
-import Add_Community from "../../components/AdminFlow/Add_Community.jsx";
+import Add_Community from "../../components/AdminFlow/Community_additiion.jsx";
 import { useSelector } from "react-redux";
 import Dashboard from "../protectedRoutes/adminDashboard.jsx";
 

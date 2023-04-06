@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
-import { api } from "../../pages/api/Base_ur";
+import { api } from "../../pages/api/Base_url";
 
 const Add_Community = () => {
   // this.state = {
