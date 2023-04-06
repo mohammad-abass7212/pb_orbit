@@ -11,6 +11,7 @@ const MainLayout = ({ children }) => {
   return (
     <Box
       bg="#050017"
+      bgColor={"#050017"}
       height={"100vh"}
       style={{ fontFamily: "Poppins, sans-serif" }}
     >

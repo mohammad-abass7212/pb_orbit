@@ -11,7 +11,6 @@ import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
 import { useRouter } from "next/router";
-import Script from "next/script";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -33,7 +32,7 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete);
     };
   }, [router]);
-
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
       <motion.div
@@ -45,19 +44,25 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <HydrationProvider>
-          <ChakraProvider theme={theme}>
-            <ThemeProvider theme={theme}>
-              <Server></Server>
-              <AnimatePresence exitBeforeEnter>
-                <Client>
-                  <Component {...pageProps} />
-                </Client>
-              </AnimatePresence>
-            </ThemeProvider>
-          </ChakraProvider>
+          <Provider store={store}>
+            <ChakraProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <Server></Server>
+<<<<<<< HEAD
+                <AnimatePresence true>
+                  <Client>
+                    <Component {...pageProps} />
+                  </Client>
+=======
+                <AnimatePresence exitBeforeEnter>
+                  <Client>{getLayout(<Component {...pageProps} />)}</Client>
+>>>>>>> a7ad2469b2f9cb581ea09d375161a9f0075264ad
+                </AnimatePresence>
+              </ThemeProvider>
+            </ChakraProvider>
+          </Provider>
         </HydrationProvider>
       </motion.div>
-      {/* <Script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></Script> */}
     </>
   );
 }

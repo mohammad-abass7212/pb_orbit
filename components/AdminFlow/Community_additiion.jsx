@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
-import { position, useToast } from "@chakra-ui/react";
+import { Button, position, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
-import { api } from "../../pages/api/Base_ur";
+import { api } from "../../pages/api/Base_url";
 
 const Add_Community = () => {
   // this.state = {
@@ -45,8 +45,6 @@ const Add_Community = () => {
     Satuday: "",
     Sunday: "",
   });
-  // const [value2, setValue2] = useState("20:00");
-  // const [value, setValue] = useState("21:00");
   const [payload, setPayload] = useState({
     name: "",
     Courts: "",
@@ -122,8 +120,8 @@ const Add_Community = () => {
         // Handle the error
       });
   };
-  // geoLocaiton logic below
 
+  // geoLocaiton logic below
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPostion, showError);
@@ -155,7 +153,6 @@ const Add_Community = () => {
     }
   };
   // google geolocation service will be integrated here
-  const apiKey = "";
   const fetchLocaionUsingApi = async ({ latitude, longitude }) => {
     const res = await fetch(`https://ipapi.co/json/`);
     const data = await res.json();
@@ -198,13 +195,10 @@ const Add_Community = () => {
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
-            // value={formData.email}
-            // onChange={handleInputChange}
             onChange={onOtherChange("name")}
             value={payload.name}
             placeholder="Community Name"
             required
-            // ref={emailRef}
             autoComplete={"off"}
             className="outline-none bg-[#050017] "
           />
@@ -221,12 +215,10 @@ const Add_Community = () => {
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
-            // value={formData.email}
             onChange={onOtherChange("Courts")}
             value={payload.Courts}
             placeholder="Number of Courts"
             required
-            // ref={emailRef}
             autoComplete={"off"}
             className="outline-none bg-[#050017] "
           >
@@ -249,6 +241,7 @@ const Add_Community = () => {
           height={20}
         />
         <input
+          color="white"
           _placeholder={{ color: "#656565" }}
           type={"tel"}
           onClick={() => getLocation()}
@@ -280,7 +273,6 @@ const Add_Community = () => {
         <div className="w-[55%] justify-end flex mx-auto gap-20 sm:gap-20">
           <h1 className="text-left"> Open </h1>
           <h1 className="text-left"> Close </h1>
-          {/* <TimePicker /> */}
         </div>
       </div>
       <div className="flex flex-col gap-4  ">
@@ -299,7 +291,6 @@ const Add_Community = () => {
               onChange={handleClosingTimeChange("Monday")}
               value={closingTime.Monday}
             />
-            {/* <TimePicker /> */}
           </div>
         </div>
         <div className="flex gap-14 ">
@@ -406,12 +397,12 @@ const Add_Community = () => {
         </div>
       </div>
       <div className="my-10 ">
-        <button
+        <Button
           onClick={handlePayment}
           className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28"
         >
           Create Community
-        </button>
+        </Button>
       </div>
 
       <p className="text-center text-white">

@@ -5,7 +5,7 @@ import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import Searchbar from "../components/AdminFlow/Searchbar";
 import { useRef } from "react";
 import Link from "next/link";
-const viewAllCommunityPage = () => {
+const ViewAllCommunityPage = () => {
   return (
     <MainLayout>
       <VStack
@@ -75,4 +75,4 @@ const viewAllCommunityPage = () => {
   );
 };
 
-export default viewAllCommunityPage;
+export default ViewAllCommunityPage;

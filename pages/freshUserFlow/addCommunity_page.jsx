@@ -1,7 +1,7 @@
 import { VStack, Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import Searchbar from "../components/AdminFlow/Searchbar";
-import Add_Community from "../components/AdminFlow/Community_additiion";
+import Searchbar from "../../components/AdminFlow/Searchbar";
+import Add_Community from "../../components/AdminFlow/Community_additiion";
 
 const add_community_page = () => {
   return (

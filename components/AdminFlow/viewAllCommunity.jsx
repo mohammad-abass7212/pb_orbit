@@ -1,7 +1,7 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CommonUserCard from "./CommonUserCard";
-import { api } from "../../pages/api/Base_ur";
+import { api } from "../../pages/api/Base_url";
 const cards = [
   {
     name: "Alaanice",
@@ -35,7 +35,7 @@ const cards = [
   },
 ];
 
-function ViewAllCommunity() {
+function ShowAllCommunity() {
   const [card, setCard] = useState([]);
   const [apiStatus, setApiStatus] = useState({
     inProgress: false,
@@ -84,4 +84,4 @@ function ViewAllCommunity() {
     </Grid>
   );
 }
-export default ViewAllCommunity;
+export default ShowAllCommunity;
