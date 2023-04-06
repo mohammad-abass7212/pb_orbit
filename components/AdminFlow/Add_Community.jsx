@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+
 import { api } from "../../pages/api/Base_ur";
 
 const Add_Community = () => {
@@ -24,6 +25,7 @@ const Add_Community = () => {
   //         ]
   //       }
   //     };
+
   const toast = useToast();
   const [openTime, setOpenTime] = useState({
     Monday: "",
@@ -91,7 +93,7 @@ const Add_Community = () => {
       courts: parseInt(payload.Courts),
       latitude: "23.032",
       longitude: "29.456",
-      address: payload.location,
+      address: value,
       schedule,
     };
 
@@ -249,18 +251,17 @@ const Add_Community = () => {
         <input
           _placeholder={{ color: "#656565" }}
           type={"tel"}
-          // name="email"
-          // value={formData.email}
-          // onChange={handleInputChange}
           onClick={() => getLocation()}
           placeholder="Location"
           required
-          // ref={emailRef}
           onChange={onOtherChange("location")}
           value={payload.location}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
         />
+        {status === "OK" && (
+          <ul className="text-white">{renderSuggestions()}</ul>
+        )}
       </div>
       <div className="   py-10 flex gap-10 sm:gap-20">
         {" "}
@@ -275,8 +276,8 @@ const Add_Community = () => {
         </div>{" "}
       </div>
 
-      <div className="flex sm:ml-0 ml-20 gap-14 justify-end sm:w-[29%] pb-5 ">
-        <div className="w-[55%] sm:w-[55%] flex gap-5 sm:gap-16  ">
+      <div className="flex sm:ml-0 ml-20 gap-4 justify-end sm:w-[65%] pb-5 ">
+        <div className="w-[55%] justify-end flex mx-auto gap-20 sm:gap-20">
           <h1 className="text-left"> Open </h1>
           <h1 className="text-left"> Close </h1>
           {/* <TimePicker /> */}

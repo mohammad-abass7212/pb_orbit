@@ -11,6 +11,7 @@ import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
 import { useRouter } from "next/router";
+import Script from "next/script";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -34,16 +35,16 @@ export default function App({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <motion.div
-      initial="pageInitial"
-      animate="pageAnimate"
-      variants={{
-        pageInitial: { opacity: 0 },
-        pageAnimate: { opacity: 1 },
-      }}
-    >
-      <HydrationProvider>
-        <Provider store={store}>
+    <>
+      <motion.div
+        initial="pageInitial"
+        animate="pageAnimate"
+        variants={{
+          pageInitial: { opacity: 0 },
+          pageAnimate: { opacity: 1 },
+        }}
+      >
+        <HydrationProvider>
           <ChakraProvider theme={theme}>
             <ThemeProvider theme={theme}>
               <Server></Server>
@@ -54,8 +55,9 @@ export default function App({ Component, pageProps }) {
               </AnimatePresence>
             </ThemeProvider>
           </ChakraProvider>
-        </Provider>
-      </HydrationProvider>
-    </motion.div>
+        </HydrationProvider>
+      </motion.div>
+      {/* <Script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></Script> */}
+    </>
   );
 }
