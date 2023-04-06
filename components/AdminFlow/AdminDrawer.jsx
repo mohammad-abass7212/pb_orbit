@@ -175,7 +175,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             {/* <img className="" src="/utils/Common/logo.png" alt=""  /> */}
             <Box onClick={onclick} className="ml-5">
               {" "}
-              <GiHamburgerMenu />{" "}
+              <GiHamburgerMenu className="invert" />{" "}
             </Box>
           </Box>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">

@@ -24,6 +24,7 @@ const CommunityframeFlow = () => {
     setDrop1(!drop1);
     setW("w-1/6");
   };
+  console.log(drop1, "drop1>>>>>");
   const currentPage = useSelector((state) => state.currentPage);
   const [drop, setDrop] = useState(currentPage);
   useEffect(() => {}, [currentPage]);
@@ -41,11 +42,11 @@ const CommunityframeFlow = () => {
         <Box
           className={
             drop1
-              ? "w-1/6 border-r-2 pb-5 hidden sm:block"
-              : "w-1/12 border-r-2 pb-5 hidden sm:block"
+              ? " border-r-2 pb-5 hidden sm:block"
+              : " border-r-2 pb-5 hidden sm:block"
           }
         ></Box>
-        <Box className="w-[80%] py-5">
+        <Box className="w-[100%] py-5">
           <Box className=" border-b-2 pb-5 ">
             <Box className="flex justify-end" style={{ zIndex: 1 }}>
               {" "}

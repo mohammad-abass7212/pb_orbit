@@ -11,7 +11,6 @@ import theme from "@/theme";
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 import { ThemeProvider } from "styled-components";
 import { useRouter } from "next/router";
-import Script from "next/script";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -57,7 +56,6 @@ export default function App({ Component, pageProps }) {
           </ChakraProvider>
         </HydrationProvider>
       </motion.div>
-      {/* <Script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></Script> */}
     </>
   );
 }
