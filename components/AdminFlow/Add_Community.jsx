@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
-import { position, useToast } from "@chakra-ui/react";
+import { Button, position, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -405,12 +405,12 @@ const Add_Community = () => {
         </div>
       </div>
       <div className="my-10 ">
-        <button
+        <Button
           onClick={handlePayment}
           className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28"
         >
           Create Community
-        </button>
+        </Button>
       </div>
 
       <p className="text-center text-white">

@@ -1,7 +1,7 @@
 import CustomButton from "@/components/CustomButton";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentPage } from "../../reduxStore/actions";
+import setCurrentPage from "../../reduxStore/actions";
 import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
