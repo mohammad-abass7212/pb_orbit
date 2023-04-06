@@ -98,6 +98,10 @@ body {
 #animatedImage {
   animation: showup 5s infinite;
 }
+.Admin_nav_bg_black {
+  background-color: #050017;
+  border-bottom: 2px solid #fff;
+}
 #text_animate_helper {
   width: 0px;
   animation: reveal 5s infinite;
