@@ -6,24 +6,57 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 import { api } from "../../pages/api/Base_ur";
 
 const Add_Community = () => {
-  // this.state = {
-  //       chartData: {
-  //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-  //         datasets: [
-  //           {
-  //             label: 'Sales',
-  //             data: [12, 19, 3, 5, 2, 3],
-  //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-  //             borderColor: 'rgba(255, 99, 132, 1)',
-  //             borderWidth: 1,
-  //           }
-  //         ]
-  //       }
-  //     };
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {},
+    debounce: 300,
+  });
+  console.log(value, "value");
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
+  const handleSelect =
+    ({ description }) =>
+    () => {
+      setValue(description, false);
+      clearSuggestions();
+
+      getGeocode({ address: description }).then((results) => {
+        const { lat, lng } = getLatLng(results[0]);
+        console.log("📍 Coordinates: ", { lat, lng });
+      });
+    };
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+    });
   const toast = useToast();
   const [openTime, setOpenTime] = useState({
     Monday: "",
@@ -43,8 +76,6 @@ const Add_Community = () => {
     Satuday: "",
     Sunday: "",
   });
-  // const [value2, setValue2] = useState("20:00");
-  // const [value, setValue] = useState("21:00");
   const [payload, setPayload] = useState({
     name: "",
     Courts: "",
@@ -91,7 +122,7 @@ const Add_Community = () => {
       courts: parseInt(payload.Courts),
       latitude: "23.032",
       longitude: "29.456",
-      address: payload.location,
+      address: value,
       schedule,
     };
 
@@ -120,8 +151,8 @@ const Add_Community = () => {
         // Handle the error
       });
   };
-  // geoLocaiton logic below
 
+  // geoLocaiton logic below
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPostion, showError);
@@ -153,7 +184,6 @@ const Add_Community = () => {
     }
   };
   // google geolocation service will be integrated here
-  const apiKey = "";
   const fetchLocaionUsingApi = async ({ latitude, longitude }) => {
     const res = await fetch(`https://ipapi.co/json/`);
     const data = await res.json();
@@ -196,13 +226,10 @@ const Add_Community = () => {
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
-            // value={formData.email}
-            // onChange={handleInputChange}
             onChange={onOtherChange("name")}
             value={payload.name}
             placeholder="Community Name"
             required
-            // ref={emailRef}
             autoComplete={"off"}
             className="outline-none bg-[#050017] "
           />
@@ -219,12 +246,10 @@ const Add_Community = () => {
             _placeholder={{ color: "#656565" }}
             type={"tel"}
             name="email"
-            // value={formData.email}
             onChange={onOtherChange("Courts")}
             value={payload.Courts}
             placeholder="Number of Courts"
             required
-            // ref={emailRef}
             autoComplete={"off"}
             className="outline-none bg-[#050017] "
           >
@@ -238,7 +263,10 @@ const Add_Community = () => {
           </select>
         </div>
       </div>
-      <div className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 ">
+      <div
+        ref={ref}
+        className="flex  w-[18rem] sm:w-[22rem] my-5  bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 pr-10 "
+      >
         {" "}
         <Image
           src="/utils/common/loc.svg"
@@ -247,20 +275,20 @@ const Add_Community = () => {
           height={20}
         />
         <input
+          color="white"
           _placeholder={{ color: "#656565" }}
           type={"tel"}
-          // name="email"
-          // value={formData.email}
-          // onChange={handleInputChange}
           onClick={() => getLocation()}
           placeholder="Location"
           required
-          // ref={emailRef}
-          onChange={onOtherChange("location")}
-          value={payload.location}
+          onChange={handleInput}
+          value={value}
           autoComplete={"off"}
           className="outline-none bg-[#050017]  "
         />
+        {status === "OK" && (
+          <ul className="text-white">{renderSuggestions()}</ul>
+        )}
       </div>
       <div className="   py-10 flex gap-10 sm:gap-20">
         {" "}
@@ -275,11 +303,10 @@ const Add_Community = () => {
         </div>{" "}
       </div>
 
-      <div className="flex sm:ml-0 ml-20 gap-14 justify-end sm:w-[29%] pb-5 ">
-        <div className="w-[55%] sm:w-[55%] flex gap-5 sm:gap-16  ">
+      <div className="flex sm:ml-0 ml-20 gap-4 justify-end sm:w-[65%] pb-5 ">
+        <div className="w-[55%] justify-end flex mx-auto gap-20 sm:gap-20">
           <h1 className="text-left"> Open </h1>
           <h1 className="text-left"> Close </h1>
-          {/* <TimePicker /> */}
         </div>
       </div>
       <div className="flex flex-col gap-4  ">
@@ -298,7 +325,6 @@ const Add_Community = () => {
               onChange={handleClosingTimeChange("Monday")}
               value={closingTime.Monday}
             />
-            {/* <TimePicker /> */}
           </div>
         </div>
         <div className="flex gap-14 ">

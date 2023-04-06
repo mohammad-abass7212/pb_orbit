@@ -1,24 +1,8 @@
 import Head from "next/head";
-// import { Inter } from "@next/font/google";
-import { useRouter } from "next/router";
-import {
-  Box,
-  Image,
-  Button,
-  Center,
-  Grid,
-  GridItem,
-  Heading,
-  Text,
-  Flex,
-} from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import Home from "./Home";
 import { AnimatePresence } from "framer-motion";
-import MainLayout from "@/components/layouts/MainLayout";
-
 function Homee() {
-  // current URL path
-
   return (
     <Box>
       <Head>
@@ -49,7 +33,6 @@ function Homee() {
               style={{
                 position: "absolute",
                 right: "-20px",
-                // left: "1140px",
                 top: "940px",
                 zIndex: 1,
               }}
