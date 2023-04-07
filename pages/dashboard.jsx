@@ -2,7 +2,6 @@ import React from "react";
 import Tabview from "../components/AdminFlow/Tabview";
 import CommunityDetail from "../components/AdminFlow/CommunityDetail";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import Searchbar from "../components/AdminFlow/Searchbar";
 import RippleAvatar from "../components/RippleAvatar";
 import { useState } from "react";
 const Dashboard = () => {
@@ -15,7 +14,6 @@ const Dashboard = () => {
       <Box border={"1px solid white"}></Box>
       <br />
       <Box>
-       
         <Tabview firstTab={"All Users"} secondTab={"Request"} />
       </Box>
     </Box>

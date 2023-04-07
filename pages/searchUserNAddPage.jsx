@@ -1,12 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { countries } from "../components/countries";
-import Searchusernadd from "../components/AdminFlow/SearchUserNAdd";
+import Searchusernadd from "../components/AdminFlow/Searchusernadd";
 import { useState } from "react";
 import { useEffect } from "react";
-import AddUserCardUtils from "../components/AdminFlow/AddUserCardUtils";
-import Edit_Profile from "./Edit_Profile";
-import CardReservations from "../components/AdminFlow/CardReservations";
 const Searchuseradd = () => {
   const [query, setquery] = useState("");
   const [data, setData] = useState([]);

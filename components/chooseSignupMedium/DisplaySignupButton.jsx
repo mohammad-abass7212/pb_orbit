@@ -2,6 +2,7 @@ import { Box, Image } from "@chakra-ui/react";
 import ChooseSignupMedium from "./ChooseSignupMedium";
 
 const DisplaySignupBtn = ({}) => {
+ 
   return (
     <>
       <ChooseSignupMedium

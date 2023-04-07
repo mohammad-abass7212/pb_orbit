@@ -10,7 +10,7 @@ import { Line } from "react-chartjs-2";
 
 import { api } from "../../pages/api/Base_url";
 
-const Add_Community = () => {
+const Community_addition = () => {
   // this.state = {
   //       chartData: {
   //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -412,4 +412,4 @@ const Add_Community = () => {
   );
 };
 
-export default Add_Community;
+export default Community_addition;

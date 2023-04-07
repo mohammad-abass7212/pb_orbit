@@ -5,9 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import userGroup from "../../assets/images/userGroup.png";
 import pickleparkdemo from "../../assets/images/pickleparkdemo.png";
 import Avater from "../../assets/images/Avatar.png";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
-import Admin from "../../components//layouts/admin";
+import { Heading, Text } from "@chakra-ui/react";
 import React from "react";
 ChartJS.register(ArcElement, Tooltip);
 const Dashboard = () => {
@@ -29,7 +27,6 @@ const Dashboard = () => {
   };
   const [drop, setDrop] = React.useState("adminDashboard");
   return (
-    // <Flex backgroundColor={"#050017"} margin={"auto"} pr={10}>
     <section className="   min-h-screen" id="wrapper">
       <div className={` pb-5 pt-20 sm:pt-28 lg:pt-[126px]  `}>
         <div className="flex flex-col justify-center items-center mb-5">
