@@ -1,11 +1,11 @@
 import React from "react";
-import MainLayout from "../components/layouts/MainLayout";
-import ShowAllCommunity from "../components/AdminFlow/ShowAllCommunity";
+import MainLayout from "../../components/layouts/MainLayout";
+import ShowAllCommunity from "../../components/AdminFlow/ShowAllCommunity";
 import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import Searchbar from "../components/AdminFlow/Searchbar";
+import Searchbar from "../../components/AdminFlow/Searchbar";
 import { useRef } from "react";
 import Link from "next/link";
-const ViewAllCommunityPage = () => {
+const ViewEveryCommunity = () => {
   return (
     <MainLayout>
       <VStack
@@ -75,4 +75,4 @@ const ViewAllCommunityPage = () => {
   );
 };
 
-export default ViewAllCommunityPage;
+export default ViewEveryCommunity;

@@ -302,7 +302,6 @@ const SignupForm = () => {
                   <IoEyeOutline
                     size={"20px"}
                     color="white"
-                    src="/utils/common/hide-2.svg"
                     alt="pborbit_logo"
                     onClick={togglePasswordVisibility}
                   />
@@ -310,7 +309,6 @@ const SignupForm = () => {
                   <RiEyeCloseLine
                     size={"20px"}
                     color="white"
-                    src="/utils/common/hide-2.svg"
                     alt="pborbit_logo"
                     onClick={togglePasswordVisibility}
                   />
@@ -385,7 +383,7 @@ const SignupForm = () => {
               btnBorderRadius={["15px"]}
               mb={[]}
               iconVisStatus={false}
-              btnHoverColor=""
+              btnHoverColor="orange"
               fontSize={[]}
             />
           </Box>

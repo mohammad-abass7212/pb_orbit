@@ -296,7 +296,9 @@ const OtpForm = () => {
               </Text>
             )}
           </Box>
-          {counter == 0 ? null : <Box color={"grey.100"}>{formattedCounter}</Box>}
+          {counter == 0 ? null : (
+            <Box color={"grey.100"}>{formattedCounter}</Box>
+          )}
         </Flex>
         <CustomButton
           mt={["20px", "15px"]}
