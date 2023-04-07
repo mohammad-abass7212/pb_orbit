@@ -1,9 +1,8 @@
 import { VStack, Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import Searchbar from "../../components/AdminFlow/Searchbar";
 import Community_addition from "../../components/AdminFlow/Community_addition";
 
-const AddCommunity_page = () => {
+const AddCommunityPage = () => {
   return (
     <Box bgColor={"#050017"}>
       <VStack
@@ -40,4 +39,4 @@ const AddCommunity_page = () => {
   );
 };
 
-export default AddCommunity_page;
+export default AddCommunityPage;

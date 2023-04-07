@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../../components/layouts/MainLayout";
 import Payment_Done from "../../components/AdminFlow/Payment_Done";
 import { Box, Image, Text, VStack } from "@chakra-ui/react";
-function paymentSuccessful() {
+const paymentSuccess = () => {
   return (
     <MainLayout>
       <Box height={"100vh"}>
@@ -36,6 +36,6 @@ function paymentSuccessful() {
       </Box>
     </MainLayout>
   );
-}
+};
 
-export default paymentSuccessful;
+export default paymentSuccess;

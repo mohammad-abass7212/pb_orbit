@@ -31,11 +31,17 @@ const ViewEveryCommunity = () => {
             Communities
           </Text>
           <Box pb={"15px"}>
-            <Link href={"/add_community_page"}>
+            <Link href={"/freshUserFlow/AddCommunityPage"}>
               <Button
                 color={"white"}
                 bgColor={"#00E276"}
-                _hover={{ bgColor: "#FF6600" }}
+                _hover={{
+                  bgColor: "orange",
+                  transform: "translateY(-5px)",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+                  padding: "12px 16px",
+                }}
+                borderRadius={"15px"}
               >
                 Create Community
               </Button>
@@ -49,7 +55,7 @@ const ViewEveryCommunity = () => {
           margin={"auto"}
         ></Box>
       </VStack>
-      <Flex position={"fixed"} left={"100px"} top={"140px"} zIndex={1}>
+      <Flex position={"fixed"} left={"100px"} top={"160px"} zIndex={1}>
         <Searchbar />
       </Flex>
 

@@ -9,12 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
+import CustomButton from "../../components/CustomButton";
 
-const Payemnt_Page = () => {
+const PaymentPageComponent = () => {
   const router = useRouter();
   const toast = useToast();
   const handlePayment = () => {
-    router.push("/paymentSuccessful");
+    router.push("/freshUserFlow/paymentSuccess");
     toast({
       description: "Payment Sucess!",
       status: "success",
@@ -165,12 +166,19 @@ const Payemnt_Page = () => {
               </Box>{" "}
               <Box className="w-1/2 m-auto">
                 {" "}
-                <button
+                <CustomButton
                   onClick={handlePayment}
+                  text={"Pay Now"}
+                  btnDisabled={false}
+                  buttonBgColor={"#00E276"}
+                  customHeight={["50px"]}
+                  widthArray={["250px"]}
+                  btnBorderRadius={"15px"}
+                  iconVisStatus={false}
+                  color={"white"}
+                  //  spinner={}
                   className="bg-[#00E276] p-3 rounded-lg sm:px-28"
-                >
-                  Pay Now
-                </button>
+                />
               </Box>
             </Box>
           </Box>
@@ -180,4 +188,4 @@ const Payemnt_Page = () => {
   );
 };
 
-export default Payemnt_Page;
+export default PaymentPageComponent;

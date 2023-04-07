@@ -1,32 +1,23 @@
-import CustomButton from "@/components/CustomButton";
 import { CREATE_COMMUNITY_API_ENDPOINT } from "@/pages/api/apiVariables";
 import { Button, position, useToast } from "@chakra-ui/react";
+import CustomButton from "@/components/CustomButton";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // import  TimePicker  from "react-ios-time-picker";
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
 
 import { api } from "../../pages/api/Base_url";
 
 const Community_addition = () => {
-  // this.state = {
-  //       chartData: {
-  //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-  //         datasets: [
-  //           {
-  //             label: 'Sales',
-  //             data: [12, 19, 3, 5, 2, 3],
-  //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-  //             borderColor: 'rgba(255, 99, 132, 1)',
-  //             borderWidth: 1,
-  //           }
-  //         ]
-  //       }
-  //     };
+  const [latitudeValue, setLatitudeValue] = useState("");
+
+  const [longitudeValue, setLongitudeValue] = useState("");
+
+  const [apiResponseState, setApiResponseState] = useState(false);
 
   const toast = useToast();
+
   const [openTime, setOpenTime] = useState({
     Monday: "",
     Tueday: "",
@@ -62,8 +53,6 @@ const Community_addition = () => {
 
   const router = useRouter();
 
-  const [paymentTrigger, setPaymentTrigger] = useState(false);
-
   // input taking and axios logic below
   const handlePayment = async () => {
     const token = localStorage.getItem("token");
@@ -89,33 +78,52 @@ const Community_addition = () => {
     const data = {
       community_name: payload.name,
       courts: parseInt(payload.Courts),
-      latitude: "23.032",
-      longitude: "29.456",
-      address: value,
+      latitude: latitudeValue.toString(),
+      longitude: longitudeValue.toString(),
+      address: payload.location,
       schedule,
     };
-
+    // console.log(
+    //   "courts>>>>>",
+    //   data.courts,
+    //   "community_name>>>>>",
+    //   data.community_name,
+    //   "latitudeValue>>",
+    //   data.longitude,
+    //   typeof data.longitude,
+    //   "longitudeValue>>",
+    //   data.longitude,
+    //   typeof data.longitude,
+    //   "courts>>",
+    //   typeof data.courts,
+    //   "address>>",
+    //   typeof data.address
+    // );
+    setApiResponseState(true);
     await api
       .post("/community/create", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        setApiResponseState(false);
         console.log(response, "community");
         toast({
-          title: " request submitted successfully!",
+          title: response.message,
           description: response?.message,
           status: "success",
           duration: 9000,
           isClosable: true,
           position: "top",
         });
+
         setTimeout(() => {
-          router.push("/paymentPage");
+          router.push("/freshUserFlow/paymentPage");
         }, 2000);
 
         // Do something with the response
       })
       .catch((error) => {
+        setApiResponseState(false);
         console.log(error);
         // Handle the error
       });
@@ -132,30 +140,67 @@ const Community_addition = () => {
   const showPostion = (position) => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    fetchLocaionUsingApi(latitude, longitude);
+
+    setLatitudeValue(latitude);
+    setLongitudeValue(longitude);
+
+    fetchLocationUsingApi(latitude, longitude);
   };
   const showError = (error) => {
     switch (error.code) {
       case error.PERMISSION_DENIED:
-        alert("User denied the request for Geolocation");
+        toast({
+          title: "User denied the request for Geolocation",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
         break;
       case error.POSITION_UNAVAILABLE:
-        alert("Location information is unavailable");
+        toast({
+          title: "Location information is unavailable",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
+
         break;
       case error.TIMEOUT:
-        alert("The request to get the user location timed out");
+        toast({
+          title: "The request to get the user location timed out",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
+
         break;
       case error.UNKNOWN_ERROR:
-        alert("An unknown error occured");
+        toast({
+          title: "An unknown error occured",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
         break;
       default:
-        alert("An unknown error occured");
+        toast({
+          title: "An unknown error occured",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top",
+        });
     }
   };
   // google geolocation service will be integrated here
-  const fetchLocaionUsingApi = async ({ latitude, longitude }) => {
+  const fetchLocationUsingApi = async ({ latitude, longitude }) => {
     const res = await fetch(`https://ipapi.co/json/`);
     const data = await res.json();
+    console.log(data);
     setPayload({
       location: data.city,
     });
@@ -185,7 +230,7 @@ const Community_addition = () => {
       <div className="sm:gap-8 sm:flex ">
         <div className=" w-[18rem] sm:w-[22rem] flex bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4  ">
           {" "}
-          <Image
+          <img
             src="/utils/common/com.svg"
             alt="pborbit_logo"
             width={20}
@@ -205,7 +250,7 @@ const Community_addition = () => {
         </div>
         <div className="flex w-[18rem] sm:w-[22rem] bg-[#050017] gap-4 border-collapse border border-[#656565] rounded-lg p-4 ">
           {" "}
-          <Image
+          <img
             src="/utils/common/court.svg"
             alt="pborbit_logo"
             width={20}
@@ -397,12 +442,19 @@ const Community_addition = () => {
         </div>
       </div>
       <div className="my-10 ">
-        <Button
+        <CustomButton
           onClick={handlePayment}
+          text={"Create Community"}
+          btnDisabled={false}
+          buttonBgColor={"#00E276"}
+          customHeight={["50px"]}
+          widthArray={["340px"]}
+          btnBorderRadius={"15px"}
+          iconVisStatus={false}
+          color={"white"}
+          //  spinner={}
           className="bg-[#00E276] p-3 text-white rounded-lg px-10 sm:px-28"
-        >
-          Create Community
-        </Button>
+        />
       </div>
 
       <p className="text-center text-white">

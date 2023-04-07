@@ -11,6 +11,8 @@ module.exports = {
     "./components/AdminFlow/CardRequest.jsx",
     "./pages/communityFrameFlow/index.js",
     "./pages/protectedRoutes/adminDashboard.jsx",
+    "./pages/fresUserFlow/AddCommunityPage.jsx",
+    "./components/AdminFlow/Community_addition.jsx",
   ],
   theme: {
     container: {
