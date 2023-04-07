@@ -91,7 +91,7 @@ const Add_Community = () => {
       courts: parseInt(payload.Courts),
       latitude: "23.032",
       longitude: "29.456",
-      address: value,
+      address: payload.location,
       schedule,
     };
 

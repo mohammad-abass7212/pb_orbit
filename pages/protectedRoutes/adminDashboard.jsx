@@ -6,9 +6,6 @@ import userGroup from "../../assets/images/userGroup.png";
 import pickleparkdemo from "../../assets/images/pickleparkdemo.png";
 import Avater from "../../assets/images/Avatar.png";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import AdminDrawer from "../../components/AdminFlow/AdminDrawer";
-import Admin from "../../components//layouts/admin";
-import React from "react";
 ChartJS.register(ArcElement, Tooltip);
 const Dashboard = () => {
   const data = {
@@ -21,17 +18,11 @@ const Dashboard = () => {
       },
     ],
   };
-  const [drop1, setDrop1] = React.useState(true);
-  const [we, setW] = React.useState("w-1/12");
-  const onclick = () => {
-    setDrop1(!drop1);
-    setW("w-1/6");
-  };
-  const [drop, setDrop] = React.useState("adminDashboard");
+
   return (
     // <Flex backgroundColor={"#050017"} margin={"auto"} pr={10}>
     <section className="   min-h-screen" id="wrapper">
-      <div className={` pb-5 pt-20 sm:pt-28 lg:pt-[126px]  `}>
+      <div>
         <div className="flex flex-col justify-center items-center mb-5">
           <Text as={"div"} color={"white"} fontFamily={"Poppins"}>
             Community Name
@@ -295,5 +286,5 @@ const Dashboard = () => {
     // </Flex>
   );
 };
-Dashboard.getLayout = getDashboardLayout;
+
 export default Dashboard;

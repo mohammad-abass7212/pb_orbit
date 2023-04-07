@@ -22,7 +22,7 @@ const Sidebar = () => {
         className={`list-none pl-0 relative  lg:h-[calc(100vh_-_224px)] h-[calc(100vh_-_210px)] overflow-auto side_menu `}
       >
         <li
-          className={`py-[14px] px-9 cursor-pointer `}
+          className={`py-[14px] px-9 cursor-pointer   `}
           onClick={() => {
             router.push("/admin/dashboard");
           }}

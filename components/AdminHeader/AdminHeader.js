@@ -21,13 +21,13 @@ const AdminHeader = ({ drop, drop1 }) => {
   return (
     <Box
       className=" py-5 fixed left-0 w-full right-12 "
-      style={{ marginLeft: drop1 ? "256px" : "88px" }}
+      style={{ marginLeft: drop1 ? "230px" : "80px" }}
       id="navbar"
     >
       <Box>
         <Box
           className="  pb-5 flex  items-center justify-between   "
-          style={{ width: "84%" }}
+          style={{ width: drop1 ? "84%" : "94%" }}
         >
           <Box
             className=" ml-8"

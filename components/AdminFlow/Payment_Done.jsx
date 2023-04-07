@@ -7,7 +7,7 @@ import React from "react";
 const Payment_Done = () => {
   const router = useRouter();
   const handleAddusers = () => {
-    router.push("/communityFrameFlow");
+    router.push("/communityFrameFlow/dashboard");
   };
   return (
     <Box className="text-center h-screen flex-col justify-center gap-8 m-auto">

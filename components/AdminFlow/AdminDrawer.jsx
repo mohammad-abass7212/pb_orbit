@@ -6,7 +6,14 @@ import {
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Box, useToast } from "@chakra-ui/react";
 import Image from "next/image";
-const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
+const AdminDrawer = ({
+  onclick,
+  drop1,
+  setDrop,
+  drop,
+  active,
+  handleActive,
+}) => {
   const router = useRouter();
   const toast = useToast();
 
@@ -19,10 +26,10 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
   return (
     <>
       {drop1 ? (
-        <Box className="w-[232px] border-r-2  fixed ml-6 left-0 top-0 h-full overflow-hidden z-[999]  duration-200 ease-in-out">
+        <Box className="w-[232px] border-r-2  fixed  left-0 top-0 h-full overflow-hidden z-[999]  duration-200 ease-in-out">
           <Box className="w-[220px] my-10">
             <Image
-              className=""
+              className="ml-6"
               src="/utils/Common/logo.png"
               alt=""
               onClick={onclick}
@@ -32,10 +39,18 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
           </Box>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
             <li
-              onClick={() => setDrop("Dashboard")}
-              className="hover:bg-white py-3 w-full"
+              // onClick={() => setDrop("Dashboard")}
+              onClick={() => {
+                router.push("/communityFrameFlow/dashboard");
+                // setDrop("Dashboard");
+              }}
+              className={`py-3 w-full  ${
+                router.pathname === "/communityFrameFlow/dashboard"
+                  ? "bg-[#26203A] text-white"
+                  : ""
+              } `}
             >
-              <span className="flex gap-3">
+              <span className="flex gap-3 items-center ml-6">
                 <Image
                   width={20}
                   height={20}
@@ -47,10 +62,17 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             </li>
 
             <li
-              onClick={() => setDrop("Profile")}
-              className="hover:text-white py-3 w-full"
+              // onClick={() => setDrop("Profile")}
+              onClick={() => {
+                router.push("/communityFrameFlow/profile");
+              }}
+              className={`py-3 w-full ${
+                router.pathname === "/communityFrameFlow/profile"
+                  ? "bg-white"
+                  : ""
+              } `}
             >
-              <span className="flex gap-3">
+              <span className="flex gap-3 items-center ml-6">
                 <Image
                   width={20}
                   height={20}
@@ -61,10 +83,17 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               </span>
             </li>
             <li
-              onClick={() => setDrop("Add Users")}
-              className="hover:text-white py-3 w-full"
+              // onClick={() => setDrop("Add Users")}
+              onClick={() => {
+                router.push("/communityFrameFlow/addUser");
+              }}
+              className={`py-3 w-full ${
+                router.pathname === "/communityFrameFlow/addUser"
+                  ? "bg-white"
+                  : ""
+              } `}
             >
-              <span className="flex gap-3">
+              <span className="flex gap-3 items-center ml-6">
                 {/* <img src="/utils/common/sub.svg" alt="pborbit_logo" /> */}
                 <Image
                   width={20}
@@ -78,9 +107,9 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             <Box className="group">
               <li
                 className="hover:text-hov py-3 w-full flex   "
-                onClick={() => setDrop(!drop)}
+                // onClick={() => setDrop(!drop)}
               >
-                <span className="flex gap-3">
+                <span className="flex gap-3 ml-6">
                   <Image
                     width={20}
                     height={20}
@@ -90,25 +119,45 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                   Community
                 </span>
                 <span className=" ml-3">
-                  {drop ? (
-                    <MdOutlineKeyboardArrowDown />
+                  {active ? (
+                    <MdOutlineKeyboardArrowDown
+                      onClick={handleActive}
+                      className="cursor-pointer"
+                    />
                   ) : (
-                    <MdOutlineKeyboardArrowRight />
+                    <MdOutlineKeyboardArrowRight
+                      onClick={handleActive}
+                      className="cursor-pointer"
+                    />
                   )}
                 </span>
               </li>
-              {drop && (
+              {active && (
                 <Box className=" pl-5 group-hover:block ">
                   <ul className="flex flex-col ">
                     <li
-                      onClick={() => setDrop("Add Community")}
-                      className="hover:text-white py-3 px-3 w-full"
+                      // onClick={() => setDrop("Add Community")}
+                      // className="hover:text-white py-3 px-3 w-full"
+                      onClick={() => {
+                        router.push("/communityFrameFlow/addCommunity");
+                      }}
+                      className={`py-3 w-full ${
+                        router.pathname === "/communityFrameFlow/addCommunity"
+                          ? "bg-white"
+                          : ""
+                      } `}
                     >
                       Add Community
                     </li>
                     <li
-                      onClick={() => setDrop("View Community")}
-                      className="hover:text-white py-2 px-3 w-full"
+                      onClick={() => {
+                        router.push("/communityFrameFlow/viewCommunity");
+                      }}
+                      className={`py-3 w-full ${
+                        router.pathname === "/communityFrameFlow/viewCommunity"
+                          ? "bg-white"
+                          : ""
+                      } `}
                     >
                       View Community
                     </li>
@@ -117,22 +166,38 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               )}
             </Box>
 
-            <Box className="group">
-              <li className="hover:text-white py-3 w-full flex justify-between">
-                <span className="flex gap-3">
-                  <Image
-                    width={20}
-                    height={20}
-                    src="/utils/common/reser.svg"
-                    alt="reser"
-                  />{" "}
-                  Reservations
-                </span>
-              </li>
-            </Box>
+            <li
+              onClick={() => {
+                router.push("/communityFrameFlow/reservation");
+              }}
+              className={`py-3 w-full ${
+                router.pathname === "/communityFrameFlow/reservation"
+                  ? "bg-white"
+                  : ""
+              } `}
+            >
+              <span className="flex gap-3 ml-6">
+                <Image
+                  width={20}
+                  height={20}
+                  src="/utils/common/reser.svg"
+                  alt="reser"
+                />{" "}
+                Reservations
+              </span>
+            </li>
 
-            <li className="hover:text-white py-3 w-full">
-              <span className="flex gap-3">
+            <li
+              onClick={() => {
+                router.push("/communityFrameFlow/notification");
+              }}
+              className={`py-3 w-full ${
+                router.pathname === "/communityFrameFlow/notification"
+                  ? "bg-white"
+                  : ""
+              } `}
+            >
+              <span className="flex gap-3 ml-6">
                 <Image
                   width={20}
                   height={20}
@@ -148,7 +213,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 onClick={handleLogout}
                 className="hover:text-white py-3 w-full flex justify-between"
               >
-                <span className="flex gap-3">
+                <span className="flex gap-3 ml-6">
                   <Image
                     width={20}
                     height={20}
@@ -163,18 +228,18 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
         </Box>
       ) : (
         <Box
-          className={` border-r-2  min-h-screen ml-8   fixed  left-0 top-0 h-full overflow-hidden z-[999]  duration-200 ease-in-out ${
-            drop1 ? "w-64" : "w-14"
+          className={` border-r-2  min-h-screen    fixed  left-0 top-0 h-full overflow-hidden z-[999]  duration-200 ease-in-out ${
+            drop1 ? "w-64" : "w-20"
           } `}
         >
-          <Box className="w-8 my-10  ">
+          <Box className="w-8 my-10 ml-3 ">
             <Box onClick={onclick}>
               <GiHamburgerMenu className="invert" />{" "}
             </Box>
           </Box>
           <ul className="flex flex-col  font-thin font-sans uppercase text-[#6C6290]">
             <li onClick={() => setDrop()} className=" py-2  w-full">
-              <span className="flex gap-3">
+              <span className="flex gap-3  ml-3">
                 <Image
                   src="/utils/common/dash.svg"
                   alt="pborbit_logo"
@@ -188,7 +253,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               onClick={() => setDrop()}
               className="hover:text-white py-2 w-full"
             >
-              <span className="flex gap-3">
+              <span className="flex gap-3 ml-3">
                 <Image
                   width={20}
                   height={20}
@@ -201,7 +266,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
               onClick={() => setDrop()}
               className="hover:text-white py-2  w-full"
             >
-              <span className="flex gap-3">
+              <span className="flex gap-3 ml-3">
                 <Image
                   width={20}
                   height={20}
@@ -215,46 +280,52 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
                 className="hover:text-hov py-2 w-full flex gap-3 "
                 onClick={() => setDrop(!drop)}
               >
-                <span className="flex gap-3">
+                <span className="flex ml-3">
                   <Image
-                    width={20}
-                    height={20}
+                    width={100}
+                    height={100}
                     src="/utils/common/com.svg"
                     alt="pborbit_logo"
+                    className="w-full"
                   />
                 </span>
-                <span className="">
-                  {drop ? (
-                    <MdOutlineKeyboardArrowDown />
+                <span>
+                  {active ? (
+                    <MdOutlineKeyboardArrowDown
+                      onClick={handleActive}
+                      className="cursor-pointer"
+                    />
                   ) : (
-                    <MdOutlineKeyboardArrowRight />
+                    <MdOutlineKeyboardArrowRight
+                      onClick={handleActive}
+                      className="cursor-pointer"
+                    />
                   )}
                 </span>
               </li>
-              {drop ||
-                (drop1 && (
-                  <Box className=" pl-5 group-hover:block ">
-                    <ul className="flex flex-col ">
-                      <li
-                        onClick={() => setDrop()}
-                        className="hover:text-white py-2 px-3 w-full"
-                      >
-                        Add Community
-                      </li>
-                      <li
-                        onClick={() => setDrop()}
-                        className="hover:text-white py-2 px-3 w-full"
-                      >
-                        View Community
-                      </li>
-                    </ul>
-                  </Box>
-                ))}
+              {active && (
+                <Box className=" pl-5 group-hover:block ">
+                  <ul className="flex flex-col ">
+                    <li
+                      onClick={() => setDrop("Add Community")}
+                      className="hover:text-white py-2 px-2 w-full"
+                    >
+                      Add Community
+                    </li>
+                    <li
+                      onClick={() => setDrop("View Community")}
+                      className="hover:text-white py-2 px-2 w-full"
+                    >
+                      View Community
+                    </li>
+                  </ul>
+                </Box>
+              )}
             </Box>
 
             <Box className="group">
               <li className="hover:text-white py-2  w-full flex justify-between">
-                <span className="flex gap-3">
+                <span className="flex gap-3 ml-3">
                   <Image
                     width={20}
                     height={20}
@@ -266,7 +337,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
             </Box>
 
             <li className="hover:text-white py-2  w-full">
-              <span className="flex gap-3">
+              <span className="flex gap-3 ml-3">
                 <Image
                   width={20}
                   height={20}
@@ -278,7 +349,7 @@ const AdminDrawer = ({ onclick, drop1, setDrop, drop }) => {
 
             <Box className="group">
               <li className="hover:text-white py-2  w-full flex justify-between">
-                <span className="flex gap-3">
+                <span className="flex gap-3 ml-3">
                   <Image
                     width={20}
                     height={20}
