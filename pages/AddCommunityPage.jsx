@@ -1,9 +1,9 @@
 import { VStack, Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import Searchbar from "../../components/AdminFlow/Searchbar";
-import Add_Community from "../../components/AdminFlow/Community_additiion";
+import Searchbar from "../components/AdminFlow/Searchbar";
+import Community_addition from "../components/AdminFlow/Community_addition";
 
-const add_community_page = () => {
+const AddCommunityPage = () => {
   return (
     <Box bgColor={"#050017"}>
       <VStack
@@ -33,11 +33,11 @@ const add_community_page = () => {
 
       <VStack justifyContent={"space-between"}>
         <Box marginTop={"160px"}>
-          <Add_Community />
+          <Community_addition />
         </Box>
       </VStack>
     </Box>
   );
 };
 
-export default add_community_page;
+export default AddCommunityPage;

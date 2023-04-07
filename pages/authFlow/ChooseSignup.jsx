@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 
 import CustomText, { variants } from "@/components/Common/CustomText";
-import DisplaySignupButton from "@/components/chooseSignupMedium/DisplaySignupButton";
 import DisplaySignupBtn from "@/components/chooseSignupMedium/DisplaySignupButton";
 import AuthFlowLayout from "@/components/layouts/AuthFlowLayout";
 
@@ -22,9 +21,8 @@ const chooseSignup = () => {
         height={"100vh"}
         bg="#050017"
         py={"20px"}
-        // pt={["236px", "260px", "450px", "60px", "100px"]}
-        // pb={["170px", "400px", "400px", "40px", "40px"]}
-        // position="relative"
+        pb={["170px", "400px", "400px", "40px", "40px"]}
+        position="relative"
       >
         <Image
           w={["80%", "41%", "41%", "41%", "41%"]}

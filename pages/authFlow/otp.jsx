@@ -28,9 +28,10 @@ import {
 } from "../api/apiVariables";
 import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
-// interface IAppProps {}
 
 const OtpForm = () => {
+  const [counter, setCounter] = useState(60);
+  const formattedCounter = `00:${counter.toString().padStart(2, "0")}`;
   const [otp, setOtp] = useState("");
   const [redirectto, setRedirectto] = useState(false);
   const toast = useToast();
@@ -167,6 +168,7 @@ const OtpForm = () => {
             isClosable: true,
             position: "top",
           });
+          setCounter(60);
         } else if (!success) {
           setResendOtpState(false);
           toast({
@@ -192,6 +194,10 @@ const OtpForm = () => {
       }
     })();
   };
+  /// counter logic below ///
+  useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+  }, [counter]);
   return (
     <Box
       height={"100vh"}
@@ -259,19 +265,40 @@ const OtpForm = () => {
         </Box>
         <Flex color={"white"} gap="8px">
           <Box>
-            <Text>{`didn't recieve the Verification OTP?`}</Text>
+            <Text>{`Didn't recieve the verification OTP?`}</Text>
           </Box>{" "}
-          <Box display={"flex"} onClick={(e) => handleResendOtp(e)}>
+          <Box
+            display={"flex"}
+            onClick={counter >= 1 ? null : (e) => handleResendOtp(e)}
+          >
             {resendOtpState ? (
               <Box>
                 <Spinner color="green" />
               </Box>
             ) : (
-              <Text cursor={"pointer"} color={"green"} fontWeight="700">
-                Resend
+              <Text
+                style={
+                  counter >= 1
+                    ? {
+                        opacity: 0.5,
+                        pointerEvents: "none",
+                        cursor: "none",
+                      }
+                    : {
+                        cursor: "pointer",
+                        color: "green",
+                        fontWeight: "700",
+                      }
+                }
+                _disabled={counter >= 1}
+              >
+                Resend OTP
               </Text>
             )}
           </Box>
+          {counter == 0 ? null : (
+            <Box color={"grey.100"}>{formattedCounter}</Box>
+          )}
         </Flex>
         <CustomButton
           mt={["20px", "15px"]}

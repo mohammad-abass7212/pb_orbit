@@ -133,7 +133,7 @@ const About: FunctionComponent = () => {
                 />
                 <Text className="typewriter">Community Manage</Text>
               </Box>
-              <Link href="/community" style={{ textDecoration: 'none' }}>
+              <Link href="/community" style={{ textDecoration: "none" }}>
                 <CustomButton
                   imageSrc="/create_community.svg"
                   text="Get Started →"

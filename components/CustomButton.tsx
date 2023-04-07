@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
-import { useClickAnimation } from "./useClickAnimation";
+import { useClickAnimation } from "./Animations/useClickAnimation";
 
 // Defining a new type for CustomButtonProps, which extends ButtonProps
 type CustomButtonProps = ButtonProps & {
@@ -59,9 +59,10 @@ const CustomButton = ({
   return (
     <Button
       _hover={{
-        transform: "translateY(-2px)",
-        boxShadow: "lg",
-        bg: btnHoverColor,
+        bgColor: "orange",
+        transform: "translateY(-5px)",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+        padding: "12px 16px", // adjust padding to increase button size
       }}
       ref={buttonRef}
       onClick={onClick}

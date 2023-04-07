@@ -13,10 +13,10 @@ const Community = () => {
   }, []);
 
   const handleviewCommunity = () => {
-    router.push("/viewAllCommunityPage");
+    router.push("/freshUserFlow/ViewEveryCommunity");
   };
   const handleCreateCommunity = () => {
-    router.push("/add_community_page");
+    router.push("/freshUserFlow/AddCommunityPage");
   };
   return (
     <Box

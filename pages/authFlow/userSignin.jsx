@@ -15,9 +15,10 @@ import React from "react";
 import { USE_LOGIN } from "../adminAuth/adminStateManager/adminUseReducer";
 import { LoginFormValidate } from "../adminAuth/validator/LoginFormValidator";
 import CustomText, { variants } from "@/components/Common/CustomText";
-import { useClickAnimation } from "@/components/useClickAnimation";
 import { AdminLoginCaller } from "../adminAuth/adminStateManager/adminAuth";
 import { useRouter } from "next/router";
+import { RiEyeCloseLine } from "react-icons/ri";
+import { IoEyeOutline } from "react-icons/io5";
 // interface ISigninProps {}
 const UserSignIn = () => {
   const router = useRouter();
@@ -70,9 +71,15 @@ const UserSignIn = () => {
           isClosable: true,
           position: "top",
         });
-        setTimeout(() => {
-          router.push("/community");
-        }, 2000);
+        if (response.fresh_user) {
+          setTimeout(() => {
+            router.push("/community");
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            router.push("/communityFrameFlow");
+          }, 2000);
+        }
       } else {
         toast({
           title: response.message,
@@ -125,13 +132,7 @@ const UserSignIn = () => {
   //       : null;
   //   }
   // });
-  const buttonRef = useRef(null);
-  useClickAnimation(buttonRef, {
-    size: 100,
-    duration: 1000,
-    color: "red",
-    effectName: "ripple",
-  });
+
   return (
     <Flex
       id="usersigninpage"
@@ -141,7 +142,7 @@ const UserSignIn = () => {
       position="relative"
       flexDirection={"column"}
       alignItems={"center"}
-      gap="10px"
+      gap="6"
     >
       <Image
         w={["80%", "41%", "41%", "41%", "41%"]}
@@ -220,11 +221,23 @@ const UserSignIn = () => {
             }
           }}
         />
-        <Image
-          src="/utils/common/hide-2.svg"
-          alt="pborbit_logo"
-          onClick={togglePasswordVisibility}
-        />
+        <Box position={"relative"} top={3.5} right={2.5}>
+          {passwordShown ? (
+            <IoEyeOutline
+              size={"20px"}
+              color="white"
+              alt="pborbit_logo"
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <RiEyeCloseLine
+              size={"20px"}
+              color="white"
+              alt="pborbit_logo"
+              onClick={togglePasswordVisibility}
+            />
+          )}
+        </Box>
       </Box>
       <Box
         w={["60%", "50%", "45%", "22%"]}
@@ -244,13 +257,19 @@ const UserSignIn = () => {
       </Box>
 
       <Button
-        ref={buttonRef}
         mt="15px"
         bg="#00E276"
         color="white"
         w={["60%", "50%", "45%", "22%"]}
         type={"submit"}
         onClick={handleLogin}
+        _hover={{
+          bgColor: "orange",
+          transform: "translateY(-5px)",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+          padding: "12px 16px",
+        }}
+        borderRadius={"15px"}
       >
         Login
       </Button>

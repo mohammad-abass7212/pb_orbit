@@ -3,7 +3,7 @@ import React from "react";
 import CardReservations from "../components/AdminFlow/CardReservations";
 import { useEffect, useState } from "react";
 
-const ViewAllreservations = () => {
+const ViewEveryReservations = () => {
   const reservationCard = [
     {
       id: 1,
@@ -35,7 +35,7 @@ const ViewAllreservations = () => {
   const [apiStatus, setApiStatus] = useState({
     inProgress: false,
     failed: false,
-    failMessage: "",  
+    failMessage: "",
   });
   const changeApiStatus = (inProgress, failMessage) => {
     setApiStatus({
@@ -82,4 +82,4 @@ const ViewAllreservations = () => {
   );
 };
 
-export default ViewAllreservations;
+export default ViewEveryReservations;

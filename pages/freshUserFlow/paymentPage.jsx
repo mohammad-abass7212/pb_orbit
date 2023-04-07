@@ -1,10 +1,8 @@
 import React from "react";
-import MainLayout from "../components/layouts/MainLayout";
-import ViewAllCommunity from "../components/AdminFlow/viewAllCommunity";
-import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import Searchbar from "../components/AdminFlow/Searchbar";
-import Payment_page from "../components/AdminFlow/Payemnt_Page";
-const Paymentpage = () => {
+import MainLayout from "../../components/layouts/MainLayout";
+import { Box, Image, Text, VStack } from "@chakra-ui/react";
+import PaymentPageComponent from "../../components/AdminFlow/Payment_Page";
+const paymentPage = () => {
   return (
     <MainLayout>
       <VStack
@@ -32,10 +30,10 @@ const Paymentpage = () => {
         </Box>
       </VStack>
       <Box bgColor={"#050017"} marginTop={-10}>
-        <Payment_page />
+        <PaymentPageComponent />
       </Box>
     </MainLayout>
   );
 };
 
-export default Paymentpage;
+export default paymentPage;

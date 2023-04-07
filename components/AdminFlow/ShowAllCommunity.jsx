@@ -76,7 +76,7 @@ function ShowAllCommunity() {
       gap={6}
       justifyContent="center"
       alignItems="center"
-      p={6}
+      pt={16}
     >
       {card.map((card) => (
         <CommonUserCard key={card.id} cards={card} />

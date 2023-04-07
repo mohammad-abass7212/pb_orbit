@@ -4,17 +4,12 @@ import {
   Heading,
   Image,
   Input,
-  InputGroup,
-  Button,
   useToast,
   Text,
-  Checkbox,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  InputLeftElement,
 } from "@chakra-ui/react";
+
+import { RiEyeCloseLine } from "react-icons/ri";
+import { IoEyeOutline } from "react-icons/io5";
 
 import React, { useEffect, useRef, useState } from "react";
 import { validate } from "../adminAuth/validator/SignUpFormValidator";
@@ -295,11 +290,30 @@ const SignupForm = () => {
                   }
                 }}
               />
-              <Image
+              {/* <Box>
+              <RiEyeCloseLine
                 src="/utils/common/hide-2.svg"
                 alt="pborbit_logo"
                 onClick={togglePasswordVisibility}
               />
+              </Box> */}
+              <Box position={"relative"} top={3.5} right={2.5}>
+                {passwordShown ? (
+                  <IoEyeOutline
+                    size={"20px"}
+                    color="white"
+                    alt="pborbit_logo"
+                    onClick={togglePasswordVisibility}
+                  />
+                ) : (
+                  <RiEyeCloseLine
+                    size={"20px"}
+                    color="white"
+                    alt="pborbit_logo"
+                    onClick={togglePasswordVisibility}
+                  />
+                )}
+              </Box>
             </Box>
             <Box
               display={"flex"}
@@ -334,18 +348,32 @@ const SignupForm = () => {
                   }
                 }}
               />
-              <Image
-                src="/utils/common/hide-2.svg"
-                alt="pborbit_logo"
-                onClick={toggleConfirmPasswordVisibility}
-              />
+              <Box position={"relative"} top={3.5} right={2.5}>
+                {confirmPasswordShown ? (
+                  <IoEyeOutline
+                    size={"20px"}
+                    color="white"
+                    src="/utils/common/hide-2.svg"
+                    alt="pborbit_logo"
+                    onClick={toggleConfirmPasswordVisibility}
+                  />
+                ) : (
+                  <RiEyeCloseLine
+                    size={"20px"}
+                    color="white"
+                    src="/utils/common/hide-2.svg"
+                    alt="pborbit_logo"
+                    onClick={toggleConfirmPasswordVisibility}
+                  />
+                )}
+              </Box>
             </Box>
 
             <CustomButton
               mt={["20px", "15px"]}
               onClick={handleSubmit}
               color="white"
-              widthArray={["80%", "50%", "45%", "22%"]}
+              widthArray={["20%", "21%", "22%", "23%"]}
               text={isLoading ? "Submitting.." : "Sign Up"}
               spinner={isLoading}
               imageSrc=""
@@ -355,14 +383,13 @@ const SignupForm = () => {
               btnBorderRadius={["15px"]}
               mb={[]}
               iconVisStatus={false}
-              btnHoverColor=""
+              btnHoverColor="orange"
               fontSize={[]}
             />
           </Box>
-          <Checkbox colorScheme="green" defaultChecked>
-            <Text color={"white"}>Player Access</Text>
-          </Checkbox>
+
           <Flex
+            pb="70px"
             flexDirection={["column", "row"]}
             alignItems={["center", "baseline"]}
             justifyContent={["center", "flex-start"]}

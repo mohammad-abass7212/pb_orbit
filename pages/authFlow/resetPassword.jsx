@@ -204,6 +204,13 @@ const ResetPassword = () => {
           color="white"
           w={["60%", "50%", "45%", "22%"]}
           onClick={handleupdatePassword}
+          _hover={{
+            bgColor: "orange",
+            transform: "translateY(-5px)",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+            padding: "12px 16px",
+          }}
+          borderRadius={"15px"}
         >
           Update Password
         </Button>

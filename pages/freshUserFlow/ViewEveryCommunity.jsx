@@ -1,11 +1,11 @@
 import React from "react";
-import MainLayout from "../components/layouts/MainLayout";
-import ShowAllCommunity from "../components/AdminFlow/ShowAllCommunity";
+import MainLayout from "../../components/layouts/MainLayout";
+import ShowAllCommunity from "../../components/AdminFlow/ShowAllCommunity";
 import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import Searchbar from "../components/AdminFlow/Searchbar";
+import Searchbar from "../../components/AdminFlow/Searchbar";
 import { useRef } from "react";
 import Link from "next/link";
-const ViewAllCommunityPage = () => {
+const ViewEveryCommunity = () => {
   return (
     <MainLayout>
       <VStack
@@ -31,11 +31,17 @@ const ViewAllCommunityPage = () => {
             Communities
           </Text>
           <Box pb={"15px"}>
-            <Link href={"/add_community_page"}>
+            <Link href={"/freshUserFlow/AddCommunityPage"}>
               <Button
                 color={"white"}
                 bgColor={"#00E276"}
-                _hover={{ bgColor: "#FF6600" }}
+                _hover={{
+                  bgColor: "orange",
+                  transform: "translateY(-5px)",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+                  padding: "12px 16px",
+                }}
+                borderRadius={"15px"}
               >
                 Create Community
               </Button>
@@ -49,7 +55,7 @@ const ViewAllCommunityPage = () => {
           margin={"auto"}
         ></Box>
       </VStack>
-      <Flex position={"fixed"} left={"100px"} top={"140px"} zIndex={1}>
+      <Flex position={"fixed"} left={"100px"} top={"160px"} zIndex={1}>
         <Searchbar />
       </Flex>
 
@@ -75,4 +81,4 @@ const ViewAllCommunityPage = () => {
   );
 };
 
-export default ViewAllCommunityPage;
+export default ViewEveryCommunity;

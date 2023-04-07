@@ -187,6 +187,13 @@ const ForgotPassword = () => {
           color="white"
           w={["60%", "50%", "45%", "22%"]}
           onClick={(e) => handlesendOtpOnEmail(e)}
+          _hover={{
+            bgColor: "orange",
+            transform: "translateY(-5px)",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+            padding: "12px 16px",
+          }}
+          borderRadius={"15px"}
         >
           Send OTP
         </Button>
