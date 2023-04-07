@@ -32,7 +32,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   imageSrc,
   text,
   btnDisabled = false,
-  buttonBgColor="#00E276",
+  buttonBgColor = "#00E276",
   customHeight,
   widthArray,
   btnBorderRadius,
@@ -53,7 +53,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       height={customHeight}
       width={widthArray}
       borderRadius={btnBorderRadius}
-      _hover={{ bg: btnHoverColor }}
+      _hover={{ bg: "orange", transform: "translateY(-3px)" }}
       mt={mt}
       mb={mb}
       fontSize={fontSize}

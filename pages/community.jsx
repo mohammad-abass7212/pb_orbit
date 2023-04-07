@@ -16,7 +16,7 @@ const Community = () => {
     router.push("/freshUserFlow/ViewEveryCommunity");
   };
   const handleCreateCommunity = () => {
-    router.push("/freshUserFlow/AddCommunity_page");
+    router.push("/freshUserFlow/AddCommunityPage");
   };
   return (
     <Box

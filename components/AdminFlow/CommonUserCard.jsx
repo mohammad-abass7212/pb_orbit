@@ -18,7 +18,6 @@ import { IconContext } from "react-icons";
 function CommonUserCard({ cards }) {
   return (
     <Card
-      // height={"140px"}
       key={cards.id}
       borderRadius="15"
       alignItems="center"
@@ -49,7 +48,7 @@ function CommonUserCard({ cards }) {
             <Image
               zIndex={1}
               name={""}
-              src={"utils/Common/Location.svg"}
+              src={"/utils/Common/Location.svg"}
               alt={"communityIcons"}
               borderRadius={15}
             />

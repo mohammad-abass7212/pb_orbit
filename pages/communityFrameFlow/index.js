@@ -5,7 +5,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import MainLayout from "../../components/layouts/MainLayout";
 import AvatarWithRipple from "../../components/RippleAvatar.jsx";
 import StatusIndicator from "../../components/StatusIndicator.jsx";
-import Payment_Page from "../../components/AdminFlow/Payemnt_Page.jsx";
+import Payment_Page from "../../components/AdminFlow/Payment_Page.jsx";
 import Payment_Done from "../../components/AdminFlow/Payment_Done.jsx";
 import Communities from "../community.jsx";
 import Searchusernadd from "../../components/AdminFlow/Searchusernadd.jsx";

@@ -13,10 +13,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 
-function Searchbar({
+const Searchbar = ({
   TooltipLabel = "Search Users",
   SearchbarPlaceholder = "Search",
-}) {
+}) => {
+  const token = localStorage.getItem("token");
   const searchRef = useRef(null);
   const [searchInput, setSearchInput] = useState("");
   const handleSearchInput = (e) => {
@@ -26,8 +27,8 @@ function Searchbar({
 
   // useEffect(() => {
   //   axios
-  //     .post(SEARCH_USERS_API_ENDPOINT, {
-  //       searchInput,
+  //     .post(`${SEARCH_USERS_API_ENDPOINT}${searchInput}`, {
+  //       Authorization: `Bearer ${token}`,
   //     })
   //     .then((response) => {
   //       console.log(response);
@@ -65,6 +66,6 @@ function Searchbar({
       </InputGroup>
     </>
   );
-}
+};
 
 export default Searchbar;
