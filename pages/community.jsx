@@ -1,6 +1,5 @@
 import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
 import * as React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import CustomText, { variants } from "@/components/Common/CustomText";
